@@ -1,0 +1,30 @@
+/* Importación de Fuentes */
+
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700|Open+Sans:400,700|Montserrat:400,700|Ubuntu:400,700);
+
+/* Familias de Fuentes */
+
+$font-monserrat: 	'Montserrat', sans-serif;
+
+$font-opens-sans: 	'Open Sans', sans-serif;
+
+$font-roboto:		'Roboto', sans-serif;
+
+$font-ubuntu:		'Ubuntu', sans-serif;
+
+
+/* Tamaños de Fuentes */
+
+
+$font-size-base: 	16px;
+
+/* Parrafos */
+
+p {
+	margin-left: 3rem;
+	margin-right: 3rem;
+	margin-bottom: 3rem;
+	line-height: 1.8;
+	font-size: 1em;
+}

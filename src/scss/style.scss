@@ -1,0 +1,109 @@
+@import "normalize";
+@import "reset";
+@import "colors";
+@import "fuentes";
+@import "components/login";
+
+body {
+	font-size: $font-size-base;
+	font-family: $font-ubuntu;
+}
+
+
+body {
+   font-family: 'Roboto', sans-serif;
+}
+
+.flex-body {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+}
+
+.container {
+   display: flex;
+   flex: 1;
+}
+
+.main {
+   flex: 1;
+}
+
+.nav, aside {
+   flex: 0 0 auto;
+}
+
+/*Estilos Visuales*/
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	height: 52px;
+	padding: 0px 20px;
+	background-color: $dark;
+}
+
+header .logo {
+	font-size: 20px;
+	color: white;
+}
+
+header .logo, nav ul li a {
+  font-weight: 700;
+}
+
+header nav {
+ 	flex-basis: 500px;
+}
+
+header nav ul{
+  display: flex;
+  justify-content: space-around;
+}
+
+nav ul li {
+  list-style: none;
+    outline-offset: 5px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: $primary;
+  padding: 14px 5px;
+}
+
+nav ul li a:hover {
+  border-bottom: 4px solid $primary;
+  padding: 12px 5px;
+}	
+
+.nav {
+   padding: 5px;
+   margin: 0px 5px;
+   background-color: #D7DBDD;
+   color: #2C3E50;
+   font-weight: bold;
+   
+}
+
+.main {
+   padding: 5px;
+   color: #2C3E50;
+   font-weight: bold;
+}
+
+aside {
+   padding: 5px;
+   margin: 0px 5px;
+   background-color: #D7DBDD;
+   color: #2C3E50;
+   font-weight: bold;
+}
+
+footer {
+   margin: 5px 0px 0px 0px;
+   padding: 10px 5px;
+   background-color: #2C3E50;
+   color: #FDFEFE;
+}
