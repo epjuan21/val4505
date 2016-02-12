@@ -7,6 +7,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
 var imageop = require('gulp-image-optimization');
+var autoprefixer = require('gulp-autoprefixer');
 
 var config = {
 	styles: {
@@ -31,6 +32,10 @@ var config = {
 gulp.task('build:css', function(){
 	gulp.src(config.styles.main)
 		.pipe(sass())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
 		//.pipe(minifyCss())
 		.pipe(gulp.dest(config.styles.output));
 });

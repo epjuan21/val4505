@@ -16,35 +16,46 @@
     </head>
     <body class="flex-body">
 
-    <header>
+        <header>
 
-        <div class="logo">Val 4505</div>
+            <div class="logo">Val 4505</div>
 
-        <nav>
-            <ul class="menu">
-                <li><a href="">Importar</a></li>
-                <li><a href="">Corregir</a></li>
-                <li><a href="">Exportar</a></li>
-                <li><a href="">Parametros</a></li>
-            </ul>
-    </nav>
-
-
-    </header>
-
-    <div class="container">
-        <div class="nav">Nav</div>
-        <div class="main">Main</div>
-        <aside>Aside</aside>
-    </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="">Importar</a></li>
+                    <li><a href="">Corregir</a></li>
+                    <li><a href="">Exportar</a></li>
+                    <li><a href="">Parametros</a></li>
+                </ul>
+        </nav>
 
 
+        </header>
 
-    <footer>
+        <div class="container">
+            <div class="nav">Nav</div>
+            <div class="main">Main</div>
+            <aside>Aside</aside>
+        </div>
 
-        Usuario:  <?php echo $sesion->get("usuario"); ?> </h1> <a href="modulos/module.CerrarSesion.php"> Cerrar Sesion </a>
 
-    </footer>
+
+        <footer>
+
+            <div class="footer-usuario">
+
+                Usuario:  <?php echo $sesion->get("usuario"); ?> <a href="modulos/module.CerrarSesion.php"> Cerrar Sesion </a>
+
+            </div>
+
+            <div class="footer-derechos">
+                
+                Desarrollado y Diseñado por Juan Fernando Ramírez Vélez
+
+            </div>
+
+
+        </footer>
 
     </body>
 </html>

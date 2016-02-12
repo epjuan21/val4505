@@ -3,12 +3,7 @@
 @import "colors";
 @import "fuentes";
 @import "components/login";
-
-body {
-	font-size: $font-size-base;
-	font-family: $font-ubuntu;
-}
-
+@import "components/footer";
 
 body {
    font-family: 'Roboto', sans-serif;
@@ -99,11 +94,4 @@ aside {
    background-color: #D7DBDD;
    color: #2C3E50;
    font-weight: bold;
-}
-
-footer {
-   margin: 5px 0px 0px 0px;
-   padding: 10px 5px;
-   background-color: #2C3E50;
-   color: #FDFEFE;
 }
