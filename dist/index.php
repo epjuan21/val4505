@@ -9,33 +9,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
     </head>
-    <body class="flex-body">
+    <body>
 
-    <header>
+    <div class="login-container">
 
-        <div class="logo">Val 4505</div>
+        <div class="form-container">
+            
+            <form name="frmLogin" action="modulos/module.ValidarUsuario.php" method="POST">
 
-        <nav>
-            <ul class="menu">
-                <li><a href="">Importar</a></li>
-                <li><a href="">Corregir</a></li>
-                <li><a href="">Exportar</a></li>
-                <li><a href="">Parametros</a></li>
-            </ul>
-    </nav>
+                <input type="text" name="user" class="login-input" placeholder="Usuario"/>
+                <input type="password" name="pass" class="login-input" placeholder="Contraseña"/>
+                <input type="submit" class="login-submit" name="ingresar" value="Ingresar" />
+
+            </form>
 
 
-    </header>
+        </div>        
 
-    <div class="container">
-        <div class="nav">Nav</div>
-        <div class="main">Main</div>
-        <aside>Aside</aside>
     </div>
 
-
-
-    <footer>Footer</footer>
 
     </body>
 </html>

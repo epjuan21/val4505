@@ -16,7 +16,7 @@ if( isset($_POST["ingresar"]) )
         echo "usuario valido";
         $sesion->set("usuario",$usuario);
         
-        header("location: ../index.php");
+        header("location: ../inicio.php");
     }
     else 
     {
