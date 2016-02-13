@@ -1,0 +1,27 @@
+.btn {
+	display: inline-block;
+	padding: 6px 12px;
+	font-size: 14px;
+	font-weight: $font-weight-button;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.btn-default {
+	background-color: #fff;
+	border-color: #ccc;
+}
+
+.btn-default a {
+	color: $dark !important;
+}
+
+.btn-default:hover {
+	background-color: $soft-grey;
+	border-color: #adadad;
+}

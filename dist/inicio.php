@@ -33,9 +33,25 @@
         </header>
 
         <div class="container">
-            <div class="nav">Nav</div>
-            <div class="main">Main</div>
-            <aside>Aside</aside>
+
+
+            <div class="main">
+
+                <div class="opcion">
+                    Opcion 1
+                </div>
+
+
+                <div class="opcion">
+                    Opcion 1
+                </div>
+
+                <div class="opcion">
+                    Opcion 1
+                </div>
+
+            </div>
+
         </div>
 
 
@@ -44,7 +60,7 @@
 
             <div class="footer-usuario">
 
-                Usuario:  <?php echo $sesion->get("usuario"); ?> <a href="modulos/module.CerrarSesion.php"> Cerrar Sesion </a>
+                Usuario:  <?php echo $sesion->get("usuario"); ?> <button class="btn btn-default" ><a href="modulos/module.CerrarSesion.php"> Cerrar Sesion </a></button>
 
             </div>
 
