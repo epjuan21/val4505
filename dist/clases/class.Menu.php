@@ -1,13 +1,13 @@
 <?php
-require_once ("class.ConnectionSQLite.php");
+require_once ("class.ConnectionMySQL.php");
 
-class Menu extends ConnectionSQLite {
+class Menu extends ConnectionMySQL {
 
 	public $query;
 
-	public function get_menu ($id_menu) {
+	public function getMenu ($id_menu) {
 
-		$this->query = $this->conn->prepare('SELECT id_menu, menu, html FROM menu WHERE id_menu ='.$id_menu);
+		$this->query = $this->conn->prepare('SELECT MENU_ID, MENU_NAME, MENU_HTML FROM menu WHERE MENU_ID ='.$id_menu);
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}

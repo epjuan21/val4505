@@ -12,15 +12,13 @@ if( isset($_POST["ingresar"]) )
     
     if($Usuario)
     {           
-        print_r($Usuario);
-        echo "usuario valido";
         $sesion->set("usuario",$usuario);
         
         header("location: ../inicio.php");
     }
     else 
     {
-        echo "Verifica tu nombre de usuario y contrase�a";
+        echo "Verifica tu nombre de usuario y contraseña";
     }
 }
 

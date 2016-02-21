@@ -2,6 +2,16 @@
     require_once("clases/class.Session.php");
     $sesion = new sesion();
     $usuario = $sesion->get("usuario");
+
+    require_once ("clases/class.Menu.php");
+    $menu = new Menu();
+    if (isset($_GET['menu'])){
+        $id = $menu->getMenu($_GET['menu']);
+    }
+
+    require_once ("clases/class.Entidad.php");
+    $entidad = new Entidad();
+    $list_enti = $entidad->get_entidades();
 ?>
 <!doctype html>
 <html lang="es">
@@ -9,7 +19,9 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="./css/style.css">
-        <title></title>
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
+        <title>Val4505</title>
         <meta name="description" content="Validador Resolución 4505">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,43 +30,36 @@
 
         <header>
 
-            <div class="logo">Val 4505</div>
+            <div class="logo"><a href="inicio.php">Val 4505</a></div>
 
             <nav>
                 <ul class="menu">
                     <li><a href="">Importar</a></li>
                     <li><a href="">Corregir</a></li>
                     <li><a href="">Exportar</a></li>
-                    <li><a href="">Parametros</a></li>
+                    <li><a href="?menu=2">Parametros</a></li>
                 </ul>
         </nav>
-
 
         </header>
 
         <div class="container">
 
-
-            <div class="main">
-
-                <div class="opcion">
-                    Opcion 1
-                </div>
-
-
-                <div class="opcion">
-                    Opcion 1
-                </div>
-
-                <div class="opcion">
-                    Opcion 1
-                </div>
-
-            </div>
+                <?php
+                    if (!empty($_GET["menu"]))
+                    {
+                        for ($i=0;$i<sizeof($id);$i++)
+                        {
+                        include ($id["$i"]["MENU_HTML"].".php");
+                        }
+                    }
+                    else
+                    {
+                        //include ("inicio.php");
+                    }
+                ?>                
 
         </div>
-
-
 
         <footer>
 
@@ -70,8 +75,7 @@
 
             </div>
 
-
         </footer>
-
+    <script src="js/bundle.js"></script>
     </body>
 </html>

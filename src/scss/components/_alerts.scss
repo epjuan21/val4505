@@ -1,0 +1,46 @@
+.alert {
+	position: relative;
+	display: block;
+	padding: 1rem;
+	margin: 10px 0px;
+	background: #E4EAEE;
+	border: 1px solid rgba(black,.15);
+	border-radius: 2px;
+	color: rgba(black,.5); // let the background color shine through
+
+	&--danger{
+	background: $red;
+	}
+	&--warning{
+	background: $orange;
+	}
+	&--success{
+	background: $green;
+	}
+	&--info{
+	background: $blue;
+	}
+	&--dismissible{
+    padding-right: 2.5rem;
+  	}
+
+	.alert-close{
+		position: absolute;
+		font-size: 20px;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		display: block;
+		text-align: center;
+		padding: 1rem;
+		border: none;
+		background: none;
+		color: rgba(black,.2);
+
+		&:hover{
+			cursor: pointer;
+			color: rgba(black,.6);
+		}
+	}
+
+}

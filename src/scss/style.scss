@@ -6,9 +6,11 @@
 @import "components/login";
 @import "components/footer";
 @import "components/button";
+@import "components/alerts";
 
 body {
    font-family: 'Roboto', sans-serif;
+   background-color: $soft-grey;
 }
 
 .flex-body {
@@ -19,15 +21,106 @@ body {
 
 .container {
    display: flex;
+   flex-direction: row;
    flex: 1;
 }
 
-.main {
+// Estilos Pagina Parametros
+
+.param-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  flex:1;
+}
+
+.param-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  border: 1px solid $middle-grey;
+  width: 300px;
+  height: 100px;
+  margin: 10px;
+}
+
+.param-icon i {
+  color: $info;
+}
+
+.param-title a {
+  text-decoration: none;
+  color: $dark-grey;
+}
+
+// Estilos Pagina Entidades
+
+.entidad-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
   flex: 1;
-  padding: 5px;
-  color: #2C3E50;
-  font-weight: bold;
+}
+
+.entidad-box {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  height: 400px;
+  width: 300px;
+  background-color: white;
+  border: 1px solid $middle-grey;
+}
+
+.entidad-title {
+  padding: 7px 0px 5px 7px;
+  border-bottom: 1px solid $middle-grey;
+}
+
+.entidad-content {
+  margin: 20px 10px 0px 10px;
+}
+
+.entidad-content ul li:first-child {
+  padding-top: 0px;
+}
+
+.entidad-content ul li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style: none;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid $soft-grey;
+}
+
+.entidad-item {
+  width: 250px;
+}
+
+.entidad-item-edit a i {
+  color: $primary;
+}
+
+.entidad-detalle {
+  font-size: 9px;
+}
+
+.form-entidad input[type=text] {
+  color: $dark-grey;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:400;
+  font-size: 16px;
+  line-height: 22px;
+  background-color: #FFF;
+  padding: 8px 8px 8px 24px;
+  margin-bottom: 10px;
+  width:100%;
+  box-sizing: border-box;
+  border: 2px solid $middle-grey;
 }
