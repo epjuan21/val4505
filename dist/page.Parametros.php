@@ -6,7 +6,7 @@
 			<i class="fa fa-plus-square fa-4x"></i>
 		</div>
 
-		<div class="param-title"><a href="?menu=3">Entidades Administradoras</a></div>
+		<div class="param-title-menu"><a href="?menu=3">Entidades Administradoras</a></div>
 
 	</div>
 
@@ -16,7 +16,7 @@
 			<i class="fa fa-building fa-4x"></i>
 		</div>
 
-		<div class="param-title">Municipios</div>
+		<div class="param-title-menu"><a href="?menu=5">Municipios</a></div>
 
 	</div>
 
@@ -26,7 +26,7 @@
 			
 		</div>
 
-		<div class="param-title">Entidades Administradoras</div>
+		<div class="param-title-menu">Entidades Administradoras</div>
 
 	</div>
 

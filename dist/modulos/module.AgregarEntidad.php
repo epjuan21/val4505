@@ -1,7 +1,7 @@
 <?php
 require_once ("../clases/class.Entidad.php");
     $objEntidad = new Entidad();
-        $Entidad = $objEntidad->get_entidad_id($_POST["ent-cod"]);
+        $Entidad = $objEntidad->getEntidadId($_POST["ent-cod"]);
     
 if ($Entidad) {
 
@@ -11,7 +11,7 @@ if ($Entidad) {
 
 } else {
     
-    $grabar=$objEntidad->grabar_entidad();
+    $grabar=$objEntidad->insertEntidad();
 
     header ("Location: ../inicio.php?menu=3&Estado=Success"); 
 

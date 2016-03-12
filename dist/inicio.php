@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set('America/Bogota');
     require_once("clases/class.Session.php");
     $sesion = new sesion();
     $usuario = $sesion->get("usuario");
@@ -11,7 +12,15 @@
 
     require_once ("clases/class.Entidad.php");
     $entidad = new Entidad();
-    $list_enti = $entidad->get_entidades();
+    $list_enti = $entidad->getEntidades();
+
+    if (isset($_GET['CodEPS'])){
+        $Ent = $entidad->getEntidadId($_GET['CodEPS']);
+    }
+
+    require_once ("clases/class.Municipio.php");
+    $municipio = new Municipio();
+    $list_mun = $municipio->getMunicipios();
 ?>
 <!doctype html>
 <html lang="es">
@@ -34,7 +43,7 @@
 
             <nav>
                 <ul class="menu">
-                    <li><a href="">Importar</a></li>
+                    <li><a href="?menu=6">Importar</a></li>
                     <li><a href="">Corregir</a></li>
                     <li><a href="">Exportar</a></li>
                     <li><a href="?menu=2">Parametros</a></li>
