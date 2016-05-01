@@ -11,6 +11,12 @@ class Usuarios extends ConnectionMySQL {
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
 
+	public function getUsuario ($usuario) {
+		$this->query = $this->conn->prepare("SELECT USUARIO_ID, USUARIO_NAME, USUARIO_PASS FROM usuarios WHERE USUARIO_NAME = '$usuario'");
+		$this->query->execute();
+		return $this->query->fetchAll(PDO::FETCH_BOTH);
+	}
+
 }
 
 ?>

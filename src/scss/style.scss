@@ -27,12 +27,16 @@ body {
 
 // Estilos Pagina Parametros
 
-.param-container {
+.param-container, .import-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
   flex:1;
+}
+
+.import-container {
+  flex-direction: column;
 }
 
 .param-item {
@@ -51,22 +55,19 @@ body {
   color: $info;
 }
 
-.param-title a {
+.param-title-menu a {
   text-decoration: none;
   color: $dark-grey;
 }
 
-// Estilos Pagina Entidades
-
-.entidad-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  flex: 1;
+.param-title {
+  padding: 7px 0px 5px 7px;
+  border-bottom: 1px solid $middle-grey;
 }
 
-.entidad-box {
+// Estilos Pagina Entidades
+
+.param-box, .import-box {
   display: flex;
   flex-direction: column;
   margin: 10px;
@@ -76,20 +77,15 @@ body {
   border: 1px solid $middle-grey;
 }
 
-.entidad-title {
-  padding: 7px 0px 5px 7px;
-  border-bottom: 1px solid $middle-grey;
-}
-
-.entidad-content {
+.param-content {
   margin: 20px 10px 0px 10px;
 }
 
-.entidad-content ul li:first-child {
+.param-content ul li:first-child {
   padding-top: 0px;
 }
 
-.entidad-content ul li {
+.param-content ul li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -111,16 +107,73 @@ body {
   font-size: 9px;
 }
 
-.form-entidad input[type=text] {
+.form input[type=text] {
   color: $dark-grey;
   font-family: Helvetica, Arial, sans-serif;
   font-weight:400;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 14px;
   background-color: #FFF;
-  padding: 8px 8px 8px 24px;
+  padding: 8px 8px 8px 14px;
   margin-bottom: 10px;
   width:100%;
   box-sizing: border-box;
-  border: 2px solid $middle-grey;
+  border: 1px solid $middle-grey;
+}
+
+
+// Estilos Pagina Import
+
+.import-box {
+  height: 300px;
+  width: 600px;
+}
+
+input[type="file"] {
+
+  width: 500px;
+  margin-bottom: 10px;
+  
+  &::-webkit-file-upload-button {
+    background: $green;
+    border: 0;
+    padding: 1em 2em;
+    cursor: pointer;
+    color: #fff;
+    border-radius: .2em;
+  }
+  
+  &::-ms-browse {
+    background: $green;
+    border: 0;
+    padding: 1em 2em;
+    cursor: pointer;
+    color: #fff;
+    border-radius: .2em;
+  }
+}
+
+.separatorControl {
+  margin: 10px 0px 10px 0px;
+  padding: 10px 0px 10px 0px;
+}
+
+.control-group {
+  margin-bottom: 10px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.labelMun{
+  margin-right: 20px;
+}
+
+.selectMun {
+  flex-grow: 1;
+  padding: 6px 12px;
+  border: 1px solid $middle-grey;
+  border-radius: .2em;
+
+
 }

@@ -3,6 +3,7 @@
 
 
 $primary:		#00ADB5;
+$primaryDak:	darken($primary, 20%);
 
 $info:			#FFA700;
 
@@ -21,6 +22,7 @@ $soft-grey:		#F0F5F9;
 // Colores Alertas
 
 $red:			#E84545;	// Alert
+$redDark:		darken($red, 20%);
 
 $orange:		#F08A5D;	// Warning
 

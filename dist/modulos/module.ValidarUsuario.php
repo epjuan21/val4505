@@ -4,6 +4,8 @@ require_once("../clases/class.Session.php");
 require_once ("../clases/class.Usuarios.php");
     $objUsuario = new Usuarios();
         $Usuario = $objUsuario->validar_usuario($_POST["user"],$_POST["pass"]);
+        $UsuarioId =  $objUsuario->getUsuario($_POST["user"]);
+        $UserId = $UsuarioId["0"]["USUARIO_ID"];
     
 if( isset($_POST["ingresar"]) )
 {
@@ -13,6 +15,7 @@ if( isset($_POST["ingresar"]) )
     if($Usuario)
     {           
         $sesion->set("usuario",$usuario);
+        $sesion->set("idUsuario",$UserId);
         
         header("location: ../inicio.php");
     }

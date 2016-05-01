@@ -1,5 +1,8 @@
 <?php
     date_default_timezone_set('America/Bogota');
+    
+    require_once("modulos/module.LeerArchivos.php");
+
     require_once("clases/class.Session.php");
     $sesion = new sesion();
     $usuario = $sesion->get("usuario");
@@ -21,6 +24,7 @@
     require_once ("clases/class.Municipio.php");
     $municipio = new Municipio();
     $list_mun = $municipio->getMunicipios();
+
 ?>
 <!doctype html>
 <html lang="es">
@@ -74,7 +78,7 @@
 
             <div class="footer-usuario">
 
-                Usuario:  <?php echo $sesion->get("usuario"); ?> <button class="btn btn-default" ><a href="modulos/module.CerrarSesion.php"> Cerrar Sesion </a></button>
+                Usuario:  <?php echo $sesion->get("usuario");?> <button class="btn btn-default" ><a href="modulos/module.CerrarSesion.php"> Cerrar Sesion </a></button>
 
             </div>
 
