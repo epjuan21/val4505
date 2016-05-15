@@ -1,6 +1,6 @@
-<div class="import-container">
+<div class="column-container">
 	
-	<div class="import-box">
+	<div class="param-box middle-box">
 		
 		<div class="param-title">
 			Importar Archivo 4505
@@ -66,7 +66,7 @@
 
 	</div>
 
-	<div class="import-box">
+	<div class="param-box middle-box">
 		
 		<div class="param-title">
 			Archivos en el Directorio
@@ -89,5 +89,64 @@
 		</div>
 
 	</div>
+
+
+	<div class="param-box middle-box">
+		
+		<div class="param-title">
+			Base de Datos
+		</div>
+
+		<div class="param-content">
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Entidad</th>
+					<th>Periodo</th>
+					<th>Año</th>
+					<th>Registros</th>
+					<th>Editar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				for ($i=0;$i<sizeof($regEnt);$i++)
+				{
+				?>
+				<tr>
+					<td><?php echo $regEnt[$i]["Entidad"];?></td>
+					<td><?php echo $regEnt[$i]["Periodo"];?></td>
+					<td><?php echo $regEnt[$i]["Año"];?></td>
+					<td><?php echo $regEnt[$i]["Registros"];?></td>
+					<td>
+						<a href="?menu=8&Ent=<?php echo $regEnt[$i]["CodigoEntidad"];?>&Año=<?php echo $regEnt[$i]["Año"];?>&Period=<?php echo $regEnt[$i]["CodPer"];?>"><i class="fa fa-pencil" aria-hidden="true"></i>
+						</a>
+					</td>
+				</tr>
+				<?php
+				}
+				?>			
+			</tbody>
+		</table>
+
+		<ul>
+
+			
+			<li>
+				<div class="entidad-item"></div>
+				<div class="entidad-item"></div>
+				<div class="entidad-item"></div>
+				<div class="entidad-item"></div>
+			</li>
+
+
+		</ul>
+			
+
+		</div>
+
+	</div>
+
 
 </div>

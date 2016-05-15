@@ -1,4 +1,4 @@
-<div class="param-container">
+<div class="row-container">
 
 	<div class="param-box">
 

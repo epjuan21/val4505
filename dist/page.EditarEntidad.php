@@ -1,17 +1,17 @@
-<div class="entidad-container">
+<div class="row-container">
 	
-	<div class="entidad-box">
+	<div class="param-box">
 
-		<div class="entidad-title">
+		<div class="param-title">
 			Entidades
 		</div>
 
 
-		<div class="entidad-content">
+		<div class="param-content">
 
-			<form action="modulos/module.ActualizarEntidad.php" class="form-entidad" method="POST">
+			<form action="modulos/module.ActualizarEntidad.php" class="form" method="POST">
 				
-				<input type="text" name="ent-cod" class="cod-ent-input" placeholder="Código" value="<?php echo $Ent[$i]["ENTIDAD_COD"];?>">
+				<input type="text" name="ent-cod" placeholder="Código" value="<?php echo $Ent[$i]["ENTIDAD_COD"];?>">
 
 				<input type="text" name="ent-nombre" placeholder="Nombre Entidad" value="<?php echo $Ent[$i]["ENTIDAD_NAME"];?>">
 	

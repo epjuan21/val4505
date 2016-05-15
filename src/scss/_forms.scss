@@ -1,0 +1,71 @@
+// Formularios
+
+label {
+	font-size: 14px;
+	font-weight: bold;
+	color: $dark-grey;
+}
+
+input[type=text] {
+	color: $dark-grey;
+	font-size: 13px;
+	padding: 6px 11px;
+	box-sizing: border-box;
+}
+
+select {
+  color: $dark-grey;
+  padding: 6px 11px;
+}
+
+select, .help-inline, select option{
+    font-size: 13px;
+}
+
+.form-group {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  text-align: right;
+}
+
+.form-control {
+  margin-left: 20px;
+  border-radius: 2px;
+  background-color: $soft-grey;
+  border: 1px solid $middle-grey;
+}
+
+.help-inline {
+  margin-left: 10px;
+}
+
+.help-inline b {
+  padding: 1px 2px;
+  border-radius: 2px;
+  background-color: $info;
+  color: #FFF;
+  font-weight: 200;
+}
+
+.form-control:focus {
+  border: 1px solid $middle-grey;
+  box-shadow: none;
+  outline: none;
+  background-color: #FFF;
+}
+
+.form input[type=text] {
+  color: $dark-grey;
+  font-weight:400;
+  font-size: 14px;
+  background-color: #FFF;
+  margin-bottom: 10px;
+  width:100%;
+  box-sizing: border-box;
+  border: 1px solid $middle-grey;
+}

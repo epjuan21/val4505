@@ -1,0 +1,32 @@
+//== Tablas
+
+
+.table {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tbody > tr > td {
+	line-height: 1.42857;
+	padding: 8px;
+    vertical-align: top;
+    border-top: 1px solid $middle-grey;
+}
+
+.table > thead > tr > th {
+	border-bottom: 1px solid #DDDDDD;
+	background-color: $soft-grey;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+	background-color: $soft-grey;	
+}
+
+
+table {
+	background-color: transparent;
+}
+
+th {
+	text-align: left;
+}

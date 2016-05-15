@@ -3,6 +3,217 @@ require_once ("class.ConnectionMySQL.php");
 
 class rped extends ConnectionMySQL {
 
+
+	// Obtiene la Cantidad de Registros por Entidad
+	public function getRegByEnt (){
+
+		$this->query = $this->conn->prepare(
+			"SELECT COUNT(CodigoEntidad) AS Registros
+			,ENTIDAD_NAME AS Entidad
+			,CodigoEntidad
+			,substr(FechaFinalReg,6,2) AS CodPer
+			,substr(FechaFinalReg,1,4) AS Año
+			,case substr(FechaFinalReg,6,2)
+				WHEN '01' THEN 'Enero'
+				WHEN '02' THEN 'Febrero'
+				WHEN '03' THEN 'Marzo'
+				WHEN '04' THEN 'Abril'
+				WHEN '05' THEN 'Mayo'
+				WHEN '06' THEN 'Junio'
+				WHEN '07' THEN 'Julio'
+				WHEN '08' THEN 'Agosto'
+				WHEN '09' THEN 'Septiembre'
+				WHEN '10' THEN 'Octubre'
+				WHEN '11' THEN 'Noviembre'
+				WHEN '12' THEN 'Diciembre'
+				END AS Periodo
+			FROM rped 
+			LEFT JOIN entidades ON rped.CodigoEntidad = entidades.ENTIDAD_COD
+			GROUP BY CodigoEntidad, FechaFinalReg
+			ORDER BY Año DESC, CodPer DESC;");
+		$this->query->execute();
+		return $this->query->fetchAll(PDO::FETCH_BOTH);
+	}
+
+	// Obtener Detalle Por Periodo - Cabecera del Archivo 4505
+	// Según Codigo Entidad, Mes y Año
+	public function getDetByPer($Entidad, $Periodo, $Año)
+	{
+		$this->query = $this->conn->prepare(
+			"SELECT COUNT(CodigoEntidad) AS Registros
+			,ENTIDAD_NAME AS Entidad
+			,CodigoEntidad AS CodEnti
+			,substr(FechaFinalReg,1,4) AS Año
+			,substr(FechaFinalReg,6,2) AS CodPer
+			,case substr(FechaFinalReg,6,2)
+				WHEN '01' THEN 'Enero'
+				WHEN '02' THEN 'Febrero'
+				WHEN '03' THEN 'Marzo'
+				WHEN '04' THEN 'Abril'
+				WHEN '05' THEN 'Mayo'
+				WHEN '06' THEN 'Junio'
+				WHEN '07' THEN 'Julio'
+				WHEN '08' THEN 'Agosto'
+				WHEN '09' THEN 'Septiembre'
+				WHEN '10' THEN 'Octubre'
+				WHEN '11' THEN 'Noviembre'
+				WHEN '12' THEN 'Diciembre'
+				END AS Periodo
+			FROM rped
+			LEFT JOIN entidades
+			ON rped.CodigoEntidad = entidades.ENTIDAD_COD
+			WHERE CodigoEntidad = '$Entidad'
+			AND substr(FechaFinalReg,6,2) = '$Periodo' AND substr(FechaFinalReg,1,4) = '$Año'
+			GROUP BY CodigoEntidad;");
+		$this->query->execute();
+		return $this->query->fetchAll(PDO::FETCH_BOTH);
+	}
+
+	public function getUser($Entidad, $IdUsuario, $Periodo, $Año){
+		$this->query = $this->conn->prepare(
+			"SELECT
+			FechaRegistro
+			,IdUsuario
+			,CodigoMunicipio
+			,CodigoEntidad
+			,FechaInicialReg
+			,FechaFinalReg
+			,CodigoHabilitacionIPS
+			,TipoIdUsuario
+			,NumeroIdUsuario
+			,Apellido1
+			,Apellido2
+			,Nombre1
+			,Nombre2
+			,FechaNacimiento
+			,Sexo
+			,PertenenciaEtnica
+			,CodigoOcupacion
+			,CodigoNivelEducativo
+			,Gestacion
+			,SifilisGestacional
+			,HipertensionInducidaGestacion
+			,HipotiroidismoCongenito
+			,SintomaticoRespiratorio
+			,Tuberculosis
+			,Lepra
+			,ObesidadDesnutricion
+			,VictimaMaltrato
+			,VictimaViolenciaSexual
+			,InfeccionTrasmisionSexual
+			,EnfermedadMental
+			,CancerCervix
+			,CancerSeno
+			,FluorosisDental
+			,FechaPeso
+			,PesoKilogramos
+			,FechaTalla
+			,TallaCentimetros
+			,FechaProbableParto
+			,EdadGestacional
+			,BCG
+			,HepatitisB
+			,Pentavalente
+			,Polio
+			,DPT
+			,Rotavirus
+			,Neumococo
+			,InfluenzaN
+			,FiebreAmarillaN1
+			,HepatitisA
+			,TripleViralN
+			,VPH
+			,TdTtMEF
+			,ControlPlacaBacteriana
+			,FechaAtencionParto
+			,FechaSalidaParto
+			,FechaConsejeriaLactanciaInput
+			,ControlRecienNacidoInput
+			,PlanificacionFamiliarPrimeraVezInput
+			,SuministroMetodoAnticonceptivo
+			,FechaSuministroMetodoAnticonceptivo
+			,ControlPrenatalPrimeraVezInput
+			,ControlPrenatal
+			,UltimoControlPrenatal
+			,SuministroAcidoFolico
+			,SuministroSulfatoFerroso
+			,SuministroCarbonatoCalcio
+			,ValoracionAgudezaVisualInput
+			,ConsultaOftalmologiaInput
+			,FechaDiagnosticoDesnutricion
+			,ConsultaMujerMenorVictimaInput
+			,ConsultaVictimaViolenciaSexualInput
+			,ConsultaNutricionInput
+			,ConsultaPsicologiaInput
+			,ConsultaCyDPrimeraVezInput
+			,SuministroSulfatoFerrosoMenor
+			,SuministroVitaminaAMenor
+			,ConsultaJovenPrimeraVezInput
+			,ConsultaAdultoPrimeraVezInput
+			,PreservativosITSInput
+			,AsesoriaPreElisaInput
+			,AsesoriaPostElisaInput
+			,PacienteEnfermedadMental
+			,FechaAntigenoHepatitisBGestantesInput
+			,ResultadoAntigenoHepatitisBGestantes
+			,FechaSerologiaSifilisInput
+			,ResultadoSerologiaSifilis
+			,FechaTomaElisaVIHInput
+			,ResultadoElisaVIH
+			,FechaTSHNeonatalInput
+			,ResultadoTSHNeonatal
+			,TamizajeCancerCU
+			,FechaCitologiaCUInput
+			,CitologiaCUResultados
+			,CalidadMuestraCitologia
+			,CodigoHabilitacionIPSTomaMuestra
+			,FechaColposcopiaInput
+			,CodigoHabilitacionTomaColposcopia
+			,FechaBiopsiaCervicalInput
+			,ResultadoBiopsiaCervical
+			,CodigoHabilitacionTomaBiopsia
+			,FechaMamografiaInput
+			,ResultadoMamografia
+			,CodigoHabilitacionTomaMamografia
+			,FechaBiopsiaSenoInput
+			,FechaResultadoBiopsiaSeno
+			,ResultadoBiopsiaSeno
+			,CodigoHabilitacionBiopsiaSeno
+			,FechaTomaHemoglobinaInput
+			,ResultadoHemoglobina
+			,FechaTomaGlisemiaInput
+			,FechaTomaCreatininaInput
+			,ResultadoCreatinina
+			,FechaHemoglobinaGlicosiladaInput
+			,ResultadoHemoglobinaGlicosilada
+			,FechaTomaMicroalbuminuriaInput
+			,FechaTomaHDLInput
+			,FechaTomaBaciloscopiaInput
+			,ResultadoBaciloscopia
+			,TratamientoHipotiroidismoCongenito
+			,TratamientoSifilisGestacional
+			,TratamientoSifilisCongenita
+			,TratamientoLepra
+			,FechaTerLeishmaniasisInput
+			,val4505.usuarios.USUARIO_NAME
+			,val4505.municipios.MUN_NAME
+			,val4505.entidades.ENTIDAD_NAME
+			FROM val4505.rped
+			LEFT JOIN val4505.usuarios
+			ON val4505.usuarios.USUARIO_ID = val4505.rped.IdUsuario
+			LEFT JOIN val4505.municipios
+			ON val4505.municipios.MUN_ID = val4505.rped.CodigoMunicipio
+			LEFT JOIN val4505.entidades
+			ON val4505.entidades.ENTIDAD_COD = val4505.rped.CodigoEntidad
+			WHERE CodigoEntidad = '$Entidad'
+			AND NumeroIdUsuario = '$IdUsuario'
+			AND substr(FechaFinalReg,6,2) = '$Periodo'
+			AND substr(FechaFinalReg,1,4) = '$Año'
+			");
+		$this->query->execute();
+		return $this->query->fetchAll(PDO::FETCH_BOTH);
+	}
+
 	public function insertRped (
 		$ID
 		,$FechaRegistro

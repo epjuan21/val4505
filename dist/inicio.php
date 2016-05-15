@@ -2,6 +2,7 @@
     date_default_timezone_set('America/Bogota');
     
     require_once("modulos/module.LeerArchivos.php");
+    require_once("modulos/module.ManejoFechas.php");
 
     require_once("clases/class.Session.php");
     $sesion = new sesion();
@@ -24,6 +25,10 @@
     require_once ("clases/class.Municipio.php");
     $municipio = new Municipio();
     $list_mun = $municipio->getMunicipios();
+
+    require_once ("clases/class.rped.php");
+    $Objrped = new rped();
+    $regEnt = $Objrped->getRegByEnt();
 
 ?>
 <!doctype html>
@@ -89,6 +94,9 @@
             </div>
 
         </footer>
+    
     <script src="js/bundle.js"></script>
+    
     </body>
+    
 </html>

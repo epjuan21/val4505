@@ -1,11 +1,10 @@
-<div class="param-container">
+<div class="row-container">
 	
 	<div class="param-box">
 
 		<div class="param-title">
 			Entidades
 		</div>
-
 
 		<div class="param-content">
 
