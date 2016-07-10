@@ -88,31 +88,6 @@
 	<div class="param-box middle-box">
 		
 		<div class="param-title">
-			Archivos en el Directorio
-		</div>
-
-		<div class="param-content">
-			
-			<?php
-			$ruta = "./Uploads/";
-			echo leer_archivos_y_directorios($ruta);
-
-			?>
-
-			<div class="separatorControl">			
-
-				<a class="btn btn-alert btn-large" href="modulos/module.VaciarDirectorio.php">Vaciar Directorio</a>
-
-			</div>
-
-		</div>
-
-	</div>
-
-
-	<div class="param-box middle-box">
-		
-		<div class="param-title">
 			Base de Datos
 		</div>
 

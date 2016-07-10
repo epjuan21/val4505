@@ -1248,5 +1248,5 @@ header("Content-disposition: attachment; filename=$nombreArchivo");
 header("Content-type: application/octet-stream");
 
 readfile($nombreArchivo);
-
+include("module.VaciarDirectorio.php");
 ?>

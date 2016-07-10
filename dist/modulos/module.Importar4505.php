@@ -335,9 +335,38 @@
 		}
 		fclose($fp);
 	}
-	
-	header("Location: ../inicio.php?menu=6");
-	
+
+//$carpetaDestino = "../Uploads/";
+//$handle = opendir($carpetaDestino); 
+
+// while ($file = readdir($handle))  
+// 	{   
+// 		if (is_file($carpetaDestino.$file)) 
+// 			{ 
+// 				unlink($carpetaDestino.$file); 
+// 			}
+// 	} 
+
+echo $fullPath = __DIR__;
+$handle = opendir($fullPath); 
+
+while ($file = readdir($handle))  
+	{   
+		if (is_file($fullPath.$file)) 
+			{ 
+				foreach (glob("*.txt") as $fullPath.$file) {
+				   unlink($fullPath.$file);
+				}
+			}
+	} 
+//echo $fullPath = __DIR__ . "\Uploads\\";
+//array_map('unlink', glob( "$fullPath*.TXT"));
+
+header("Location: ../inicio.php?menu=6");
+
+
+
+
 
 
 ?>
