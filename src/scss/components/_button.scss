@@ -1,27 +1,37 @@
 .btn, a.btn {
+	text-decoration: none;
+	color: #FFF;
 	display: inline-block;
 	box-sizing: border-box;
-	padding: 6px 12px;
-	font-size: 14px;
-	font-weight: 400;
+	height: 36px;
+	line-height: 36px;
+	margin: 1em 0 1em;
+	padding: 0px 12px;
+	font-size: 1rem;
 	text-align: center;
 	white-space: nowrap;
-	vertical-align: middle;
 	cursor: pointer;
-	background-color: #f5f5f5;
 	background-image: none;
-	border: 1px solid transparent;
-	border-radius: 4px;
+	border: none;
+	border-radius: 0.2em;
+	outline: 0;
+	text-transform: uppercase;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 	transition: all 0.5s ease;
 }
 
+.btn:hover, a.btn:hover {
+	box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+}
+
 .btn-large, a.btn-large {
+	height: 54px;
+	line-height: 54px;
 	width: 100%;
 }
 
 .btn-default {
 	background-color: $soft-grey;
-	border-color: $middle-grey;
 }
 
 .btn-default a {
@@ -30,17 +40,16 @@
 
 .btn-default:hover {
 	background-color: $soft-grey;
-	border-color: #adadad;
 }
 
 .btn-primary {
-	color: #FFF;
 	background-color: $primary;
-	border-color: $primaryDak;
+}
+
+.btn-primary:hover {
+	background-color: $primarySoft;
 }
 
 .btn-alert, a.btn-alert {
-	color: #FFF;
 	background-color: $red;
-	border-color: $redDark;
 }

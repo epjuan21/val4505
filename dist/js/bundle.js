@@ -1,9 +1,10 @@
 $(function() {
+	// Codigo para las Alertas
 	$('.alert--dismissible').append('<button type="button" class="alert-close">X</button>');
 
 	$('.alert-close').on('click',function(){
 	  $(this).closest('.alert').hide();
-	});
+});
 
 // Plung In Select Editable
 (function ($) {
@@ -146,4 +147,50 @@ $('#editable-select5').editableSelect({ effects: 'slide',filter: false });
 $('#editable-select6').editableSelect({ effects: 'slide',filter: false });
 $('#editable-select7').editableSelect({ effects: 'slide',filter: false });
 $('#editable-select8').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select9').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select10').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select11').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select12').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select13').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select14').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select15').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select16').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select17').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select18').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select19').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select20').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select21').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select22').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select23').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select24').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select25').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select26').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select27').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select28').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select29').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select30').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select31').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select32').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select33').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select34').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select35').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select36').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select37').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select38').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select39').editableSelect({ effects: 'slide',filter: false });
+$('#editable-select40').editableSelect({ effects: 'slide',filter: false });
+
+});
+
+	$('#chooseFile').bind('change', function () {
+	  var filename = $("#chooseFile").val();
+
+	  if (/^\s*$/.test(filename)) {
+	    $(".file-upload").removeClass('active');
+	    $("#noFile").text("Ningún Archivo Seleccionado..."); 
+	  }
+	  else {
+	    $(".file-upload").addClass('active');
+	    $("#noFile").text(filename.replace("C:\\fakepath\\", "")); 
+	  }
 });

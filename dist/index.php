@@ -17,9 +17,9 @@
             
             <form name="frmLogin" action="modulos/module.ValidarUsuario.php" method="POST">
 
-                <input type="text" name="user" class="login-input" placeholder="Usuario"/>
-                <input type="password" name="pass" class="login-input" placeholder="Contraseña"/>
-                <input type="submit" class="login-submit" name="ingresar" value="Ingresar" />
+                <input type="text" name="user" class="login-input" placeholder="Usuario" required/>
+                <input type="password" name="pass" class="login-input" placeholder="Contraseña" required/>
+                <input type="submit" class="btn btn-large btn-primary" name="ingresar" value="Ingresar" />
 
             </form>
 

@@ -3,14 +3,17 @@ require_once ("class.ConnectionMySQL.php");
 
 class rped extends ConnectionMySQL {
 
-
 	// Obtiene la Cantidad de Registros por Entidad
 	public function getRegByEnt (){
 
 		$this->query = $this->conn->prepare(
 			"SELECT COUNT(CodigoEntidad) AS Registros
 			,ENTIDAD_NAME AS Entidad
+			,IdUsuario
 			,CodigoEntidad
+			,CodigoMunicipio
+			,FechaInicialReg
+			,FechaFinalReg
 			,substr(FechaFinalReg,6,2) AS CodPer
 			,substr(FechaFinalReg,1,4) AS Año
 			,case substr(FechaFinalReg,6,2)
@@ -31,6 +34,29 @@ class rped extends ConnectionMySQL {
 			LEFT JOIN entidades ON rped.CodigoEntidad = entidades.ENTIDAD_COD
 			GROUP BY CodigoEntidad, FechaFinalReg
 			ORDER BY Año DESC, CodPer DESC;");
+		$this->query->execute();
+		return $this->query->fetchAll(PDO::FETCH_BOTH);
+	}
+
+	// Borra Periodos Seleccionados Por Entidad desde la Pagina de Importar
+	public function deletePeriod ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg)
+	{
+		$this->query = $this->conn->prepare("DELETE FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg' ");
+		$this->query->execute();
+	}
+
+	// Funcion para Obtener el Numero de Registros
+	public function getNumRows ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg) {
+		$this->query = $this->conn->prepare("SELECT COUNT(*) FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg' ");
+		$this->query->execute();
+		$count = $this->query->fetch(PDO::FETCH_NUM);
+		return reset($count);
+		//return $numRows = $this->query->rowCount();
+	}
+
+	//Obtenemos Registros para el Proceso de Exportacion
+	public function getRPED($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg) {
+		$this->query = $this->conn->prepare("SELECT * FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg'");
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
@@ -72,7 +98,8 @@ class rped extends ConnectionMySQL {
 	public function getUser($Entidad, $IdUsuario, $Periodo, $Año){
 		$this->query = $this->conn->prepare(
 			"SELECT
-			FechaRegistro
+			R_ID
+			,FechaRegistro
 			,IdUsuario
 			,CodigoMunicipio
 			,CodigoEntidad
@@ -473,8 +500,256 @@ class rped extends ConnectionMySQL {
 		$stmt->execute();
 		
 	}
+
+	public function update_RPED () {
+		$this->query = $this->conn->prepare
+		('UPDATE rped SET
+			 CodigoEntidad=?
+			,FechaInicialReg=?
+			,FechaFinalReg=?
+			,TipoIdUsuario=?
+			,NumeroIdUsuario=?
+			,Apellido1=?
+			,Apellido2=?
+			,Nombre1=?
+			,Nombre2=?
+			,FechaNacimiento=?
+			,Sexo=?
+			,PertenenciaEtnica=?
+			,CodigoOcupacion=?
+			,CodigoNivelEducativo=?
+			,Gestacion=?
+			,SifilisGestacional=?
+			,HipertensionInducidaGestacion=?
+			,HipotiroidismoCongenito=?
+			,SintomaticoRespiratorio=?
+			,Tuberculosis=?
+			,Lepra=?
+			,ObesidadDesnutricion=?
+			,VictimaMaltrato=?
+			,VictimaViolenciaSexual=?
+			,InfeccionTrasmisionSexual=?
+			,EnfermedadMental=?
+			,CancerCervix=?
+			,CancerSeno=?
+			,FluorosisDental=?
+			,FechaPeso=?					-- Estar Pendiente
+			,PesoKilogramos=?
+			,FechaTalla=?					-- Estar Pendiente
+			,TallaCentimetros=?
+			,FechaProbableParto=?
+			,EdadGestacional=?
+			,BCG=?
+			,HepatitisB=?
+			,Pentavalente=?
+			,Polio=?
+			,DPT=?
+			,Rotavirus=?
+			,Neumococo=?
+			,InfluenzaN=?
+			,FiebreAmarillaN1=?
+			,HepatitisA=?
+			,TripleViralN=?
+			,VPH=?
+			,TdTtMEF=?
+			,ControlPlacaBacteriana=?
+			,FechaAtencionParto=?
+			,FechaSalidaParto=?
+			,FechaConsejeriaLactanciaInput=?
+			,ControlRecienNacidoInput=?
+			,PlanificacionFamiliarPrimeraVezInput=?
+			,SuministroMetodoAnticonceptivo=?
+			,FechaSuministroMetodoAnticonceptivo=?
+			,ControlPrenatalPrimeraVezInput=?
+			,ControlPrenatal=?
+			,UltimoControlPrenatal=?
+			,SuministroAcidoFolico=?
+			,SuministroSulfatoFerroso=?
+			,SuministroCarbonatoCalcio=?
+			,ValoracionAgudezaVisualInput=?
+			,ConsultaOftalmologiaInput=?
+			,FechaDiagnosticoDesnutricion=?
+			,ConsultaMujerMenorVictimaInput=?
+			,ConsultaVictimaViolenciaSexualInput=?
+			,ConsultaNutricionInput=?
+			,ConsultaPsicologiaInput=?
+			,ConsultaCyDPrimeraVezInput=?
+			,SuministroSulfatoFerrosoMenor=?
+			,SuministroVitaminaAMenor=?
+			,ConsultaJovenPrimeraVezInput=?
+			,ConsultaAdultoPrimeraVezInput=?
+			,PreservativosITSInput=?
+			,AsesoriaPreElisaInput=?
+			,AsesoriaPostElisaInput=?
+			,PacienteEnfermedadMental=?
+			,FechaAntigenoHepatitisBGestantesInput=?
+			,ResultadoAntigenoHepatitisBGestantes=?
+			,FechaSerologiaSifilisInput=?
+			,ResultadoSerologiaSifilis=?
+			,FechaTomaElisaVIHInput=?
+			,ResultadoElisaVIH=?
+			,FechaTSHNeonatalInput=?
+			,ResultadoTSHNeonatal=?
+			,TamizajeCancerCU=?
+			,FechaCitologiaCUInput=?
+			,CitologiaCUResultados=?
+			,CalidadMuestraCitologia=?
+			,CodigoHabilitacionIPSTomaMuestra=?
+			,FechaColposcopiaInput=?
+			,CodigoHabilitacionTomaColposcopia=?
+			,FechaBiopsiaCervicalInput=?
+			,ResultadoBiopsiaCervical=?
+			,CodigoHabilitacionTomaBiopsia=?
+			,FechaMamografiaInput=?
+			,ResultadoMamografia=?
+			,CodigoHabilitacionTomaMamografia=?
+			,FechaBiopsiaSenoInput=?
+			,FechaResultadoBiopsiaSeno=?
+			,ResultadoBiopsiaSeno=?
+			,CodigoHabilitacionBiopsiaSeno=?
+			,FechaTomaHemoglobinaInput=?
+			,ResultadoHemoglobina=?
+			,FechaTomaGlisemiaInput=?
+			,FechaTomaCreatininaInput=?
+			,ResultadoCreatinina=?
+			,FechaHemoglobinaGlicosiladaInput=?
+			,ResultadoHemoglobinaGlicosilada=?
+			,FechaTomaMicroalbuminuriaInput=?
+			,FechaTomaHDLInput=?
+			,FechaTomaBaciloscopiaInput=?
+			,ResultadoBaciloscopia=?
+			,TratamientoHipotiroidismoCongenito=?
+			,TratamientoSifilisGestacional=?
+			,TratamientoSifilisCongenita=?
+			,TratamientoLepra=?
+			,FechaTerLeishmaniasisInput=?
+
+			WHERE
+			R_ID=?');
+
+		$this->query->bindValue(1,$_POST["CodigoEntidad"], PDO::PARAM_STR);
+		$this->query->bindValue(2,$_POST["FechaInicialReg"], PDO::PARAM_STR);
+		$this->query->bindValue(3,$_POST["FechaFinalReg"], PDO::PARAM_STR);
+		$this->query->bindValue(4,strtoupper($_POST["TipoIdUsuario"]), PDO::PARAM_STR);
+		$this->query->bindValue(5,$_POST["NumeroIdUsuario"], PDO::PARAM_STR);
+		$this->query->bindValue(6,mb_strtoupper($_POST["Apellido1"],'UTF-8'), PDO::PARAM_STR);
+		$this->query->bindValue(7,mb_strtoupper($_POST["Apellido2"],'UTF-8'),PDO::PARAM_STR);
+		$this->query->bindValue(8,mb_strtoupper($_POST["Nombre1"],'UTF-8'),PDO::PARAM_STR);
+		$this->query->bindValue(9,mb_strtoupper($_POST["Nombre2"],'UTF-8'),PDO::PARAM_STR);
+		$this->query->bindValue(10,$_POST["FechaNacimiento"],PDO::PARAM_STR);
+		$this->query->bindValue(11,$_POST["Sexo"],PDO::PARAM_STR);
+		$this->query->bindValue(12,$_POST["PertenenciaEtnica"],PDO::PARAM_STR);
+		$this->query->bindValue(13,$_POST["CodigoOcupacion"],PDO::PARAM_STR);
+		$this->query->bindValue(14,$_POST["CodigoNivelEducativo"],PDO::PARAM_STR);
+		$this->query->bindValue(15,$_POST["Gestacion"],PDO::PARAM_STR);
+		$this->query->bindValue(16,$_POST["SifilisGestacional"],PDO::PARAM_STR);
+		$this->query->bindValue(17,$_POST["HipertensionInducidaGestacion"],PDO::PARAM_STR);
+		$this->query->bindValue(18,$_POST["HipotiroidismoCongenito"],PDO::PARAM_STR);
+		$this->query->bindValue(19,$_POST["SintomaticoRespiratorio"],PDO::PARAM_STR);
+		$this->query->bindValue(20,$_POST["Tuberculosis"],PDO::PARAM_STR);
+		$this->query->bindValue(21,$_POST["Lepra"],PDO::PARAM_STR);
+		$this->query->bindValue(22,$_POST["ObesidadDesnutricion"],PDO::PARAM_STR);
+		$this->query->bindValue(23,$_POST["VictimaMaltrato"],PDO::PARAM_STR);
+		$this->query->bindValue(24,$_POST["VictimaViolenciaSexual"],PDO::PARAM_STR);
+		$this->query->bindValue(25,$_POST["InfeccionTrasmisionSexual"],PDO::PARAM_STR);
+		$this->query->bindValue(26,$_POST["EnfermedadMental"],PDO::PARAM_STR);
+		$this->query->bindValue(27,$_POST["CancerCervix"],PDO::PARAM_STR);
+		$this->query->bindValue(28,$_POST["CancerSeno"],PDO::PARAM_STR);
+		$this->query->bindValue(29,$_POST["FluorosisDental"],PDO::PARAM_STR);
+		$this->query->bindValue(30,$_POST["FechaPeso"],PDO::PARAM_STR); 							// Estar Pendiente
+		$this->query->bindValue(31,$_POST["PesoKilogramos"],PDO::PARAM_STR);
+		$this->query->bindValue(32,$_POST["FechaTalla"],PDO::PARAM_STR);							// Estar Pendiente
+		$this->query->bindValue(33,$_POST["TallaCentimetros"],PDO::PARAM_STR);
+		$this->query->bindValue(34,$_POST["FechaProbableParto"],PDO::PARAM_STR);
+		$this->query->bindValue(35,$_POST["EdadGestacional"],PDO::PARAM_STR);
+		$this->query->bindValue(36,$_POST["BCG"],PDO::PARAM_STR);
+		$this->query->bindValue(37,$_POST["HepatitisB"],PDO::PARAM_STR);
+		$this->query->bindValue(38,$_POST["Pentavalente"],PDO::PARAM_STR);
+		$this->query->bindValue(39,$_POST["Polio"],PDO::PARAM_STR);
+		$this->query->bindValue(40,$_POST["DPT"],PDO::PARAM_STR);
+		$this->query->bindValue(41,$_POST["Rotavirus"],PDO::PARAM_STR);
+		$this->query->bindValue(42,$_POST["Neumococo"],PDO::PARAM_STR);
+		$this->query->bindValue(43,$_POST["InfluenzaN"],PDO::PARAM_STR);
+		$this->query->bindValue(44,$_POST["FiebreAmarillaN1"],PDO::PARAM_STR);
+		$this->query->bindValue(45,$_POST["HepatitisA"],PDO::PARAM_STR);
+		$this->query->bindValue(46,$_POST["TripleViralN"],PDO::PARAM_STR);
+		$this->query->bindValue(47,$_POST["VPH"],PDO::PARAM_STR);
+		$this->query->bindValue(48,$_POST["TdTtMEF"],PDO::PARAM_STR);
+		$this->query->bindValue(49,$_POST["ControlPlacaBacteriana"],PDO::PARAM_STR);
+		$this->query->bindValue(50,$_POST["FechaAtencionParto"],PDO::PARAM_STR);
+		$this->query->bindValue(51,$_POST["FechaSalidaParto"],PDO::PARAM_STR);
+		$this->query->bindValue(52,$_POST["FechaConsejeriaLactanciaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(53,$_POST["ControlRecienNacidoInput"],PDO::PARAM_STR);
+		$this->query->bindValue(54,$_POST["PlanificacionFamiliarPrimeraVezInput"],PDO::PARAM_STR);
+		$this->query->bindValue(55,$_POST["SuministroMetodoAnticonceptivo"],PDO::PARAM_STR);
+		$this->query->bindValue(56,$_POST["FechaSuministroMetodoAnticonceptivo"],PDO::PARAM_STR);
+		$this->query->bindValue(57,$_POST["ControlPrenatalPrimeraVezInput"],PDO::PARAM_STR);
+		$this->query->bindValue(58,$_POST["ControlPrenatal"],PDO::PARAM_STR);
+		$this->query->bindValue(59,$_POST["UltimoControlPrenatal"],PDO::PARAM_STR);
+		$this->query->bindValue(60,$_POST["SuministroAcidoFolico"],PDO::PARAM_STR);
+		$this->query->bindValue(61,$_POST["SuministroSulfatoFerroso"],PDO::PARAM_STR);
+		$this->query->bindValue(62,$_POST["SuministroCarbonatoCalcio"],PDO::PARAM_STR);
+		$this->query->bindValue(63,$_POST["ValoracionAgudezaVisualInput"],PDO::PARAM_STR);
+		$this->query->bindValue(64,$_POST["ConsultaOftalmologiaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(65,$_POST["FechaDiagnosticoDesnutricion"],PDO::PARAM_STR);
+		$this->query->bindValue(66,$_POST["ConsultaMujerMenorVictimaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(67,$_POST["ConsultaVictimaViolenciaSexualInput"],PDO::PARAM_STR);
+		$this->query->bindValue(68,$_POST["ConsultaNutricionInput"],PDO::PARAM_STR);
+		$this->query->bindValue(69,$_POST["ConsultaPsicologiaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(70,$_POST["ConsultaCyDPrimeraVezInput"],PDO::PARAM_STR);
+		$this->query->bindValue(71,$_POST["SuministroSulfatoFerrosoMenor"],PDO::PARAM_STR);
+		$this->query->bindValue(72,$_POST["SuministroVitaminaAMenor"],PDO::PARAM_STR);
+		$this->query->bindValue(73,$_POST["ConsultaJovenPrimeraVezInput"],PDO::PARAM_STR);
+		$this->query->bindValue(74,$_POST["ConsultaAdultoPrimeraVezInput"],PDO::PARAM_STR);
+		$this->query->bindValue(75,$_POST["PreservativosITSInput"],PDO::PARAM_STR);
+		$this->query->bindValue(76,$_POST["AsesoriaPreElisaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(77,$_POST["AsesoriaPostElisaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(78,$_POST["PacienteEnfermedadMental"],PDO::PARAM_STR);
+		$this->query->bindValue(79,$_POST["FechaAntigenoHepatitisBGestantesInput"],PDO::PARAM_STR);
+		$this->query->bindValue(80,$_POST["ResultadoAntigenoHepatitisBGestantes"],PDO::PARAM_STR);
+		$this->query->bindValue(81,$_POST["FechaSerologiaSifilisInput"],PDO::PARAM_STR);
+		$this->query->bindValue(82,$_POST["ResultadoSerologiaSifilis"],PDO::PARAM_STR);
+		$this->query->bindValue(83,$_POST["FechaTomaElisaVIHInput"],PDO::PARAM_STR);
+		$this->query->bindValue(84,$_POST["ResultadoElisaVIH"],PDO::PARAM_STR);
+		$this->query->bindValue(85,$_POST["FechaTSHNeonatalInput"],PDO::PARAM_STR);
+		$this->query->bindValue(86,$_POST["ResultadoTSHNeonatal"],PDO::PARAM_STR);
+		$this->query->bindValue(87,$_POST["TamizajeCancerCU"],PDO::PARAM_STR);
+		$this->query->bindValue(88,$_POST["FechaCitologiaCUInput"],PDO::PARAM_STR);
+		$this->query->bindValue(89,$_POST["CitologiaCUResultados"],PDO::PARAM_STR);
+		$this->query->bindValue(90,$_POST["CalidadMuestraCitologia"],PDO::PARAM_STR);
+		$this->query->bindValue(91,$_POST["CodigoHabilitacionIPSTomaMuestra"],PDO::PARAM_STR);
+		$this->query->bindValue(92,$_POST["FechaColposcopiaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(93,$_POST["CodigoHabilitacionTomaColposcopia"],PDO::PARAM_STR);
+		$this->query->bindValue(94,$_POST["FechaBiopsiaCervicalInput"],PDO::PARAM_STR);
+		$this->query->bindValue(95,$_POST["ResultadoBiopsiaCervical"],PDO::PARAM_STR);
+		$this->query->bindValue(96,$_POST["CodigoHabilitacionTomaBiopsia"],PDO::PARAM_STR);
+		$this->query->bindValue(97,$_POST["FechaMamografiaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(98,$_POST["ResultadoMamografia"],PDO::PARAM_STR);
+		$this->query->bindValue(99,$_POST["CodigoHabilitacionTomaMamografia"],PDO::PARAM_STR);
+		$this->query->bindValue(100,$_POST["FechaBiopsiaSenoInput"],PDO::PARAM_STR);
+		$this->query->bindValue(101,$_POST["FechaResultadoBiopsiaSeno"],PDO::PARAM_STR);
+		$this->query->bindValue(102,$_POST["ResultadoBiopsiaSeno"],PDO::PARAM_STR);
+		$this->query->bindValue(103,$_POST["CodigoHabilitacionBiopsiaSeno"],PDO::PARAM_STR);
+		$this->query->bindValue(104,$_POST["FechaTomaHemoglobinaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(105,$_POST["ResultadoHemoglobina"],PDO::PARAM_STR);
+		$this->query->bindValue(106,$_POST["FechaTomaGlisemiaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(107,$_POST["FechaTomaCreatininaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(108,$_POST["ResultadoCreatinina"],PDO::PARAM_STR);
+		$this->query->bindValue(109,$_POST["FechaHemoglobinaGlicosiladaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(110,$_POST["ResultadoHemoglobinaGlicosilada"],PDO::PARAM_STR);
+		$this->query->bindValue(111,$_POST["FechaTomaMicroalbuminuriaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(112,$_POST["FechaTomaHDLInput"],PDO::PARAM_STR);
+		$this->query->bindValue(113,$_POST["FechaTomaBaciloscopiaInput"],PDO::PARAM_STR);
+		$this->query->bindValue(114,$_POST["ResultadoBaciloscopia"],PDO::PARAM_STR);
+		$this->query->bindValue(115,$_POST["TratamientoHipotiroidismoCongenito"],PDO::PARAM_STR);
+		$this->query->bindValue(116,$_POST["TratamientoSifilisGestacional"],PDO::PARAM_STR);
+		$this->query->bindValue(117,$_POST["TratamientoSifilisCongenita"],PDO::PARAM_STR);
+		$this->query->bindValue(118,$_POST["TratamientoLepra"],PDO::PARAM_STR);
+		$this->query->bindValue(119,$_POST["FechaTerLeishmaniasisInput"],PDO::PARAM_STR);
+
+		$this->query->bindValue(120,$_POST["R_ID"], PDO::PARAM_STR);
+
+		$this->query->execute();
+	}
 }
-
 ?>
-
-

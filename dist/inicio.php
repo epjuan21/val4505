@@ -40,21 +40,21 @@
         <script src="https://code.jquery.com/jquery.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css">
         <title>Val4505</title>
-        <meta name="description" content="Validador Resolución 4505">
+        <meta name="description" content="Validador Resolución4505">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
     </head>
     <body class="flex-body">
 
-        <header>
+	<header>
 
             <div class="logo"><a href="inicio.php">Val 4505</a></div>
 
-            <nav>
+            <nav role="navigation">
                 <ul class="menu">
                     <li><a href="?menu=6">Importar</a></li>
                     <li><a href="">Corregir</a></li>
-                    <li><a href="">Exportar</a></li>
+                    <li><a href="?menu=7">Exportar</a></li>
                     <li><a href="?menu=2">Parametros</a></li>
                 </ul>
         </nav>

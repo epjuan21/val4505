@@ -11,6 +11,7 @@ input[type=text] {
 	font-size: 13px;
 	padding: 6px 11px;
 	box-sizing: border-box;
+
 }
 
 select {
@@ -27,6 +28,14 @@ select, .help-inline, select option{
   flex-grow: 1;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.form-group-alert, .form-group-alert label {
+  color: $red;
+}
+
+.form-group-alert, .form-group-alert select {
+  border-color: $red;
 }
 
 .form-group label {
@@ -68,4 +77,11 @@ select, .help-inline, select option{
   width:100%;
   box-sizing: border-box;
   border: 1px solid $middle-grey;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
 }

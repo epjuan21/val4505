@@ -58,6 +58,7 @@ body {
 
 .param-title {
   padding: 7px 0px 5px 7px;
+  margin-bottom: 10px;
   border-bottom: 1px solid $middle-grey;
 }
 
@@ -75,7 +76,7 @@ body {
 // Estilos Cajas Contenedoras de Tamaño Medio
 
 .middle-box {
-  height: 300px;
+  min-height: 300px;
   width: 600px;
 }
 
@@ -135,57 +136,6 @@ body {
   font-size: 9px;
 }
 
-// Estilos Pagina Import
-
-input[type="file"] {
-
-  width: 500px;
-  margin-bottom: 10px;
-  
-  &::-webkit-file-upload-button {
-    background: $green;
-    border: 0;
-    padding: 1em 2em;
-    cursor: pointer;
-    color: #fff;
-    border-radius: .2em;
-  }
-  
-  &::-ms-browse {
-    background: $green;
-    border: 0;
-    padding: 1em 2em;
-    cursor: pointer;
-    color: #fff;
-    border-radius: .2em;
-  }
-}
-
-.separatorControl {
-  margin: 10px 0px 10px 0px;
-  padding: 10px 0px 10px 0px;
-}
-
-.control-group {
-  margin-bottom: 10px;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.labelMun{
-  margin-right: 20px;
-}
-
-.selectMun {
-  flex-grow: 1;
-  padding: 6px 12px;
-  border: 1px solid $middle-grey;
-  border-radius: .2em;
-}
-
-
 // Estilos Pagina Detalle Entidades
 
 .titleEntity{
@@ -231,4 +181,146 @@ input[type="file"] {
 .boxItem span {
   font-weight: bold;
   color:$dark-grey;
+}
+
+// Estilos Pagina Importar
+
+.separatorControl {
+  margin: 10px 0px 10px 0px;
+  padding: 10px 0px 10px 0px;
+}
+
+.control-group {
+  margin-bottom: 10px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.labelMun{
+  margin-right: 20px;
+}
+
+.selectMun {
+  flex-grow: 1;
+  padding: 6px 12px;
+  border: 1px solid $middle-grey;
+  border-radius: .2em;
+}
+
+.file-upload {
+  display:block;
+}
+
+.file-upload .file-select {
+  display: block;
+  cursor: pointer;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  transition: all .3s ease-in-out;
+}
+
+.file-upload .file-select .file-select-button {
+  color: #FFF;
+  background-color: $green;
+  padding: 0 10px;
+  display: inline-block;
+  height: 3rem;
+  line-height: 3rem;
+  border-radius: 0.2em;
+}
+
+.file-upload .file-select .file-select-name { 
+  line-height: 3rem;
+  display: inline-block;
+  padding: 0 10px;
+}
+
+.file-upload .file-select:hover {
+  transition:all .3s ease-in-out;
+}
+
+.file-upload .file-select:hover .file-select-button {
+  background-color: $greenSoft;
+  color: #FFF;
+  transition: all .3s ease-in-out;
+}
+
+.file-upload.active .file-select { 
+  border-color: $green;
+  transition: all .3s ease-in-out;
+}
+
+.file-upload.active .file-select .file-select-button {
+  background: $green;
+  color: #FFF;
+  transition: all .3s ease-in-out;
+}
+
+
+.file-upload.active:hover .file-select .file-select-button {
+  background: $greenSoft;
+  color: #FFF;
+  transition: all .3s ease-in-out;
+}
+
+.file-upload .file-select input[type=file] {
+  z-index: 100;
+  cursor: pointer;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.file-upload .file-select.file-select-disabled { 
+  opacity:0.65;
+}
+
+.file-upload .file-select.file-select-disabled:hover { 
+  cursor: default;
+  display: block;
+  cursor: pointer;
+  height: 3rem;
+  line-height: 3rem;
+  margin-top: 5px;
+  text-align: left;
+  background-color: #FFF;
+  overflow: hidden;
+  position: relative;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-button { 
+  padding: 0 10px;
+  display: inline-block;
+  height: 3rem;
+  line-height: 3rem;
+}
+
+.file-upload .file-select.file-select-disabled:hover .file-select-name { 
+  line-height: 3rem;
+  display: inline-block;
+  padding: 0 10px;
+}
+
+
+// Estilos Pagina Exportar
+
+.list-export .list-item {
+  margin-bottom: 10px;
+  border-bottom: 3px solid $blue;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.export-boton a.btn {
+  margin: 0;
 }

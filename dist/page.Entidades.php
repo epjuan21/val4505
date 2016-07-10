@@ -63,7 +63,7 @@
 		?>
 		<div class="alert alert--dismissible alert--success" role="alert">
 			
-			<strong>Success!</strong> Entidad Agregadar con Éxito
+			<strong>Success!</strong> Entidad Agregada con Éxito
 
 		</div>
 		<?php

@@ -15,7 +15,8 @@
 
 .table > thead > tr > th {
 	border-bottom: 1px solid #DDDDDD;
-	background-color: $soft-grey;
+	background-color: $orange;
+	color: #FFF;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {

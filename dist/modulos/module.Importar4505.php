@@ -29,6 +29,21 @@
 		}
 
 	}
+
+	// Obtenemos el Tipo de Archivo Cargado
+
+	$finfo = new finfo(FILEINFO_MIME_TYPE);
+	$fileContents = file_get_contents($_FILES['upload']['tmp_name']);
+	$mimeType = $finfo->buffer($fileContents);
+
+	// Si el Arcihvo Cargado es Diferente de text/plain o archivo de texto plano genera error y no continua con el codigo
+
+	if ($mimeType != 'text/plain') 
+	{
+		header ("Location: ../inicio.php?menu=6&Estado=5");
+    	die();
+	}
+
 	// Si El Archivo Existe Redirigir y Mostrar Error
 	else if (file_exists($carpetaDestino . $_FILES['upload']['name']))
 	{
@@ -37,6 +52,7 @@
 	}
 	else 
 	{
+
 		// Movemos el Archivo Subido a la Carpeta Uploads del Servidor	
 		move_uploaded_file($_FILES['upload']['tmp_name'],$carpetaDestino.$_FILES['upload']['name']);
 
@@ -54,7 +70,7 @@
 			$CodigoEntidad = $reg[1];
 			$FechaInicialReg = $reg[2];
 			$FechaFinalReg = $reg[3];
-		}
+		} 
 
 		$now = new DateTime;
 		$FechaRegistro = $now->format('Y-m-d H:i:s-U');		// Fecha Registro

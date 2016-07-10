@@ -24,13 +24,22 @@
 					</select>	
 				</div>
 	
-				<input type="file" name="upload" id="upload" class="upload" ></input>
+				
+				<div class="file-upload">
+					<div class="file-select">
+				    	<div class="file-select-button" id="fileName">ARCHIVO</div>
+				    	<div class="file-select-name" id="noFile">Ningún Archivo Seleccionado...</div> 
+				    	<input type="file" name="upload" id="chooseFile">
+					</div>
+				</div>			
+
 				
 				<input type="submit" class="btn btn-primary btn-large" name="grabar-entidad" value="Subir" />
 
 			</form>
-
+			
 			<?php
+			// MENSAJE DE ERRORES
 			if (isset($_GET["Estado"]) && $_GET["Estado"] == "Warning")
 			{
 			?>
@@ -56,6 +65,16 @@
 			<div class="alert alert--dismissible alert--warning" role="alert">
 				
 				 <strong>Warning!</strong> Ningún Archivo Seleccionado
+
+			</div>
+			<?php
+			}
+			else if (isset($_GET["Estado"]) && $_GET["Estado"] == "5")
+			{
+			?>
+			<div class="alert alert--dismissible alert--warning" role="alert">
+				
+				 <strong>Warning!</strong> Solo se permiten archivos de texto
 
 			</div>
 			<?php
@@ -99,51 +118,42 @@
 
 		<div class="param-content">
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Entidad</th>
-					<th>Periodo</th>
-					<th>Año</th>
-					<th>Registros</th>
-					<th>Editar</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php
-				for ($i=0;$i<sizeof($regEnt);$i++)
-				{
-				?>
-				<tr>
-					<td><?php echo $regEnt[$i]["Entidad"];?></td>
-					<td><?php echo $regEnt[$i]["Periodo"];?></td>
-					<td><?php echo $regEnt[$i]["Año"];?></td>
-					<td><?php echo $regEnt[$i]["Registros"];?></td>
-					<td>
-						<a href="?menu=8&Ent=<?php echo $regEnt[$i]["CodigoEntidad"];?>&Año=<?php echo $regEnt[$i]["Año"];?>&Period=<?php echo $regEnt[$i]["CodPer"];?>"><i class="fa fa-pencil" aria-hidden="true"></i>
-						</a>
-					</td>
-				</tr>
-				<?php
-				}
-				?>			
-			</tbody>
-		</table>
-
-		<ul>
-
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Entidad</th>
+						<th>Periodo</th>
+						<th>Año</th>
+						<th>Registros</th>
+						<th>Editar</th>
+						<th>Eliminar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					for ($i=0;$i<sizeof($regEnt);$i++)
+					{
+					?>
+					<tr>
+						<td><?php echo $regEnt[$i]["Entidad"];?></td>
+						<td><?php echo $regEnt[$i]["Periodo"];?></td>
+						<td><?php echo $regEnt[$i]["Año"];?></td>
+						<td><?php echo $regEnt[$i]["Registros"];?></td>
+						<td>
+							<a href="?menu=8&Ent=<?php echo $regEnt[$i]["CodigoEntidad"];?>&Año=<?php echo $regEnt[$i]["Año"];?>&Period=<?php echo $regEnt[$i]["CodPer"];?>"><i class="fa fa-pencil" aria-hidden="true"></i>
+							</a>
+						</td>
+						<td>
+							<a href="modulos/module.EliminarPeriodo.php?CodEnt=<?php echo $regEnt[$i]["CodigoEntidad"];?>&CodMun=<?php echo $regEnt[$i]["CodigoMunicipio"];?>&FecIn=<?php echo $regEnt[$i]["FechaInicialReg"];?>&FecFn=<?php echo $regEnt[$i]["FechaFinalReg"];?>&IdUser=<?php echo $regEnt[$i]["IdUsuario"];?>"><i class="fa fa-trash-o" aria-hidden="true"></i>
+							</a>
+						</td>
+					</tr>
+					<?php
+					}
+					?>			
+				</tbody>
+			</table>
 			
-			<li>
-				<div class="entidad-item"></div>
-				<div class="entidad-item"></div>
-				<div class="entidad-item"></div>
-				<div class="entidad-item"></div>
-			</li>
-
-
-		</ul>
-			
-
 		</div>
 
 	</div>

@@ -21,7 +21,7 @@ if( isset($_POST["ingresar"]) )
     }
     else 
     {
-        echo "Verifica tu nombre de usuario y contraseña";
+        header("location: ../index.php");
     }
 }
 

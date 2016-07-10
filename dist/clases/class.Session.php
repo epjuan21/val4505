@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 class sesion {
   function __construct() {
      session_start ();

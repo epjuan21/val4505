@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var webserver = require('gulp-webserver');
 var sass = require('gulp-sass');
-var minifyCss  = require('gulp-minify-css');
+var cleanCSS = require('gulp-clean-css');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
@@ -36,7 +36,7 @@ gulp.task('build:css', function(){
             browsers: ['last 2 versions'],
             cascade: false
         }))
-		//.pipe(minifyCss())
+		//.pipe(cleanCSS({compatibility: 'ie8'}))
 		.pipe(gulp.dest(config.styles.output));
 });
 

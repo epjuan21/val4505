@@ -4,6 +4,7 @@
 
 $primary:		#00ADB5;
 $primaryDak:	darken($primary, 20%);
+$primarySoft:	lighten($primary, 4%);
 
 $info:			#FFA700;
 
@@ -24,9 +25,10 @@ $soft-grey:		#fafafa;
 $red:			#E84545;	// Alert
 $redDark:		darken($red, 20%);
 
-$orange:		#F08A5D;	// Warning
+$orange:		#FF9800;	// Warning
 
 $green:			#00B8A9;	// Success
+$greenSoft:		lighten($green, 4%);
 
 $blue:			#00ADB5;	// info
 
