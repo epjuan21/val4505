@@ -336,31 +336,16 @@
 		fclose($fp);
 	}
 
-//$carpetaDestino = "../Uploads/";
-//$handle = opendir($carpetaDestino); 
-
-// while ($file = readdir($handle))  
-// 	{   
-// 		if (is_file($carpetaDestino.$file)) 
-// 			{ 
-// 				unlink($carpetaDestino.$file); 
-// 			}
-// 	} 
-
-echo $fullPath = __DIR__;
-$handle = opendir($fullPath); 
+$carpetaDestino = "../Uploads/";
+$handle = opendir($carpetaDestino); 
 
 while ($file = readdir($handle))  
 	{   
-		if (is_file($fullPath.$file)) 
+		if (is_file($carpetaDestino.$file)) 
 			{ 
-				foreach (glob("*.txt") as $fullPath.$file) {
-				   unlink($fullPath.$file);
-				}
+				unlink($carpetaDestino.$file); 
 			}
 	} 
-//echo $fullPath = __DIR__ . "\Uploads\\";
-//array_map('unlink', glob( "$fullPath*.TXT"));
 
 header("Location: ../inicio.php?menu=6");
 
