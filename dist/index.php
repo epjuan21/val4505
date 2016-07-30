@@ -11,22 +11,21 @@
     </head>
     <body>
 
-    <div class="login-container">
+        <div class="login-container">
 
-        <div class="form-container">
-            
-            <form name="frmLogin" action="modulos/module.ValidarUsuario.php" method="POST">
+            <div class="form-container">
+                
+                <form name="frmLogin" action="modulos/module.ValidarUsuario.php" method="POST">
 
-                <input type="text" name="user" class="login-input" placeholder="Usuario" required/>
-                <input type="password" name="pass" class="login-input" placeholder="Contraseña" required/>
-                <input type="submit" class="btn btn-large btn-primary" name="ingresar" value="Ingresar" />
+                    <input type="text" name="user" class="login-input" placeholder="Usuario" required/>
+                    <input type="password" name="pass" class="login-input" placeholder="Contraseña" required/>
+                    <input type="submit" class="btn btn-large btn-primary" name="ingresar" value="Ingresar" />
 
-            </form>
+                </form>
 
+            </div>        
 
-        </div>        
-
-    </div>
+        </div>
 
 
     </body>
