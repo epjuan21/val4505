@@ -8,6 +8,7 @@ var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
 var imageop = require('gulp-image-optimization');
 var autoprefixer = require('gulp-autoprefixer');
+var GulpSSH = require('gulp-ssh');
 
 var config = {
 	styles: {

@@ -53,7 +53,7 @@
             <nav role="navigation">
                 <ul class="menu">
                     <li><a href="?menu=6">Importar</a></li>
-                    <li><a href="">Corregir</a></li>
+                    <li><a href="modulos/module.Dump.php">Corregir</a></li>
                     <li><a href="?menu=7">Exportar</a></li>
                     <li><a href="?menu=2">Parametros</a></li>
                 </ul>

@@ -453,7 +453,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		if ($edad < 10 || $edad >= 60)
 		{
-			fwrite($txt,'1845-01-01'); 
+			fwrite($txt,'1845-01-01');
 		}
 		else if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaSalidaParto"] =='1800-01-01')
 		{
@@ -1009,7 +1009,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 		else
 		{
-			fwrite($txt,$reg[$i]["ResultadoBiopsiaSeno"]);	
+			fwrite($txt,$reg[$i]["ResultadoBiopsiaSeno"]);
 		}
 	//fwrite($txt,$reg[$i]["ResultadoBiopsiaSeno"]); // 101. Resultado Biopsia Seno por BACAF
 	fwrite($txt,"|");
@@ -1047,7 +1047,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaTomaBaciloscopiaInput"]); // 112. Fecha Toma de Baciloscopia de Diagnóstico
 	fwrite($txt,"|");
-		if (($reg[$i]["FechaTomaBaciloscopiaInput"] != '1800-01-01' || $reg[$i]["FechaTomaBaciloscopiaInput"] != '1845-01-01') && $reg[$i]["ResultadoBaciloscopia"] == '4') 
+		if (($reg[$i]["FechaTomaBaciloscopiaInput"] != '1800-01-01' || $reg[$i]["FechaTomaBaciloscopiaInput"] != '1845-01-01') && $reg[$i]["ResultadoBaciloscopia"] == '4')
 		{
 			fwrite($txt,'1');
 		} 
