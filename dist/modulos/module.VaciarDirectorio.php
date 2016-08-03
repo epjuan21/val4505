@@ -1,8 +1,7 @@
 <?php
+error_reporting(E_ALL ^ E_WARNING );
 $root = $_SERVER['DOCUMENT_ROOT'];
 $path = "Val4505/dist/modulos/";
-echo $root.$path;
-echo "<br>";
 $dir = opendir($root.$path);
 
 $finfo = new finfo(FILEINFO_MIME_TYPE);
@@ -21,6 +20,6 @@ while ($file = readdir($dir)) {
 }
 closedir($dir);
 
-header ("Location: ../inicio.php?menu=6");
+//header ("Location: ../inicio.php?menu=6");
 
 ?>
