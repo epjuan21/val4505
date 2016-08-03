@@ -1083,7 +1083,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,$reg[$i]["FechaTerLeishmaniasisInput"]."\r\n");
 }
 
-
 fclose($txt);
 $nombreArchivo;
 header("Content-disposition: attachment; filename=$nombreArchivo");
