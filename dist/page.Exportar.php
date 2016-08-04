@@ -24,6 +24,8 @@
 		<?php
 			echo $root = $_SERVER['DOCUMENT_ROOT'];
 			echo $path = "modulos/";
+			echo "<br>";
+			echo $root.$path;
 			//echo $dir = opendir($root.$path);
 		?>
 

@@ -7,9 +7,9 @@ if ($root == "C:/wamp/www/")
 	$path = "val4505/dist/modulos/";
 
 } 
-else if ($root == "/var/www/html/val4505/dist/")
+else if ($root == "/var/www/html/val4505/dist")
 {
-	$path = "modulos/";
+	$path = "/modulos/";
 }
 
 $dir = opendir($root.$path);
