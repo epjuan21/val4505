@@ -21,16 +21,5 @@
 			</ul>
 
 		</div>
-		<?php
-			echo $root = $_SERVER['DOCUMENT_ROOT'];
-			echo "<br>";
-			echo $path = "/modulos/";
-			echo "<br>";
-			echo $root.$path;
-			//echo $dir = opendir($root.$path);
-		?>
-
 	</div>
-
-
 </div>
