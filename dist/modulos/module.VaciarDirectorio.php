@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL ^ E_WARNING );
 $root = $_SERVER['DOCUMENT_ROOT'];
-$path = "Val4505/dist/modulos/";
+$path = "val4505/dist/modulos/";
 $dir = opendir($root.$path);
 
 $finfo = new finfo(FILEINFO_MIME_TYPE);
