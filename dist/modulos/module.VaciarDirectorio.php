@@ -1,7 +1,17 @@
 <?php
 error_reporting(E_ALL ^ E_WARNING );
 $root = $_SERVER['DOCUMENT_ROOT'];
-$path = "val4505/dist/modulos/";
+
+if ($root == "C:/wamp/www/") 
+{
+	$path = "val4505/dist/modulos/";
+
+} 
+else if ($root == "/var/www/html/val4505/dist")
+{
+	$path = "modulos/";
+}
+
 $dir = opendir($root.$path);
 
 $finfo = new finfo(FILEINFO_MIME_TYPE);
