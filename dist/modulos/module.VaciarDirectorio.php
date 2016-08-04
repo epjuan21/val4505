@@ -19,7 +19,4 @@ while ($file = readdir($dir)) {
 	}
 }
 closedir($dir);
-
-//header ("Location: ../inicio.php?menu=6");
-
 ?>
