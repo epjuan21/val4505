@@ -3,6 +3,8 @@ require_once ("clases/class.rped.php");
 $objRPED = new rped();
 $Registro = $objRPED->getUser($_GET["Ent"],$_GET["IdUser"],$_GET["Per"],$_GET["Año"]);
 
+
+$CodigoMunicipio = $Registro[$i]['CodigoMunicipio'];
 $CodigoEntidad = $Registro[$i]['CodigoEntidad'];
 $FechaRegistro = $Registro[$i]['FechaRegistro'];
 $FechaInicialReg = $Registro[$i]['FechaInicialReg'];
@@ -1894,16 +1896,17 @@ $R_ID = $Registro[$i]['R_ID'];
 				<input type="hidden" name="FechaFinalReg" value="<?php echo $FechaFinalReg;?>">
 
 				<div class="form-group">
-					<input class="btn btn-alert btn-large" type="submit" value="Actualizar">
+					<input class="btn btn-primary btn-large" type="submit" value="Actualizar">
+				</div>
+
+				<div class="form-group">
+					<a href="modulos/module.EliminarRegistro.php?ID=<?php echo $R_ID;?>" class="btn btn-alert btn-large">Borrar</a>
 				</div>
 
 			</form>
 
 		</div>
 
-
-
 	</div>
-
 
 </div>

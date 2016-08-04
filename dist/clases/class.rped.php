@@ -45,6 +45,12 @@ class rped extends ConnectionMySQL {
 		$this->query->execute();
 	}
 
+	public function deleteRegistro ($ID)
+	{
+		$this->query = $this->conn->prepare("DELETE FROM rped WHERE R_ID = '$ID' ");
+		$this->query->execute();
+	}
+
 	// Funcion para Obtener el Numero de Registros
 	public function getNumRows ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg) {
 		$this->query = $this->conn->prepare("SELECT COUNT(*) FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg' ");

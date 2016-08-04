@@ -50,6 +50,10 @@
 	background-color: $primarySoft;
 }
 
+.btn-alert:hover, a.btn-alert:hover  {
+	background-color: $redsoft;
+}
+
 .btn-alert, a.btn-alert {
 	background-color: $red;
 }

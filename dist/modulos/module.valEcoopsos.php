@@ -31,7 +31,7 @@ fwrite($txt,$FechaInicio);
 fwrite($txt,"|");
 fwrite($txt,$FechaFinal);
 fwrite($txt,"|");
-fwrite($txt,$numReg.PHP_EOL);
+fwrite($txt,$numReg."\r\n");
 
 for ($i=0;$i<sizeof($reg);$i++)
 {
@@ -1328,7 +1328,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["TratamientoLepra"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["FechaTerLeishmaniasisInput"].PHP_EOL);
+	fwrite($txt,$reg[$i]["FechaTerLeishmaniasisInput"]."\r\n");
 }
 
 fclose($txt);

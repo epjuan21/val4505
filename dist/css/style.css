@@ -1311,6 +1311,9 @@ footer {
 .btn-primary:hover {
   background-color: #00c0c9; }
 
+.btn-alert:hover, a.btn-alert:hover {
+  background-color: #ea5757; }
+
 .btn-alert, a.btn-alert {
   background-color: #E84545; }
 
