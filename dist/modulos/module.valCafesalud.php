@@ -17,7 +17,7 @@ $reg = $objRPED->getRPED($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaIni
 
 $res = "4505";
 
-$nombreArchivo = $res."".str_replace("-", "", $FechaFinal)."".$CodigoEntidad."".$reg["0"]["CodigoHabilitacionIPS"].".txt";
+$nombreArchivo = $res."".str_replace("-", "", $FechaFinal)."".$CodigoEntidad."".$reg["0"]["CodigoHabilitacionIPS"]."01.txt";
 $txt = fopen("$nombreArchivo","w");
 
 fwrite($txt,"1");
