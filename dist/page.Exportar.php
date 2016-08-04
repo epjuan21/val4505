@@ -21,7 +21,11 @@
 			</ul>
 
 		</div>
-
+		<?php
+			echo $root = $_SERVER['DOCUMENT_ROOT'];
+			echo $path = "val4505/dist/modulos/";
+			//echo $dir = opendir($root.$path);
+		?>
 
 	</div>
 
