@@ -38,6 +38,12 @@ class rped extends ConnectionMySQL {
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
 
+	public function getListEnt($IdUsuario){
+		$this->query = $this->conn->prepare("SELECT val4505.entidades.ENTIDAD_NAME FROM val4505.rped LEFT JOIN entidades ON (val4505.rped.CodigoEntidad = val4505.entidades.ENTIDAD_COD) WHERE val4505.rped.IdUsuario = '$IdUsuario' GROUP BY val4505.entidades.ENTIDAD_NAME");		
+		$this->query->execute();
+		return $this->query->fetchAll(PDO::FETCH_BOTH);
+	}
+
 	// Borra Periodos Seleccionados Por Entidad desde la Pagina de Importar
 	public function deletePeriod ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg)
 	{

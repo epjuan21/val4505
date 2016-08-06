@@ -350,8 +350,4 @@ while ($file = readdir($handle))
 header("Location: ../inicio.php?menu=6");
 
 
-
-
-
-
 ?>

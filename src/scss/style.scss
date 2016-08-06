@@ -315,7 +315,7 @@ body {
 
 .list-export .list-item {
   margin-bottom: 10px;
-  border-bottom: 3px solid $blue;
+  border-bottom: 3px solid $primary;
   padding-bottom: 10px;
   display: flex;
   align-items: center;
@@ -323,4 +323,34 @@ body {
 
 .export-boton a.btn {
   margin: 0;
+}
+
+// Estilos Pagina Importados
+
+.container-ent-imp {
+  color: $dark-grey;
+  font-weight: bold;
+  margin: 10px;
+  width: 300px;
+  background-color: white;
+  border: 1px solid $middle-grey; 
+
+
+  .ent-imp-btn {
+    border-top: 1px solid $middle-grey;
+    padding: 5px 10px;
+    background-color: $green;
+
+    & a {
+      color: white;
+      font-weight: normal;
+    }
+  }
+
+  .ent-imp-title {
+    font-family: $font-opens-sans ;
+    padding: 10px 10px;
+  }
+
+
 }
