@@ -29,6 +29,7 @@
     require_once ("clases/class.rped.php");
     $Objrped = new rped();
     $regEnt = $Objrped->getRegByEnt();
+    $ListEnt = $Objrped->getListEnt($sesion->get("idUsuario"));
 
 ?>
 <!doctype html>
