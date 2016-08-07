@@ -108,11 +108,8 @@ switch ($PeriodoMes) {
  		break;
  }
 
-echo $PeriodoIn;
-echo "</br>";
-echo $PeriodoFn;
-echo $_POST["CodigoEntidad"];
-
 $objRPED->update_RPED();
+
+header ("Location: ../inicio.php?menu=6")
 
 ?>

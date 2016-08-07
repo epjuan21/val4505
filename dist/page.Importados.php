@@ -1,5 +1,6 @@
 <div class="row-container">
 
+
 	<div class="param-box middle-box">
 
 		<div class="ent-imp-head-content">
@@ -64,43 +65,4 @@
 
 	</div>
 
-	<!--
-	<?php
-	for ($i=0;$i<sizeof($ListEnt);$i++)
-	{		
-	?>
-
-	<div class="container-ent-imp">
-	
-
-	<div class="ent-imp-title">
-		<?php echo $ListEnt[$i]["ENTIDAD_NAME"];?>
-	</div>
-
-
-
-	<?php $ListPerEnt = $Objrped->getListPeriodos($ListEnt[$i]["ENTIDAD_COD"]);
-
-	for ($j=0;$j<sizeof($ListPerEnt);$j++)
-	{
-	?>
-	<div class="ent-imp-cont">
-			<?php echo $ListPerEnt[$j]["Periodo"]." - ".$ListPerEnt[$j]["Año"]  ;?>
-	</div>
-	<?php
-	}
-	?>
-
-	<div class="ent-imp-btn">
-		<a href="" class="">Ver Detalle</a>
-	</div>
-
-
-	</div>
-
-	<?php
-	}
-	?>
-
-	-->
 </div>

@@ -415,29 +415,3 @@ body {
   }
 
 }
-
-.container-ent-imp {
-  color: $dark-grey;
-  font-weight: bold;
-  margin: 10px;
-  width: 300px;
-  background-color: white;
-  border: 1px solid $middle-grey; 
-
-
-  .ent-imp-btn {
-    border-top: 1px solid $middle-grey;
-    padding: 5px 10px;
-
-    & a {
-      color: $blue;
-      font-weight: normal;
-    }
-  }
-
-  .ent-imp-cont {
-    padding: 10px 10px;
-  }
-
-
-}

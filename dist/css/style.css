@@ -1699,19 +1699,3 @@ body {
       padding: 0px 2px;
       border-radius: 0.2rem;
       background-color: #818A90; }
-
-.container-ent-imp {
-  color: #737370;
-  font-weight: bold;
-  margin: 10px;
-  width: 300px;
-  background-color: white;
-  border: 1px solid #818A90; }
-  .container-ent-imp .ent-imp-btn {
-    border-top: 1px solid #818A90;
-    padding: 5px 10px; }
-    .container-ent-imp .ent-imp-btn a {
-      color: #039BE5;
-      font-weight: normal; }
-  .container-ent-imp .ent-imp-cont {
-    padding: 10px 10px; }
