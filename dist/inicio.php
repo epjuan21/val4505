@@ -31,6 +31,7 @@
     $regEnt = $Objrped->getRegByEnt();
     $ListEnt = $Objrped->getListEnt($sesion->get("idUsuario"));
 
+
 ?>
 <!doctype html>
 <html lang="es">

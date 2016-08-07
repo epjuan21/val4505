@@ -53,7 +53,8 @@ body {
   margin: 10px;
   width: 300px;
   background-color: white;
-  border: 1px solid $middle-grey;
+  border: 1px solid $soft-grey;
+  box-shadow: 0 10px 6px -6px #777;
 }
 
 .param-title {
@@ -327,6 +328,94 @@ body {
 
 // Estilos Pagina Importados
 
+.ent-imp-head-content {
+  display: flex;
+  align-items: center;
+  padding: 20px 20px;  
+
+  .ent-imp-icon {
+    color: $blue;
+    font-size: 1rem;
+  }
+
+  .ent-imp-title-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    
+    .ent-imp-title {
+      font-size: 1.25rem;
+      font-family: $font-opens-sans;
+      font-weight: bold;
+      color: $dark;
+      margin-bottom: 3px;
+    }
+
+    .ent-imp-subtitle{
+      font-size: 0.9rem;
+      color: $dark-grey;
+    }
+
+  }
+
+}
+
+.item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-top: 1px solid $middle-grey;
+
+  .item-link a i {
+    padding: 1px;
+    color: $soft-grey;
+    transform: rotateZ(-180deg);
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      color: $blue;
+      transform: rotateZ(0deg);
+    }
+  }
+
+}
+
+.item-title-container {
+  display: flex;
+  flex-direction: column;
+
+  .item-title {
+    color: $dark;
+    font-size: 0.9rem;
+    font-family: $font-opens-sans;
+    font-weight: 700;
+    margin-bottom: 3px;
+
+  }
+
+  .item-subtitle {
+    font-size: 0.9rem;
+    color: $dark-grey;
+    display: flex;
+
+    i {
+      color: $red;
+      font-size:1rem;
+    }
+
+    .item-periodo{
+      color: white;
+      margin-left: 5px;
+      padding: 0px 2px; 
+      border-radius: 0.2rem;
+      background-color: $middle-grey;
+    }
+  }
+
+}
+
 .container-ent-imp {
   color: $dark-grey;
   font-weight: bold;
@@ -339,16 +428,14 @@ body {
   .ent-imp-btn {
     border-top: 1px solid $middle-grey;
     padding: 5px 10px;
-    background-color: $green;
 
     & a {
-      color: white;
+      color: $blue;
       font-weight: normal;
     }
   }
 
-  .ent-imp-title {
-    font-family: $font-opens-sans ;
+  .ent-imp-cont {
     padding: 10px 10px;
   }
 
