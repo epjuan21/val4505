@@ -1239,7 +1239,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 		else
 		{
-			fwrite($txt,$reg[$i]["FechaTerLeishmaniasisInput"].PHP_EOL);
+			fwrite($txt,$reg[$i]["FechaTerLeishmaniasisInput"]."\r\n");
 		}
 }
 
