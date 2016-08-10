@@ -31,7 +31,7 @@ fwrite($txt,$FechaInicio);
 fwrite($txt,"|");
 fwrite($txt,$FechaFinal);
 fwrite($txt,"|");
-fwrite($txt,$numReg.PHP_EOL);
+fwrite($txt,$numReg."\r\n");
 
 for ($i=0;$i<sizeof($reg);$i++)
 {
@@ -811,7 +811,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ResultadoSerologiaSifilis"]); // 81. Resultado Serología Para Sífilis
 	fwrite($txt,"|");
-		if ($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00')
+		if ($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
 		{
 			fwrite($txt,'1800-01-01');
 		}
@@ -1233,13 +1233,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["TratamientoLepra"]);
 	fwrite($txt,"|");
-		if ($reg[$i]["FechaTerLeishmaniasisInput"] == '1845-01-00')
+		if ($reg[$i]["FechaTerLeishmaniasisInput"] == '1845-01-00' || $reg[$i]["FechaTerLeishmaniasisInput"] == '1845-01-0')
 		{
 			fwrite($txt,'1845-01-01'.PHP_EOL);
 		}
 		else
 		{
-			fwrite($txt,$reg[$i]["FechaTerLeishmaniasisInput"].PHP_EOL);
+			fwrite($txt,$reg[$i]["FechaTerLeishmaniasisInput"]."\r\n");
 		}
 }
 

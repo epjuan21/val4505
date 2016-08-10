@@ -1,6 +1,5 @@
 <div class="row-container">
 
-
 	<div class="param-box middle-box">
 
 		<div class="ent-imp-head-content">
