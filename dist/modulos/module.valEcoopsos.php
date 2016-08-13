@@ -604,7 +604,16 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaConsejeriaLactanciaInput"]); // 51. Fecha de Consejería en Lactancia Materna
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ControlRecienNacidoInput"]);
+	if ($edadDias < 30 && $reg[$i]["ControlRecienNacidoInput"] == '1845-01-01') 
+	{
+		fwrite($txt,'1800-01-01');
+	}
+	else
+	{
+		fwrite($txt,$reg[$i]["ControlRecienNacidoInput"]);
+	}
+
+	//fwrite($txt,$reg[$i]["ControlRecienNacidoInput"]); // 52. Control Recién Nacido
 	fwrite($txt,"|");
 		// Validar que cuando la variable 53 registre un dato diferente a 1845-01-01 
 		// la variable 9 corresponda a >= 10 años y < 60 años
