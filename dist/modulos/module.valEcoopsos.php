@@ -68,10 +68,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'CASTAÑO');
 		}
-		else if (trim($reg[$i]["Apellido1"]=='LONDONO'))
-		{
-			fwrite($txt,'LONDOÑO');
-		} 
 		else if (trim($reg[$i]["Apellido1"]=='CANAVERAL'))
 		{
 		fwrite($txt,'CAÑAVERAL');
