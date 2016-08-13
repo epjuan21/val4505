@@ -31,6 +31,12 @@
     $regEnt = $Objrped->getRegByEnt();
     $ListEnt = $Objrped->getListEnt($sesion->get("idUsuario"));
 
+    if( $usuario == false )
+    {   
+        $sesion->termina_sesion();  
+        header("Location: ../index.php");
+    }
+
 ?>
 <!doctype html>
 <html lang="es">
