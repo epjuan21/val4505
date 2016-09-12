@@ -106,10 +106,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'PATIÑO');
 		}
-		else if (trim($reg[$i]["Apellido2"]=='LONDONO'))
-		{
-			fwrite($txt,'LONDOÑO');
-		}
 		else if (trim($reg[$i]["Apellido2"]=='CATANO'))
 		{
 			fwrite($txt,'CATAÑO');
@@ -837,7 +833,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		} 
-		else if ($edad >= 10 && $edad < 30 && ($reg[$i]["ConsultaJovenPrimeraVezInput"] == '1835-01-01') )
+		else if ($edad >= 10 && $edad < 30 && ($reg[$i]["ConsultaJovenPrimeraVezInput"] == '1835-01-01' || $reg[$i]["ConsultaJovenPrimeraVezInput"] == '1845-01-01') )
 		{
 			fwrite($txt,'1800-01-01');
 		}
