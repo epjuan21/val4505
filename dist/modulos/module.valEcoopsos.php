@@ -997,7 +997,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		//Validar que cuando la variable 87 registre un dato diferente a 
 		//1845-01-01, 1805-01-01,1810-01-01, 1825-01-01,1830-0101,1835-01-01 
 		//la variable 88 corresponda a un dato diferente de 0
-		if ($edad > 10 && $reg[$i]["FechaCitologiaCUInput"] == '1845-01-01' && $reg[$i]["Sexo"] == 'F')
+		if ($edad >= 10 && $reg[$i]["FechaCitologiaCUInput"] == '1845-01-01' && $reg[$i]["Sexo"] == 'F')
 		{
 			fwrite($txt,'1800-01-01');
 		}
@@ -1018,7 +1018,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 			{
 				fwrite($txt,'0');
 			}
-			else if ($reg[$i]["Sexo"] == 'F' && $edad > 10 && $reg[$i]["CitologiaCUResultados"] == '0')
+			else if ($reg[$i]["Sexo"] == 'F' && $edad >= 10 && $reg[$i]["CitologiaCUResultados"] == '0')
 			{
 				fwrite($txt,'999');
 			}
