@@ -984,7 +984,12 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		} 
-		else {
+		else if ($edad >= 10 && $reg[$i]["TamizajeCancerCU"] == '0')
+		{
+			fwrite($txt,'22');	
+		}
+		else
+		{
 			fwrite($txt,$reg[$i]["TamizajeCancerCU"]);
 		}
 	//fwrite($txt,$reg[$i]["TamizajeCencerCU"]); // 86. Tamizaje Cancer de Cuello Uterino
