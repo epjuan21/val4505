@@ -796,6 +796,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
+		else if ($reg[$i]["Sexo"] == 'M' && $reg[$i]["TamizajeCancerCU"] = '22')
+		{
+			fwrite($txt,'0');
+		}
 		else if ($edad >= 10 && $reg[$i]["TamizajeCancerCU"]=='0' && $reg[$i]["Sexo"] == 'F')
 		{
 			fwrite($txt,'22');
