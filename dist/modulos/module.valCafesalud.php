@@ -975,6 +975,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
+		else if ($reg[$i]["Sexo"]=='M' && $reg[$i]["CodigoHabilitacionTomaBiopsia"] = '999')
+		{
+			fwrite($txt,'0');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["CodigoHabilitacionTomaBiopsia"]);
