@@ -817,9 +817,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}
-		else if ($reg[$i]["FechaCitologiaCUInput"] == '1835-01-01' )
+		else if ($reg[$i]["Sexo"] == 'M' && $reg[$i]["FechaCitologiaCUInput"] == '1835-01-01' )
 		{
-			fwrite($txt,'1800-01-01');
+			fwrite($txt,'1845-01-01');
 		}
 		else
 		{
