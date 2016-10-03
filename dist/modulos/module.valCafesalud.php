@@ -971,7 +971,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ResultadoBiopsiaCervical"]); // 94. Resultado Biopsia Cervical
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["CodigoHabilitacionTomaBiopsia"]); // 95. Codigo de Habilitacion IPS donde se toma la Biopsia Cervical
+		if ($reg[$i]["Sexo"]=='F' && $reg[$i]["CodigoHabilitacionTomaBiopsia"] = '999')
+		{
+			fwrite($txt,'0');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["CodigoHabilitacionTomaBiopsia"]);
+		}
+	//fwrite($txt,$reg[$i]["CodigoHabilitacionTomaBiopsia"]); // 95. Codigo de Habilitacion IPS donde se toma la Biopsia Cervical
 	fwrite($txt,"|");
 		if ($edad >= 35 && $reg[$i]["Sexo"]=='F')
 		{
