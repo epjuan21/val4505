@@ -186,10 +186,18 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["InfeccionTrasmisionSexual"]);
 	fwrite($txt,"|");
-	//	fwrite($txt,"21");
+	//fwrite($txt,"21");
 	fwrite($txt,$reg[$i]["EnfermedadMental"]); // 25. Enfermedad Mental
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["CancerCervix"]);
+		if ($reg[$i]["Sexo"]=='M' && $reg[$i]["CancerCervix"] == '2')
+		{
+			fwrite($txt,'0');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["CancerCervix"]);
+		}
+	//fwrite($txt,$reg[$i]["CancerCervix"]); // 26. Cancer de Cervix
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["CancerSeno"]);
 	fwrite($txt,"|");
