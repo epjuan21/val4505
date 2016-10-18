@@ -14,7 +14,7 @@ $R_ID = $Registro[$i]['R_ID'];
 ?>
 <div class="column-container">
 	
-	<div class="param-box big-box">
+	<div class="box box-big">
 		
 		<div class="param-title">
 			Editar Registro 4505
@@ -1907,6 +1907,10 @@ $R_ID = $Registro[$i]['R_ID'];
 
 		</div>
 
+		<span class="ir-arriba"></span>
+
 	</div>
+
+
 
 </div>

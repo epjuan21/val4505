@@ -1,9 +1,26 @@
+<!-- Menú Importar -->
+
 <div class="column-container">
 	
-	<div class="param-box middle-box">
+	<div class="box box-middle">
 		
-		<div class="param-title">
-			Importar Archivo 4505
+		<div class="head-container">
+			<div class="head-icon">
+				<i class="fa fa fa-upload fa-2x" aria-hidden="true"></i>
+			</div>
+
+			<div class="title-container">
+				
+				<div class="title">
+					Importar Archivo 4505
+				</div>
+
+				<div class="subtitle">
+					
+				</div>
+
+			</div>
+
 		</div>
 
 		<div class="param-content">
@@ -85,10 +102,22 @@
 
 	</div>
 
-	<div class="param-box middle-box">
+	<div class="box box-middle">
 		
-		<div class="param-title">
-			Base de Datos
+		<div class="head-container">
+			<div class="head-icon">
+				<i class="fa fa-table fa-2x" aria-hidden="true"></i>
+			</div>
+
+			<div class="title-container">
+				
+				<div class="title">
+					Periodos Importados
+				</div>
+
+
+			</div>
+
 		</div>
 
 		<div class="param-content">

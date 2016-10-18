@@ -110,6 +110,9 @@ switch ($PeriodoMes) {
 
 $objRPED->update_RPED();
 
-header ("Location: ../inicio.php?menu=6")
+$Año = substr($FechaFinalReg, 0, 4);
+$Periodo = substr($FechaFinalReg, 5, 2);
+
+header ("Location: ../inicio.php?menu=8&Ent=$CodigoEntidad&Año=$Año&Period=$Periodo")
 
 ?>

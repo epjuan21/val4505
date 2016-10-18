@@ -1,6 +1,6 @@
 <div class="column-container">
 	
-	<div class="param-box middle-box">
+	<div class="box box-middle">
 		
 		<div class="param-title">Exportar</div>
 

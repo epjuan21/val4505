@@ -6,6 +6,38 @@ $(function() {
 	  $(this).closest('.alert').hide();
 });
 
+	$('.ir-arriba').click(function(){
+		$('body, html').animate({
+		scrollTop: '0px'
+		}, 300);
+	});
+
+	$(window).scroll(function(){
+		if( $(this).scrollTop() > 0 ){
+			$('.ir-arriba').slideDown(300);
+			$('.ir-arriba').css('position','fixed');
+			$('.ir-arriba').css('right','20px');
+			$('.ir-arriba').css('bottom','20px');
+	} else {
+		$('.ir-arriba').slideUp(300);
+		}
+	});
+
+
+	/*$(window).scroll(function(){
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+            $('.ir-arriba').css('position','relative');
+            $('.ir-arriba').css('width','7px');
+            $('.ir-arriba').css('bottom','0px');
+            $('.ir-arriba').css('right','-810px');
+        }else{
+            $('.ir-arriba').css('position','fixed');
+            			$('.ir-arriba').css('right','20px');
+			$('.ir-arriba').css('bottom','20px');
+
+        }
+    });*/
+
 // Plung In Select Editable
 (function ($) {
 	$.extend($.expr[':'], {
