@@ -1,4 +1,5 @@
 <?php
+echo "prueba";
 require_once("../clases/class.Session.php");
     $sesion = new sesion();
 require_once ("../clases/class.Usuarios.php");
@@ -24,7 +25,4 @@ if( isset($_POST["ingresar"]) )
         header("location: ../index.php");
     }
 }
-echo "prueba";
-
-
 ?>
