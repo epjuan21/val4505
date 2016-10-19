@@ -24,7 +24,7 @@ if( isset($_POST["ingresar"]) )
         header("location: ../index.php");
     }
 }
-echo prueba;
+echo "prueba";
 
 
 ?>
