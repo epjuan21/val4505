@@ -1,5 +1,4 @@
 <?php
-echo "prueba";
 require_once("../clases/class.Session.php");
     $sesion = new sesion();
 require_once ("../clases/class.Usuarios.php");
