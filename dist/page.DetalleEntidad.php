@@ -2,7 +2,7 @@
 	$Entidad = $_GET["Ent"];
 	$Periodo = $_GET["Period"];
 	$Año = $_GET["Año"];
-	$regByPeriod = $Objrped->getDetByPer($Entidad,$Periodo,$Año); 
+	$regByPeriod = $objRPED->getDetByPer($Entidad,$Periodo,$Año); 
 ?>
 <div class="column-container">
 	

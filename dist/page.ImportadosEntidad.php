@@ -22,7 +22,7 @@
 		</div>
 
 		<?php
-		$DetPer = $ObjEntidades->getListPeriodosId($_GET["CodEPS"],$sesion->get("idUsuario"),$_GET["CodMun"]);
+		$DetPer = $objEntidad->getListPeriodosId($_GET["CodEPS"],$sesion->get("idUsuario"),$_GET["CodMun"]);
 		for ($i=0;$i<sizeof($DetPer);$i++)
 		{		
 		?>

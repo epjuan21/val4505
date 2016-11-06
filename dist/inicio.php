@@ -11,16 +11,18 @@
     require_once ("clases/class.Municipio.php");
     require_once ("clases/class.Errores.php");
 
-
+    $objRPED = new rped();
     $objEntidad = new Entidad();
-
+    $objMunicipio = new Municipio();
+    $objMenu = new Menu();
     $sesion = new sesion();
+
+    
     $usuario = $sesion->get("usuario");
 
-   
-    $menu = new Menu();
+
     if (isset($_GET['menu'])){
-        $id = $menu->getMenu($_GET['menu']);
+        $id = $objMenu->getMenu($_GET['menu']);
     }
 
     $list_enti = $objEntidad->getEntidades();
@@ -30,13 +32,10 @@
         $Ent = $objEntidad->getEntidadId($_GET['CodEPS']);
     }
 
-    
-    $municipio = new Municipio();
-    $list_mun = $municipio->getMunicipios();
 
+    $list_mun = $objMunicipio->getMunicipios();    
     
-    $Objrped = new rped();
-    $regEnt = $Objrped->getRegByEnt();
+    $regEnt = $objRPED->getRegByEnt();
     
 
     if( $usuario == false )
