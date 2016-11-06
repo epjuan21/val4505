@@ -5,6 +5,11 @@
     require_once("modulos/module.ManejoFechas.php");
 
     require_once("clases/class.Session.php");
+
+    require_once ("clases/class.Entidad.php");
+    
+    $objEntidad = new Entidad();
+
     $sesion = new sesion();
     $usuario = $sesion->get("usuario");
 
@@ -14,12 +19,11 @@
         $id = $menu->getMenu($_GET['menu']);
     }
 
-    require_once ("clases/class.Entidad.php");
-    $entidad = new Entidad();
-    $list_enti = $entidad->getEntidades();
+    $list_enti = $objEntidad->getEntidades();
+    $ListEnt = $objEntidad->getListEnt($sesion->get("idUsuario"));
 
     if (isset($_GET['CodEPS'])){
-        $Ent = $entidad->getEntidadId($_GET['CodEPS']);
+        $Ent = $objEntidad->getEntidadId($_GET['CodEPS']);
     }
 
     require_once ("clases/class.Municipio.php");
@@ -29,7 +33,7 @@
     require_once ("clases/class.rped.php");
     $Objrped = new rped();
     $regEnt = $Objrped->getRegByEnt();
-    $ListEnt = $Objrped->getListEnt($sesion->get("idUsuario"));
+    
 
     if( $usuario == false )
     {   
