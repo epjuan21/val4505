@@ -1,14 +1,11 @@
 <?php
 require_once ("class.ConnectionMySQL.php");
-
 class rped extends ConnectionMySQL {
-
 	// Obtiene la Cantidad de Registros por Entidad
 	public function getRegByEnt (){
-
 		$this->query = $this->conn->prepare(
 			"SELECT COUNT(CodigoEntidad) AS Registros
-			,ENTIDAD_NAME AS Entidad
+			,entidades.ENTIDAD_NAME AS Entidad
 			,IdUsuario
 			,CodigoEntidad
 			,CodigoMunicipio
@@ -32,60 +29,22 @@ class rped extends ConnectionMySQL {
 				END AS Periodo
 			FROM rped 
 			LEFT JOIN entidades ON rped.CodigoEntidad = entidades.ENTIDAD_COD
-			GROUP BY CodigoEntidad, FechaFinalReg
+			GROUP BY rped.CodigoEntidad, rped.FechaFinalReg
 			ORDER BY Año DESC, CodPer DESC;");
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
-
-	// Funcion para Listar Entidades Importadas
-	public function getListEnt($IdUsuario){
-		$this->query = $this->conn->prepare(
-			"SELECT val4505.entidades.ENTIDAD_NAME, val4505.entidades.ENTIDAD_COD FROM val4505.rped LEFT JOIN entidades ON (val4505.rped.CodigoEntidad = val4505.entidades.ENTIDAD_COD) WHERE val4505.rped.IdUsuario = '$IdUsuario' GROUP BY val4505.entidades.ENTIDAD_NAME");		
-		$this->query->execute();
-		return $this->query->fetchAll(PDO::FETCH_BOTH);
-	}
-
-	// Funcion para listar Periodos por Entidades
-	public function getListPeriodos($IdEntidad){
-		$this->query = $this->conn->prepare(
-			"SELECT 
-			CodigoEntidad
-			,case substr(FechaFinalReg,6,2)
-				WHEN '01' THEN 'Enero'
-				WHEN '02' THEN 'Febrero'
-				WHEN '03' THEN 'Marzo'
-				WHEN '04' THEN 'Abril'
-				WHEN '05' THEN 'Mayo'
-				WHEN '06' THEN 'Junio'
-				WHEN '07' THEN 'Julio'
-				WHEN '08' THEN 'Agosto'
-				WHEN '09' THEN 'Septiembre'
-				WHEN '10' THEN 'Octubre'
-				WHEN '11' THEN 'Noviembre'
-				WHEN '12' THEN 'Diciembre'
-				END AS Periodo
-			,substr(FechaFinalReg,1,4) AS Año
-			FROM val4505.rped
-			WHERE CodigoEntidad = '$IdEntidad'
-			GROUP BY FechaFinalReg");		
-		$this->query->execute();
-		return $this->query->fetchAll(PDO::FETCH_BOTH);
-	}
-
 	// Borra Periodos Seleccionados Por Entidad desde la Pagina de Importar
 	public function deletePeriod ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg)
 	{
 		$this->query = $this->conn->prepare("DELETE FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg' ");
 		$this->query->execute();
 	}
-
 	public function deleteRegistro ($ID)
 	{
 		$this->query = $this->conn->prepare("DELETE FROM rped WHERE R_ID = '$ID' ");
 		$this->query->execute();
 	}
-
 	// Funcion para Obtener el Numero de Registros
 	public function getNumRows ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg) {
 		$this->query = $this->conn->prepare("SELECT COUNT(*) FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg' ");
@@ -94,14 +53,12 @@ class rped extends ConnectionMySQL {
 		return reset($count);
 		//return $numRows = $this->query->rowCount();
 	}
-
 	//Obtenemos Registros para el Proceso de Exportacion
 	public function getRPED($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg) {
 		$this->query = $this->conn->prepare("SELECT * FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg'");
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
-
 	// Obtener Detalle Por Periodo - Cabecera del Archivo 4505
 	// Según Codigo Entidad, Mes y Año
 	public function getDetByPer($Entidad, $Periodo, $Año)
@@ -135,7 +92,6 @@ class rped extends ConnectionMySQL {
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
-
 	public function getUser($Entidad, $IdUsuario, $Periodo, $Año){
 		$this->query = $this->conn->prepare(
 			"SELECT
@@ -281,7 +237,6 @@ class rped extends ConnectionMySQL {
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
-
 	public function insertRped (
 		$ID
 		,$FechaRegistro
@@ -408,11 +363,8 @@ class rped extends ConnectionMySQL {
 		,$TratamientoLepra
 		,$FechaTerLeishmaniasisInput
 		){
-
 		$sql="INSERT INTO rped VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
 		$stmt=$this->conn->prepare($sql);		
-
 		$stmt->bindValue(1,$ID,PDO::PARAM_INT);
 		$stmt->bindValue(2,$FechaRegistro,PDO::PARAM_STR);
 		$stmt->bindValue(3,$IdUsuario,PDO::PARAM_STR);
@@ -537,11 +489,9 @@ class rped extends ConnectionMySQL {
 		$stmt->bindValue(122,$TratamientoSifilisCongenita,PDO::PARAM_STR);
 		$stmt->bindValue(123,$TratamientoLepra,PDO::PARAM_STR);
 		$stmt->bindValue(124,$FechaTerLeishmaniasisInput,PDO::PARAM_STR);
-
 		$stmt->execute();
 		
 	}
-
 	public function update_RPED () {
 		$this->query = $this->conn->prepare
 		('UPDATE rped SET
@@ -664,10 +614,8 @@ class rped extends ConnectionMySQL {
 			,TratamientoSifilisCongenita=?
 			,TratamientoLepra=?
 			,FechaTerLeishmaniasisInput=?
-
 			WHERE
 			R_ID=?');
-
 		$this->query->bindValue(1,$_POST["CodigoEntidad"], PDO::PARAM_STR);
 		$this->query->bindValue(2,$_POST["FechaInicialReg"], PDO::PARAM_STR);
 		$this->query->bindValue(3,$_POST["FechaFinalReg"], PDO::PARAM_STR);
@@ -787,9 +735,7 @@ class rped extends ConnectionMySQL {
 		$this->query->bindValue(117,$_POST["TratamientoSifilisCongenita"],PDO::PARAM_STR);
 		$this->query->bindValue(118,$_POST["TratamientoLepra"],PDO::PARAM_STR);
 		$this->query->bindValue(119,$_POST["FechaTerLeishmaniasisInput"],PDO::PARAM_STR);
-
 		$this->query->bindValue(120,$_POST["R_ID"], PDO::PARAM_STR);
-
 		$this->query->execute();
 	}
 }
