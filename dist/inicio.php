@@ -1,4 +1,5 @@
 <?php
+    error_reporting(E_ALL ^ E_WARNING );
     date_default_timezone_set('America/Bogota');
     
     require_once("modulos/module.LeerArchivos.php");
