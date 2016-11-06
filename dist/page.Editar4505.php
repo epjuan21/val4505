@@ -2,19 +2,16 @@
 require_once ("clases/class.rped.php");
 $objRPED = new rped();
 $Registro = $objRPED->getUser($_GET["Ent"],$_GET["IdUser"],$_GET["Per"],$_GET["Año"]);
-
-
 $CodigoMunicipio = $Registro[$i]['CodigoMunicipio'];
 $CodigoEntidad = $Registro[$i]['CodigoEntidad'];
 $FechaRegistro = $Registro[$i]['FechaRegistro'];
 $FechaInicialReg = $Registro[$i]['FechaInicialReg'];
 $FechaFinalReg = $Registro[$i]['FechaFinalReg'];
 $R_ID = $Registro[$i]['R_ID'];
-
 ?>
 <div class="column-container">
 	
-	<div class="param-box big-box">
+	<div class="box box-big">
 		
 		<div class="param-title">
 			Editar Registro 4505
@@ -1907,6 +1904,10 @@ $R_ID = $Registro[$i]['R_ID'];
 
 		</div>
 
+		<span class="ir-arriba"></span>
+
 	</div>
+
+
 
 </div>
