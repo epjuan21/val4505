@@ -376,12 +376,10 @@ p {
   line-height: 1.42857;
   padding: 8px;
   vertical-align: top;
-  border-top: 1px solid #818A90; }
+  border-bottom: 1px solid #E3E5E6; }
 
 .table > thead > tr > th {
-  border-bottom: 1px solid #DDDDDD;
-  background-color: #FFA700;
-  color: #FFF; }
+  color: #212120; }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #E3E5E6; }
@@ -1387,7 +1385,7 @@ body {
   -ms-flex-direction: column;
   flex-direction: column; }
 
-.param-box {
+.box {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -1397,6 +1395,37 @@ body {
   background-color: white;
   border: 1px solid #E3E5E6;
   box-shadow: 0 10px 6px -6px #777; }
+  .box-middle {
+    min-height: 300px;
+    width: 600px; }
+  .box-big {
+    width: 800px; }
+  .box .head-container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 20px 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E3E5E6; }
+    .box .head-container .head-icon {
+      color: #039BE5;
+      font-size: 1rem; }
+  .box .title-container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-left: 15px; }
+    .box .title-container .title {
+      font-size: 1.25rem;
+      font-family: "Open Sans", sans-serif;
+      font-weight: bold;
+      color: #212120;
+      margin-bottom: 3px; }
+    .box .title-container .subtitle {
+      font-size: 0.9rem;
+      color: #737370; }
 
 .param-title {
   padding: 7px 0px 5px 7px;
@@ -1411,13 +1440,6 @@ body {
 
 .param-content {
   margin: 0px 10px 0px 10px; }
-
-.middle-box {
-  min-height: 300px;
-  width: 600px; }
-
-.big-box {
-  width: 800px; }
 
 .link-box {
   display: -ms-flexbox;
@@ -1630,26 +1652,22 @@ body {
   margin: 0; }
 
 .ent-imp-head-content {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
+  /*display: flex;
   align-items: center;
-  padding: 20px 20px; }
+  padding: 20px 20px;  */ }
   .ent-imp-head-content .ent-imp-icon {
-    color: #039BE5;
-    font-size: 1rem; }
+    /*color: $blue;
+    font-size: 1rem;*/ }
   .ent-imp-head-content .ent-imp-title-container {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
+    /*display: flex;
     flex-direction: column;
-    margin-left: 15px; }
+    margin-left: 15px;*/ }
     .ent-imp-head-content .ent-imp-title-container .ent-imp-title {
-      font-size: 1.25rem;
-      font-family: "Open Sans", sans-serif;
+      /*font-size: 1.25rem;
+      font-family: $font-opens-sans;
       font-weight: bold;
-      color: #212120;
-      margin-bottom: 3px; }
+      color: $dark;
+      margin-bottom: 3px;*/ }
     .ent-imp-head-content .ent-imp-title-container .ent-imp-subtitle {
       font-size: 0.9rem;
       color: #737370; }
@@ -1665,6 +1683,14 @@ body {
   align-items: center;
   padding: 10px 20px;
   border-top: 1px solid #818A90; }
+  .item-container-column {
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-align: inherit;
+    -ms-grid-row-align: inherit;
+    align-items: inherit;
+    padding: 10px 20px;
+    border-top: 1px solid #818A90; }
   .item-container .item-link a i {
     padding: 1px;
     color: #E3E5E6;
@@ -1699,3 +1725,11 @@ body {
       padding: 0px 2px;
       border-radius: 0.2rem;
       background-color: #818A90; }
+
+.ir-arriba {
+  display: none;
+  padding: 20px;
+  background: #024959;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer; }
