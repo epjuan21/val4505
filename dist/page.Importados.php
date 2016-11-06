@@ -1,19 +1,19 @@
 <div class="row-container">
 
-	<div class="param-box middle-box">
+	<div class="box box-middle">
 
-		<div class="ent-imp-head-content">
+		<div class="head-container">
 			
-			<div class="ent-imp-icon">
+			<div class="head-icon">
 				<i class="fa fa-list-alt fa-2x" aria-hidden="true"></i>
 			</div>
 
-			<div class="ent-imp-title-container">
+			<div class="title-container">
 				
-				<div class="ent-imp-title">
+				<div class="title">
 					Entidades
 				</div>
-				<div class="ent-imp-subtitle">
+				<div class="subtitle">
 					Listado Entidades Importadas
 				</div>
 
@@ -34,7 +34,7 @@
 					<?php echo $ListEnt[$i]["ENTIDAD_NAME"];?>
 				</div>
 
-				<?php $ListPerEnt = $Objrped->getListPeriodos($ListEnt[$i]["ENTIDAD_COD"]);?>
+				<?php $ListPerEnt = $ObjEntidades->getListPeriodos($ListEnt[$i]["ENTIDAD_COD"]);?>
 				<div class="item-subtitle">
 					<i class="fa fa-calendar-check-o fa-inverse" aria-hidden="true"></i>
 					<?php
@@ -52,7 +52,11 @@
 			</div>
 
 			<div class="item-link">
-				<a href=""><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></a>
+			<?php
+			$CodEPS = $ListEnt[$i]['ENTIDAD_COD'];
+			$CodMun = $ListEnt[$i]['CodigoMunicipio'];
+			?>
+				<a href="inicio.php?menu=11&CodEPS=<?php echo $CodEPS;?>&CodMun=<?php echo $CodMun;?>"><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></a>
 			</div>
 
 
