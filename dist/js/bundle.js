@@ -34,7 +34,6 @@ $(function() {
             $('.ir-arriba').css('position','fixed');
             			$('.ir-arriba').css('right','20px');
 			$('.ir-arriba').css('bottom','20px');
-
         }
     });*/
 
