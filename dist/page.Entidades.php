@@ -1,6 +1,6 @@
 <div class="row-container">
 	
-	<div class="box">
+	<div class="param-box">
 
 		<div class="param-title">
 			Entidades
@@ -29,7 +29,7 @@
 	</div>
 
 
-	<div class="box">
+	<div class="param-box">
 
 		<div class="param-title">
 			Agregar Entidades

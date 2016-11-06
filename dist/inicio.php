@@ -1,43 +1,35 @@
 <?php
     date_default_timezone_set('America/Bogota');
     
-    require_once ("modulos/module.LeerArchivos.php");
-    require_once ("modulos/module.ManejoFechas.php");
+    require_once("modulos/module.LeerArchivos.php");
+    require_once("modulos/module.ManejoFechas.php");
 
-    require_once ("clases/class.Session.php");
-    require_once ("clases/class.rped.php");
-    require_once ("clases/class.Menu.php");
-    require_once ("clases/class.Entidad.php");
-    require_once ("clases/class.Municipio.php");
-    require_once ("clases/class.Errores.php");
-
-    $Objrped = new rped();
-    $ObjEntidades = new Entidad();
-    $ObjErrores = new Errores();
-
+    require_once("clases/class.Session.php");
     $sesion = new sesion();
     $usuario = $sesion->get("usuario");
 
+    require_once ("clases/class.Menu.php");
     $menu = new Menu();
     if (isset($_GET['menu'])){
         $id = $menu->getMenu($_GET['menu']);
     }
 
+    require_once ("clases/class.Entidad.php");
     $entidad = new Entidad();
     $list_enti = $entidad->getEntidades();
-
-    $Errores = $ObjErrores->getErrores();
-    
 
     if (isset($_GET['CodEPS'])){
         $Ent = $entidad->getEntidadId($_GET['CodEPS']);
     }
 
+    require_once ("clases/class.Municipio.php");
     $municipio = new Municipio();
     $list_mun = $municipio->getMunicipios();
 
+    require_once ("clases/class.rped.php");
+    $Objrped = new rped();
     $regEnt = $Objrped->getRegByEnt();
-    $ListEnt = $ObjEntidades->getListEnt($sesion->get("idUsuario"));
+    $ListEnt = $Objrped->getListEnt($sesion->get("idUsuario"));
 
     if( $usuario == false )
     {   
@@ -67,9 +59,8 @@
 
             <nav role="navigation">
                 <ul class="menu">
-                    <li><a href="inicio.php">Inicio</a></li>
                     <li><a href="?menu=6">Importar</a></li>
-                    <li><a href="?menu=10">Importados</a></li>
+                    <li><a href="modulos/module.Dump.php">Corregir</a></li>
                     <li><a href="?menu=7">Exportar</a></li>
                     <li><a href="?menu=2">Parametros</a></li>
                 </ul>

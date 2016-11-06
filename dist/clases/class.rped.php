@@ -8,7 +8,7 @@ class rped extends ConnectionMySQL {
 
 		$this->query = $this->conn->prepare(
 			"SELECT COUNT(CodigoEntidad) AS Registros
-			,entidades.ENTIDAD_NAME AS Entidad
+			,ENTIDAD_NAME AS Entidad
 			,IdUsuario
 			,CodigoEntidad
 			,CodigoMunicipio
@@ -32,8 +32,43 @@ class rped extends ConnectionMySQL {
 				END AS Periodo
 			FROM rped 
 			LEFT JOIN entidades ON rped.CodigoEntidad = entidades.ENTIDAD_COD
-			GROUP BY rped.CodigoEntidad, rped.FechaFinalReg
+			GROUP BY CodigoEntidad, FechaFinalReg
 			ORDER BY Año DESC, CodPer DESC;");
+		$this->query->execute();
+		return $this->query->fetchAll(PDO::FETCH_BOTH);
+	}
+
+	// Funcion para Listar Entidades Importadas
+	public function getListEnt($IdUsuario){
+		$this->query = $this->conn->prepare(
+			"SELECT val4505.entidades.ENTIDAD_NAME, val4505.entidades.ENTIDAD_COD FROM val4505.rped LEFT JOIN entidades ON (val4505.rped.CodigoEntidad = val4505.entidades.ENTIDAD_COD) WHERE val4505.rped.IdUsuario = '$IdUsuario' GROUP BY val4505.entidades.ENTIDAD_NAME");		
+		$this->query->execute();
+		return $this->query->fetchAll(PDO::FETCH_BOTH);
+	}
+
+	// Funcion para listar Periodos por Entidades
+	public function getListPeriodos($IdEntidad){
+		$this->query = $this->conn->prepare(
+			"SELECT 
+			CodigoEntidad
+			,case substr(FechaFinalReg,6,2)
+				WHEN '01' THEN 'Enero'
+				WHEN '02' THEN 'Febrero'
+				WHEN '03' THEN 'Marzo'
+				WHEN '04' THEN 'Abril'
+				WHEN '05' THEN 'Mayo'
+				WHEN '06' THEN 'Junio'
+				WHEN '07' THEN 'Julio'
+				WHEN '08' THEN 'Agosto'
+				WHEN '09' THEN 'Septiembre'
+				WHEN '10' THEN 'Octubre'
+				WHEN '11' THEN 'Noviembre'
+				WHEN '12' THEN 'Diciembre'
+				END AS Periodo
+			,substr(FechaFinalReg,1,4) AS Año
+			FROM val4505.rped
+			WHERE CodigoEntidad = '$IdEntidad'
+			GROUP BY FechaFinalReg");		
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
