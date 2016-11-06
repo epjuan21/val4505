@@ -16,11 +16,10 @@
     $objMunicipio = new Municipio();
     $objMenu = new Menu();
     $sesion = new sesion();
-    $ObjErrores = new Errores();
 
     
     $usuario = $sesion->get("usuario");
-    $Errores = $ObjErrores->getErrores();
+
 
     if (isset($_GET['menu'])){
         $id = $objMenu->getMenu($_GET['menu']);
@@ -69,7 +68,7 @@
                 <ul class="menu">
                     <li><a href="inicio.php">Inicio</a></li>
                     <li><a href="?menu=6">Importar</a></li>
-                    <li><a href="?menu=10">Importados</a></li>
+                    <li><a href="menu=10">Importados</a></li>
                     <li><a href="?menu=7">Exportar</a></li>
                     <li><a href="?menu=2">Parametros</a></li>
                 </ul>
