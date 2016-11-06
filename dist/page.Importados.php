@@ -34,7 +34,7 @@
 					<?php echo $ListEnt[$i]["ENTIDAD_NAME"];?>
 				</div>
 
-				<?php $ListPerEnt = $ObjEntidades->getListPeriodos($ListEnt[$i]["ENTIDAD_COD"]);?>
+				<?php $ListPerEnt = $objEntidad->getListPeriodos($ListEnt[$i]["ENTIDAD_COD"]);?>
 				<div class="item-subtitle">
 					<i class="fa fa-calendar-check-o fa-inverse" aria-hidden="true"></i>
 					<?php
