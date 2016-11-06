@@ -6,7 +6,7 @@
 ?>
 <div class="column-container">
 	
-	<div class="param-box big-box">
+	<div class="box box-big">
 		
 		<div class="param-title">
 			Detalle Entidad
@@ -71,4 +71,3 @@
 	</div>
 
 </div>
-
