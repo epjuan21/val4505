@@ -31,7 +31,7 @@ fwrite($txt,$FechaInicio);
 fwrite($txt,"|");
 fwrite($txt,$FechaFinal);
 fwrite($txt,"|");
-fwrite($txt,$numReg."\r\n");
+fwrite($txt,$numReg.PHP_EOL);
 
 for ($i=0;$i<sizeof($reg);$i++)
 {
@@ -1338,7 +1338,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 }
 
 fclose($txt);
-$nombreArchivo;
 header("Content-disposition: attachment; filename=$nombreArchivo");
 header("Content-type: application/octet-stream");
 
