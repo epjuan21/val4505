@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 require_once ("../clases/class.rped.php");
 include ("module.ManejoFechas.php");
 $objRPED = new rped();
