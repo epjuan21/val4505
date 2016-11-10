@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL);
 $root = $_SERVER['DOCUMENT_ROOT'];
 if ($root == "C:/wamp/www/" || $root == "C:/wamp64/www") 
 {
