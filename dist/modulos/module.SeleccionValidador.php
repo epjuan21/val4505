@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ALL);
 $IdUsuario = $_GET["IdUser"];
 $CodigoMunicipio = $_GET["CodMun"];
 $CodigoEntidad = $_GET["CodEnt"];
