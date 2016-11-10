@@ -32,5 +32,6 @@ while ($file = readdir($dir)) {
 		unlink($root.$path.$file); 
 	}
 }
+echo "PARH ".$root.$path;
 closedir($dir);
 ?>
