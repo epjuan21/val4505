@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL);
 require_once ("../clases/class.rped.php");
 include ("module.ManejoFechas.php");
 $objRPED = new rped();
@@ -32,7 +31,7 @@ fwrite($txt,$FechaInicio);
 fwrite($txt,"|");
 fwrite($txt,$FechaFinal);
 fwrite($txt,"|");
-fwrite($txt,$numReg.PHP_EOL);
+fwrite($txt,$numReg."\r\n");
 
 for ($i=0;$i<sizeof($reg);$i++)
 {
@@ -1339,6 +1338,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 }
 
 fclose($txt);
+$nombreArchivo;
 header("Content-disposition: attachment; filename=$nombreArchivo");
 header("Content-type: application/octet-stream");
 
