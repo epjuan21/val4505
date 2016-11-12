@@ -11,7 +11,7 @@ $FechaFinal = $_GET["FFn"];
 
 // Numero de Registros
 $numReg = $objRPED->getNumRows($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicio, $FechaFinal);
-
+echo $numReg;
 // Registros para Exportar
 $reg = $objRPED->getRPED($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicio, $FechaFinal);
 

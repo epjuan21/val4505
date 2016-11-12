@@ -1,7 +1,9 @@
 <?php
 require_once ("class.ConnectionMySQL.php");
 class rped extends ConnectionMySQL {
+
 	// Obtiene la Cantidad de Registros por Entidad
+
 	public function getRegByEnt (){
 		$this->query = $this->conn->prepare(
 			"SELECT COUNT(CodigoEntidad) AS Registros
@@ -34,18 +36,23 @@ class rped extends ConnectionMySQL {
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
+
 	// Borra Periodos Seleccionados Por Entidad desde la Pagina de Importar
+	
 	public function deletePeriod ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg)
 	{
 		$this->query = $this->conn->prepare("DELETE FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg' ");
 		$this->query->execute();
 	}
+
 	public function deleteRegistro ($ID)
 	{
 		$this->query = $this->conn->prepare("DELETE FROM rped WHERE R_ID = '$ID' ");
 		$this->query->execute();
 	}
+
 	// Funcion para Obtener el Numero de Registros
+	
 	public function getNumRows ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg) {
 		$this->query = $this->conn->prepare("SELECT COUNT(*) FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg' ");
 		$this->query->execute();
@@ -53,14 +60,18 @@ class rped extends ConnectionMySQL {
 		return reset($count);
 		//return $numRows = $this->query->rowCount();
 	}
+
 	//Obtenemos Registros para el Proceso de Exportacion
+	
 	public function getRPED($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg) {
 		$this->query = $this->conn->prepare("SELECT * FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg'");
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
+
 	// Obtener Detalle Por Periodo - Cabecera del Archivo 4505
 	// Según Codigo Entidad, Mes y Año
+	
 	public function getDetByPer($Entidad, $Periodo, $Año)
 	{
 		$this->query = $this->conn->prepare(
@@ -92,6 +103,7 @@ class rped extends ConnectionMySQL {
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
+	
 	public function getUser($Entidad, $IdUsuario, $Periodo, $Año){
 		$this->query = $this->conn->prepare(
 			"SELECT
