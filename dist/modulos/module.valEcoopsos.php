@@ -36,7 +36,7 @@ fwrite($txt,$numReg."\r\n");
 for ($i=0;$i<sizeof($reg);$i++)
 {
 	$edad = calcularEdad($FechaFinal, $reg[$i]["FechaNacimiento"]);
-	echo $edad."<br>";
+	echo $edad;
 	$edadDias = calcularEdadenDias ($reg[$i]["FechaNacimiento"], $FechaFinal);
 	fwrite($txt,"2");
 	fwrite($txt,"|");
