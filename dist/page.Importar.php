@@ -129,8 +129,6 @@
 						<th>Periodo</th>
 						<th>Año</th>
 						<th>Registros</th>
-						<th>Editar</th>
-						<th>Eliminar</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -143,14 +141,6 @@
 						<td><?php echo $regEnt[$i]["Periodo"];?></td>
 						<td><?php echo $regEnt[$i]["Año"];?></td>
 						<td><?php echo $regEnt[$i]["Registros"];?></td>
-						<td>
-							<a href="?menu=8&Ent=<?php echo $regEnt[$i]["CodigoEntidad"];?>&Año=<?php echo $regEnt[$i]["Año"];?>&Period=<?php echo $regEnt[$i]["CodPer"];?>"><i class="fa fa-pencil" aria-hidden="true"></i>
-							</a>
-						</td>
-						<td>
-							<a href="modulos/module.EliminarPeriodo.php?CodEnt=<?php echo $regEnt[$i]["CodigoEntidad"];?>&CodMun=<?php echo $regEnt[$i]["CodigoMunicipio"];?>&FecIn=<?php echo $regEnt[$i]["FechaInicialReg"];?>&FecFn=<?php echo $regEnt[$i]["FechaFinalReg"];?>&IdUser=<?php echo $regEnt[$i]["IdUsuario"];?>"><i class="fa fa-trash-o" aria-hidden="true"></i>
-							</a>
-						</td>
 					</tr>
 					<?php
 					}
