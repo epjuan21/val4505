@@ -36,6 +36,7 @@ fwrite($txt,$numReg."\r\n");
 for ($i=0;$i<sizeof($reg);$i++)
 {
 	$edad = calcularEdad($FechaFinal, $reg[$i]["FechaNacimiento"]);
+	echo $edad."<br>";
 	$edadDias = calcularEdadenDias ($reg[$i]["FechaNacimiento"], $FechaFinal);
 	fwrite($txt,"2");
 	fwrite($txt,"|");
@@ -1335,7 +1336,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,$reg[$i]["TratamientoLepra"]);
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaTerLeishmaniasisInput"]."\r\n");
-	echo $reg[$i]["FechaTerLeishmaniasisInput"];
 }
 
 fclose($txt);
