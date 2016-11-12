@@ -11,7 +11,7 @@ $FechaFinal = $_GET["FFn"];
 
 // Numero de Registros
 $numReg = $objRPED->getNumRows($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicio, $FechaFinal);
-echo $numReg;
+
 // Registros para Exportar
 $reg = $objRPED->getRPED($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicio, $FechaFinal);
 
@@ -36,6 +36,7 @@ fwrite($txt,$numReg."\r\n");
 for ($i=0;$i<sizeof($reg);$i++)
 {
 	$edad = calcularEdad($FechaFinal, $reg[$i]["FechaNacimiento"]);
+	echo $edad;
 	$edadDias = calcularEdadenDias ($reg[$i]["FechaNacimiento"], $FechaFinal);
 	fwrite($txt,"2");
 	fwrite($txt,"|");
