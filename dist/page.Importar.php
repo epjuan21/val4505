@@ -140,7 +140,7 @@
 						<td><?php echo $regEnt[$i]["Entidad"];?></td>
 						<td><?php echo $regEnt[$i]["Periodo"];?></td>
 						<td><?php echo $regEnt[$i]["Año"];?></td>
-						<td><?php echo $regEnt[$i]["Registros"];?></td>
+						<td><span class="bs-label label-primary"><?php echo $regEnt[$i]["Registros"];?></span></td>
 					</tr>
 					<?php
 					}

@@ -438,7 +438,7 @@ select, .help-inline, select option {
 .help-inline b {
   padding: 1px 2px;
   border-radius: 2px;
-  background-color: #FFA700;
+  background-color: #5BC0DE;
   color: #FFF;
   font-weight: 200; }
 
@@ -1327,7 +1327,7 @@ footer {
   .alert--danger {
     background: #E84545; }
   .alert--warning {
-    background: #FFA700; }
+    background: #5BC0DE; }
   .alert--success {
     background: #00B8A9; }
   .alert--info {
@@ -1349,6 +1349,44 @@ footer {
     .alert .alert-close:hover {
       cursor: pointer;
       color: rgba(0, 0, 0, 0.6); }
+
+.bs-label {
+  font-size: 80%;
+  line-height: 1;
+  display: inline;
+  padding: 0.4em 0.6em 0.3em;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: baseline;
+  white-space: nowrap;
+  color: #FFF;
+  border-radius: 0.25em; }
+
+.label-primary {
+  background-color: #00ADB5; }
+
+.label-default {
+  background-color: #F3F3F3; }
+
+.label-success {
+  background-color: #00B8A9; }
+
+.label-danger {
+  background-color: #E84545; }
+
+.label-warning {
+  background-color: #F0AD4E; }
+
+.label-info {
+  background-color: #5BC0DE; }
+
+.label-black {
+  color: #E3E5E6;
+  border-color: #000000;
+  background-color: #212120; }
+
+.label-yellow {
+  background-color: #FFCC00; }
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -1457,7 +1495,7 @@ body {
   margin: 10px; }
 
 .link-box-icon i {
-  color: #FFA700; }
+  color: #5BC0DE; }
 
 .link-title-menu a {
   text-decoration: none;

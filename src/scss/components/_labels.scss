@@ -1,0 +1,46 @@
+.bs-label {
+	font-size: 80%;
+	line-height: 1;
+	display: inline;
+	padding: 0.4em 0.6em 0.3em;
+	text-align: center;
+	text-transform: uppercase;
+	vertical-align: baseline;
+	white-space: nowrap;
+	color: #FFF;
+	border-radius: 0.25em;
+}
+
+.label-primary {
+	background-color: $primary;
+}
+
+.label-default {
+	background-color: $light-grey;
+}
+
+.label-success {
+	background-color: $green;
+}
+
+.label-danger {
+	background-color: $red;
+}
+
+.label-warning {
+	background-color: $warning;
+}
+
+.label-info {
+	background-color: $info;
+}
+
+.label-black {
+	color: $soft-grey;
+	border-color: $black;
+	background-color: $dark;
+}
+
+.label-yellow {
+	background-color: $yellow;
+}
