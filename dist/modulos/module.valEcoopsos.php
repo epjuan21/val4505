@@ -36,7 +36,6 @@ fwrite($txt,$numReg."\r\n");
 for ($i=0;$i<sizeof($reg);$i++)
 {
 	$edad = calcularEdad($FechaFinal, $reg[$i]["FechaNacimiento"]);
-	echo $edad;
 	$edadDias = calcularEdadenDias ($reg[$i]["FechaNacimiento"], $FechaFinal);
 	fwrite($txt,"2");
 	fwrite($txt,"|");
@@ -1339,7 +1338,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 }
 
 fclose($txt);
-echo $nombreArchivo;
 header("Content-disposition: attachment; filename=$nombreArchivo");
 header("Content-type: application/octet-stream");
 
