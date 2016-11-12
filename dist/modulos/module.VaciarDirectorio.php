@@ -1,6 +1,6 @@
 <?php
 $root = $_SERVER['DOCUMENT_ROOT'];
-if ($root == "C:/wamp/www/" || $root == "C:/wamp64/www") 
+if ($root == "C:/wamp/www/" || $root == "C:/wamp64/www")
 {
 	$path = "val4505/dist/modulos/";
 }

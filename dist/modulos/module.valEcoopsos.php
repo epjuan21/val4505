@@ -1338,7 +1338,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 }
 
 fclose($txt);
-$nombreArchivo;
+echo $nombreArchivo;
 header("Content-disposition: attachment; filename=$nombreArchivo");
 header("Content-type: application/octet-stream");
 
