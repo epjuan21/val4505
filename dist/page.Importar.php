@@ -142,7 +142,7 @@
 
 					</div>
 
-					<div class="wid__detail"><?php echo $regEnt[$i]["Registros"];?></div>
+					<div class="wid1__detail"><?php echo $regEnt[$i]["Registros"];?></div>
 
 				</div>
 				

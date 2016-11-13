@@ -32,7 +32,7 @@ class rped extends ConnectionMySQL {
 			FROM rped 
 			LEFT JOIN entidades ON rped.CodigoEntidad = entidades.ENTIDAD_COD
 			GROUP BY rped.CodigoEntidad, rped.FechaFinalReg
-			ORDER BY Año DESC, CodPer DESC;");
+			ORDER BY FechaRegistro DESC;");
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
