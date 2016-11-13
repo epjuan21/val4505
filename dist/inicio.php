@@ -16,6 +16,7 @@
     $objEntidad = new Entidad();
     $objMunicipio = new Municipio();
     $objMenu = new Menu();
+    $objErrores = new Errores();
     $sesion = new sesion();
 
     

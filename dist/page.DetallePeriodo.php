@@ -105,7 +105,7 @@
 				<div class="item-subtitle">
 					<div class="item-periodo">
 						<?php 
-						echo $NumeroErrores = $ObjErrores->getNumErrorsByType(1);
+						echo $NumeroErrores = $objErrores->getNumErrorsByType(1);
 						?>	
 					</div>
 					<a href="inicio.php?menu=13&CodEPS=<?php echo $_GET['CodEPS'];?>&CodMun=<?php echo $_GET['CodMun'];?>">El afiliado no existe en la base de datos o sus datos no concuerdan con BDUA</a>
