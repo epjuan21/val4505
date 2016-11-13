@@ -473,3 +473,53 @@ body {
   color: #fff;
   cursor: pointer;
 }
+
+
+// Widget 1 - Usado en la Página Importar
+
+  // Widget Contenedor Principal
+.wid1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #e3e5e6;
+}
+
+  // Widget Panel Derecho
+.wid1__left {
+  padding-right: 10px;
+
+  i {
+    color: $info;
+  }
+
+}
+
+  // Widget Panel Derecho
+.wid1__right {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+
+  .wid__detail {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e84545;
+  }
+
+}
+
+.wid1__title {
+  font-weight: bold;
+  color: $dark-grey;
+  padding-bottom: 2px;
+}
+
+.wid1__subtitle {
+  font-size: 0.8em;
+  color: $middle-grey;
+}

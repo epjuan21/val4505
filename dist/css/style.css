@@ -1771,3 +1771,44 @@ body {
   font-size: 20px;
   color: #fff;
   cursor: pointer; }
+
+.wid1 {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #e3e5e6; }
+
+.wid1__left {
+  padding-right: 10px; }
+  .wid1__left i {
+    color: #5BC0DE; }
+
+.wid1__right {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1;
+  flex: 1;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center; }
+  .wid1__right .wid__detail {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e84545; }
+
+.wid1__title {
+  font-weight: bold;
+  color: #737370;
+  padding-bottom: 2px; }
+
+.wid1__subtitle {
+  font-size: 0.8em;
+  color: #818A90; }

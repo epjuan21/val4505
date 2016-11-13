@@ -112,7 +112,7 @@
 			<div class="title-container">
 				
 				<div class="title">
-					Periodos Importados
+					Importados Recientemente
 				</div>
 
 
@@ -122,32 +122,36 @@
 
 		<div class="param-content">
 
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Entidad</th>
-						<th>Periodo</th>
-						<th>Año</th>
-						<th>Registros</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-					for ($i=0;$i<sizeof($regEnt);$i++)
-					{
-					?>
-					<tr>
-						<td><?php echo $regEnt[$i]["Entidad"];?></td>
-						<td><?php echo $regEnt[$i]["Periodo"];?></td>
-						<td><?php echo $regEnt[$i]["Año"];?></td>
-						<td><span class="bs-label label-primary"><?php echo $regEnt[$i]["Registros"];?></span></td>
-					</tr>
-					<?php
-					}
-					?>			
-				</tbody>
-			</table>
-			
+			<?php
+			for ($i=0;$i<sizeof($regEnt);$i++)
+			{
+			?>
+
+			<div class="wid1">
+
+				<div class="wid1__left">
+					<i class="fa fa-database fa-2x" aria-hidden="true"></i>
+				</div>
+
+				<div class="wid1__right">
+					
+					<div class="wid1__cont">
+							
+							<div class="wid1__title"><?php echo $regEnt[$i]["Entidad"];?></div>
+							<div class="wid1__subtitle"><?php echo $regEnt[$i]["Periodo"]." ".$regEnt[$i]["Año"]; ?></div>
+
+					</div>
+
+					<div class="wid__detail"><?php echo $regEnt[$i]["Registros"];?></div>
+
+				</div>
+				
+			</div>
+
+			<?php
+			}
+			?>	
+
 		</div>
 
 	</div>
