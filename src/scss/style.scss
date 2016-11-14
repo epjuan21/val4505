@@ -14,7 +14,7 @@
 @import "components/labels";
 
 body {
-   font-family: 'Roboto', sans-serif;
+   font-family: $font-roboto;
    background-color: $soft-grey;
 }
 
@@ -408,7 +408,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  border-top: 1px solid $middle-grey;
 
   &-column {
     flex-direction: column;
@@ -508,7 +507,7 @@ body {
   .wid1__detail {
     font-size: 1.5em;
     font-weight: bold;
-    color: #e84545;
+    color: $red;
   }
 
 }
@@ -517,9 +516,87 @@ body {
   font-weight: bold;
   color: $dark-grey;
   padding-bottom: 2px;
+
+  a {
+    color: inherit;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      color: $dark;
+      transition: all .3s ease-in-out;
+    }
+  }
 }
 
 .wid1__subtitle {
   font-size: 0.8em;
   color: $middle-grey;
+}
+
+// Widget 2 - Usado en la Página Importados Entidad
+.wid2 {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  position: relative;
+  margin-right: 12px;
+}
+
+.wid2__box1, .wid2__box2, .wid2__box3 {
+  flex: 1;
+  height: 30px;
+  padding: 10px;
+  font-family: $font-opens-sans;
+  font-size: 0.8em;
+  color: $middle-grey;
+  line-height: 30px;
+  border-bottom: 1px solid $soft-grey;
+  border-top: 1px solid $soft-grey;
+  border-right: 1px solid $soft-grey;
+
+  &:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  &:nth-child(3) {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  i {
+    margin-right: 3px;
+  }
+}
+
+.wid2__box1 {
+  border-left: 1px solid $soft-grey;
+
+  i {
+    color: $primary;
+  }
+}
+
+.wid2__box2 i {
+  color: $warning;
+}
+
+.wid2__box3 i {
+  color: $red;
+}
+
+.wid2__icon{
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background-color: $green;
+  box-shadow: 0 0 3px rgba(0,0,0,.2);
+  border: 2px solid #fff;
+  position: absolute;
+  top: 12px;
+  right: -12px;
+  text-align: center;
+  line-height: 1.5;
 }

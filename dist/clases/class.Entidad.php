@@ -46,6 +46,7 @@ class Entidad extends ConnectionMySQL {
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
+
 	// Funcion Para Obtener Detalles de Periodos Por Entidad
 	public function getListPeriodosId ($CodigoEntidad, $IdUsuario, $CodigoMunicipio) {
 		$this->query = $this->conn->prepare(
@@ -54,6 +55,7 @@ class Entidad extends ConnectionMySQL {
 			,IdUsuario
 			,CodigoEntidad
 			,CodigoMunicipio
+			,municipios.MUN_NAME AS Municipio
 			,FechaInicialReg
 			,FechaFinalReg
 			,substr(FechaFinalReg,6,2) AS CodPer
@@ -74,6 +76,7 @@ class Entidad extends ConnectionMySQL {
 				END AS Periodo
 			FROM rped 
 			LEFT JOIN entidades ON rped.CodigoEntidad = entidades.ENTIDAD_COD
+			LEFT JOIN municipios ON rped.CodigoMunicipio = municipios.MUN_ID
 			WHERE CodigoEntidad = '$CodigoEntidad'
 			AND IdUsuario = '$IdUsuario'
 			AND CodigoMunicipio = '$CodigoMunicipio'

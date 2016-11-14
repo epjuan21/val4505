@@ -137,7 +137,13 @@
 					
 					<div class="wid1__cont">
 							
-							<div class="wid1__title"><?php echo $regEnt[$i]["Entidad"];?></div>
+							<div class="wid1__title">
+								<a href="inicio.php?menu=11&CodEPS=<?php echo $regEnt[$i]['CodigoEntidad'];?>&CodMun=<?php echo $regEnt[$i]['CodigoMunicipio'];?>">
+									<?php echo $regEnt[$i]["Entidad"];?>
+								</a>
+								
+							</div>
+
 							<div class="wid1__subtitle"><?php echo $regEnt[$i]["Periodo"]." ".$regEnt[$i]["Año"]; ?></div>
 
 					</div>

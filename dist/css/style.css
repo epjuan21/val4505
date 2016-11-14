@@ -1389,7 +1389,7 @@ footer {
   background-color: #FFCC00; }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background-color: #E3E5E6; }
 
 .flex-body {
@@ -1719,8 +1719,7 @@ body {
   justify-content: space-between;
   -ms-flex-align: center;
   align-items: center;
-  padding: 10px 20px;
-  border-top: 1px solid #818A90; }
+  padding: 10px 20px; }
   .item-container-column {
     -ms-flex-direction: column;
     flex-direction: column;
@@ -1802,13 +1801,77 @@ body {
   .wid1__right .wid1__detail {
     font-size: 1.5em;
     font-weight: bold;
-    color: #e84545; }
+    color: #E84545; }
 
 .wid1__title {
   font-weight: bold;
   color: #737370;
   padding-bottom: 2px; }
+  .wid1__title a {
+    color: inherit;
+    transition: all .3s ease-in-out; }
+    .wid1__title a:hover {
+      color: #212120;
+      transition: all .3s ease-in-out; }
 
 .wid1__subtitle {
   font-size: 0.8em;
   color: #818A90; }
+
+.wid2 {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1;
+  flex: 1;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  position: relative;
+  margin-right: 12px; }
+
+.wid2__box1, .wid2__box2, .wid2__box3 {
+  -ms-flex: 1;
+  flex: 1;
+  height: 30px;
+  padding: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.8em;
+  color: #818A90;
+  line-height: 30px;
+  border-bottom: 1px solid #E3E5E6;
+  border-top: 1px solid #E3E5E6;
+  border-right: 1px solid #E3E5E6; }
+  .wid2__box1:first-child, .wid2__box2:first-child, .wid2__box3:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px; }
+  .wid2__box1:nth-child(3), .wid2__box2:nth-child(3), .wid2__box3:nth-child(3) {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px; }
+  .wid2__box1 i, .wid2__box2 i, .wid2__box3 i {
+    margin-right: 3px; }
+
+.wid2__box1 {
+  border-left: 1px solid #E3E5E6; }
+  .wid2__box1 i {
+    color: #00ADB5; }
+
+.wid2__box2 i {
+  color: #F0AD4E; }
+
+.wid2__box3 i {
+  color: #E84545; }
+
+.wid2__icon {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background-color: #00B8A9;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  border: 2px solid #fff;
+  position: absolute;
+  top: 12px;
+  right: -12px;
+  text-align: center;
+  line-height: 1.5; }
