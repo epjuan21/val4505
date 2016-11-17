@@ -30,6 +30,7 @@
     $list_enti = $objEntidad->getEntidades();
     $ListEnt = $objEntidad->getListEnt($sesion->get("idUsuario"));
 
+    // Obtener Entidad por ID
     if (isset($_GET['CodEPS'])){
         $Ent = $objEntidad->getEntidadId($_GET['CodEPS']);
     }
@@ -37,6 +38,7 @@
 
     $list_mun = $objMunicipio->getMunicipios();    
     
+    // Funcion Para Exportar
     $regEnt = $objRPED->getRegByEnt();
     
 

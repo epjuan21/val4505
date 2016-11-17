@@ -27,8 +27,14 @@
 		<div class="param-content">
 			
 			<?php
+
+				$CodUs = $sesion->get("idUsuario");
+				$CodMun = $_GET["CodMun"];
+				$CodEPS = $_GET["CodEPS"];
+
 			for ($i=0;$i<sizeof($DetPer);$i++)
 			{		
+			$Per = $DetPer[$i]["FechaFinalReg"];
 			?>
 
 			<div class="wid2">
@@ -46,11 +52,10 @@
 				</div>
 
 				<div class="wid2__icon">
-					<a href="?menu=12&CodEPS=<?php echo $_GET["CodEPS"]?>&CodMun=<?php echo $_GET["CodMun"]?>">
+					<a href="?menu=12&CodEPS=<?php echo $CodEPS?>&CodMun=<?php echo $CodMun;?>&CodUs=<?php echo $CodUs;?>&Per=<?php echo $Per;?>">
 						<i class="fa fa-arrow-right fa-inverse" aria-hidden="true"></i>
 					</a>
 				</div>
-
 
 			</div>
 			<?php

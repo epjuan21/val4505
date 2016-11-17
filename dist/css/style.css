@@ -1875,3 +1875,20 @@ body {
   right: -12px;
   text-align: center;
   line-height: 1.5; }
+
+.data-box-blue, .data-box-orange {
+  color: #FFF;
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 3px; }
+  .data-box-blue i, .data-box-orange i {
+    color: #FFF;
+    padding-right: 5px; }
+  .data-box-blue a, .data-box-orange a {
+    color: #FFF; }
+
+.data-box-blue {
+  background-color: #00ADB5; }
+
+.data-box-orange {
+  background-color: #F0AD4E; }

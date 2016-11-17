@@ -14,23 +14,59 @@
 					<?php echo "Importar Archivo de Errores - ".$Ent[$i]["ENTIDAD_NAME"];?>
 				</div>
 				
-				<?php
-				$DetPer = $objEntidad->getListPeriodosId($_GET["CodEPS"],$sesion->get("idUsuario"),$_GET["CodMun"]);
-				for ($i=0;$i<sizeof($DetPer);$i++)
-				{		
-				?>
-
 				<div class="subtitle">
-					<?php echo $DetPer[$i]["Periodo"]." ".$DetPer[$i]["Año"]." - ";?>
-					<?php echo $DetPer[$i]["Registros"]. " Registros";?>
-				</div>
-
 				<?php
-				}
+				$PeriodoEntidad = $objEntidad->getPeriodoEntidad($_GET["CodEPS"],$sesion->get("idUsuario"),$_GET["CodMun"],$_GET["Per"]);
+
+				echo $PeriodoEntidad[0]["Periodo"]." - ".$PeriodoEntidad[0]["Año"];
+
 				?>
+				</div>
 
 			</div>
 
+		</div>
+
+		<div class="param-content">
+
+			<div class="wid2">
+				
+				<div class="wid2__box1">
+					<div class="data-box-blue"><i class="fa fa-list" aria-hidden="true"></i><?php echo $PeriodoEntidad[0]["Registros"]." Registros";?></div> 
+				</div>
+
+				<div class="wid2__box2">
+					<a class="data-box-orange" href="modulos/module.SeleccionValidador.php?CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>">
+						<i class="fa fa-arrow-down" aria-hidden="true"></i>Descargar 
+					</a>
+				</div>
+				
+				<div class="wid2__box3">
+					<i class="fa fa-location-arrow" aria-hidden="true"></i>
+				</div>
+
+				<div class="wid2__icon">
+					<i class="fa fa-arrow-right fa-inverse" aria-hidden="true"></i>
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<div class="param-content">
+				<form action="modulos/module.BuscarUsuario.php" method="POST" class="form-group">
+					
+					<label for="IdUsuario">Buscar Usuario</label>
+					<input type="text" name="NumeroIdUsuario" class="form-control">
+
+					<input type="hidden" name="Entidad" value="<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>" class="form-control">
+
+					<input type="hidden" name="Periodo" value="<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>" class="form-control">
+
+					<input type="submit" value="Buscar" class="btn">
+
+				</form>
 		</div>
 
 		<div class="item-container-column">
@@ -112,9 +148,7 @@
 				</div>
 			</div>
 
-
 		</div>
-
 
 	</div>
 
