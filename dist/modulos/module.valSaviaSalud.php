@@ -834,7 +834,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'22');
 		}
-		else if ($reg[$i]["FechaTomaElisaVIHInput"] == '1800-01-01' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00')
+		else if ($reg[$i]["FechaTomaElisaVIHInput"] == '1800-01-01' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
 		{
 			fwrite($txt,'22');
 		}
