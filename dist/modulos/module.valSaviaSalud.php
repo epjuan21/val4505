@@ -845,7 +845,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["ResultadoElisaVIH"]); // 83. Resultado ELISA para VIH
 	fwrite($txt,"|");
 		// Si Variable 17 es 21 Variable 84 Puede Ser 1800-01-01
-		if ($edadDias >= 1086)
+		if ($edad >= 3)
 		{
 			fwrite($txt,'1845-01-01');
 		}
@@ -857,7 +857,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 				{
 					if ($reg[$i]["HipotiroidismoCongenito"] == '0' || $edadDias >= 950)
 					{
-						if ($reg[$i]["HipotiroidismoCongenito"] == '21' || ($edadDias < 1086 || $reg[$i]["HipotiroidismoCongenito"] != '0'))
+						if ($reg[$i]["HipotiroidismoCongenito"] == '21' || ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0'))
 						{
 							fwrite($txt,'1800-01-01');
 						}
@@ -901,7 +901,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($edadDias < 1086 || $reg[$i]["HipotiroidismoCongenito"] != '0')
+		else if ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
 		{
 			fwrite($txt,'22');
 		}
