@@ -164,11 +164,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["HipertensionInducidaGestacion"]); // 16. Hipertension Inducida por la Gestacion
 	fwrite($txt,"|");
 		// La opcion 0 se Utiliza en Mayores de 3 Años
-		if ($edadDias >= 1086)
+		if ($edad >= 3)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($edadDias < 1086 || $reg[$i]["HipotiroidismoCongenito"] != '0')
+		else if ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
 		{
 			fwrite($txt,'21');
 		}
