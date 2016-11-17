@@ -215,7 +215,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 			$Peso = substr($reg[$i]["PesoKilogramos"], 0, 2);
 			fwrite($txt,$Peso);
 		}
-		else if ($edad < 1 && ($reg[$i]["PesoKilogramos"] > 250 && $reg[$i]["PesoKilogramos"] < 999)
+		else if ($edad < 1 && ($reg[$i]["PesoKilogramos"] > 250 && $reg[$i]["PesoKilogramos"]) < 999)
 		{
 			$pesoRedondeado = round($reg[$i]["PesoKilogramos"] / 100);
 			fwrite($txt,$pesoRedondeado);
