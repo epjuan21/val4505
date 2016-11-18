@@ -164,11 +164,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["HipertensionInducidaGestacion"]); // 16. Hipertension Inducida por la Gestacion
 	fwrite($txt,"|");
 		// La opcion 0 se Utiliza en Mayores de 3 Años
-		if ($edadDias >= 1086)
+		if ($edad >= 3)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($edadDias < 1086 || $reg[$i]["HipotiroidismoCongenito"] != '0')
+		else if ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
 		{
 			fwrite($txt,'21');
 		}
@@ -214,6 +214,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			$Peso = substr($reg[$i]["PesoKilogramos"], 0, 2);
 			fwrite($txt,$Peso);
+		}
+		else if ($edad < 1 && ($reg[$i]["PesoKilogramos"] > 250 && $reg[$i]["PesoKilogramos"] < 999))
+		{
+			$pesoRedondeado = round($reg[$i]["PesoKilogramos"] / 100);
+			fwrite($txt,$pesoRedondeado);
 		}
 		else
 		{
@@ -829,7 +834,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'22');
 		}
-		else if ($reg[$i]["FechaTomaElisaVIHInput"] == '1800-01-01' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00')
+		else if ($reg[$i]["FechaTomaElisaVIHInput"] == '1800-01-01' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
 		{
 			fwrite($txt,'22');
 		}
@@ -840,7 +845,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["ResultadoElisaVIH"]); // 83. Resultado ELISA para VIH
 	fwrite($txt,"|");
 		// Si Variable 17 es 21 Variable 84 Puede Ser 1800-01-01
-		if ($edadDias >= 1086)
+		if ($edad >= 3)
 		{
 			fwrite($txt,'1845-01-01');
 		}
@@ -852,7 +857,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 				{
 					if ($reg[$i]["HipotiroidismoCongenito"] == '0' || $edadDias >= 950)
 					{
-						if ($reg[$i]["HipotiroidismoCongenito"] == '21' || ($edadDias < 1086 || $reg[$i]["HipotiroidismoCongenito"] != '0'))
+						if ($reg[$i]["HipotiroidismoCongenito"] == '21' || ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0'))
 						{
 							fwrite($txt,'1800-01-01');
 						}
@@ -896,7 +901,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($edadDias < 1086 || $reg[$i]["HipotiroidismoCongenito"] != '0')
+		else if ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
 		{
 			fwrite($txt,'22');
 		}
