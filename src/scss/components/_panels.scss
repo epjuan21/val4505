@@ -1,0 +1,46 @@
+// Panels
+
+.panel-left {
+  width: 230px;
+  border: 1px solid $soft-grey;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 15px;
+}
+
+.panel-icon i {
+  color: $green;
+}
+
+.panel-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: $dark-grey;
+  font-weight: bold;
+}
+
+.panel-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.panel-footer a {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: $middle-grey;
+  border-top: 1px solid $soft-grey;
+  background-color: $light-grey;
+  padding: 10px 15px;
+}
+
+.panel-footer a span i {
+  color: $info;
+}

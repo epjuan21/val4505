@@ -27,34 +27,30 @@
 
 		</div>
 
-		<div class="param-content">
-
-			<div class="wid2">
-				
-				<div class="wid2__box1">
-					<div class="data-box-blue"><i class="fa fa-list" aria-hidden="true"></i><?php echo $PeriodoEntidad[0]["Registros"]." Registros";?></div> 
+		<div class="param-content row-container">
+			
+			<div class="panel-left">
+				<div class="panel-head">
+					<div class="panel-icon">
+						<i class="fa fa-list fa-3x" aria-hidden="true"></i>
+					</div>
+					<div class="panel-body">
+						<div class="panel-title">Registros</div>
+						<div class="panel-subtitle"><?php echo $PeriodoEntidad[0]["Registros"];?></div>
+					</div>
 				</div>
-
-				<div class="wid2__box2">
-					<a class="data-box-orange" href="modulos/module.SeleccionValidador.php?CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>">
-						<i class="fa fa-arrow-down" aria-hidden="true"></i>Descargar 
+				<div class="panel-footer">
+					<a href="modulos/module.SeleccionValidador.php?CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>">
+						<span>Descargar</span>
+						<span><i class="fa fa-arrow-down" aria-hidden="true"></i></span>
 					</a>
 				</div>
-				
-				<div class="wid2__box3">
-					<i class="fa fa-location-arrow" aria-hidden="true"></i>
-				</div>
-
-				<div class="wid2__icon">
-					<i class="fa fa-arrow-right fa-inverse" aria-hidden="true"></i>
-				</div>
-
 			</div>
-
+	
 		</div>
 
-
 		<div class="param-content">
+				
 				<form action="modulos/module.BuscarUsuario.php" method="POST" class="form-group">
 					
 					<label for="IdUsuario">Buscar Usuario</label>

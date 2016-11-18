@@ -12,6 +12,7 @@
 @import "components/button";
 @import "components/alerts";
 @import "components/labels";
+@import "components/panels";
 
 body {
    font-family: $font-roboto;
@@ -531,6 +532,18 @@ body {
 .wid1__subtitle {
   font-size: 0.8em;
   color: $middle-grey;
+  
+  a {
+    color: inherit;
+    transition: all .3s ease-in-out;
+
+  &:hover {
+    color: $dark;
+    transition: all .3s ease-in-out;
+  }
+
+  }
+
 }
 
 // Widget 2 - Usado en la Página Importados Entidad

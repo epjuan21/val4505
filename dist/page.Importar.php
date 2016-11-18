@@ -144,7 +144,11 @@
 								
 							</div>
 
-							<div class="wid1__subtitle"><?php echo $regEnt[$i]["Periodo"]." ".$regEnt[$i]["Año"]; ?></div>
+							<div class="wid1__subtitle">
+								<a href="?menu=12&CodEPS=<?php echo $regEnt[$i]['CodigoEntidad'];?>&CodMun=<?php echo $regEnt[$i]['CodigoMunicipio'];?>&CodUs=<?php echo $sesion->get('idUsuario');?>&Per=<?php echo $regEnt[$i]['FechaFinalReg'];?>">
+									<?php echo $regEnt[$i]["Periodo"]." ".$regEnt[$i]["Año"]; ?>
+								</a>
+							</div>
 
 					</div>
 
