@@ -1,7 +1,11 @@
 <?php
     require_once("../clases/class.Session.php");
     $sesion = new sesion();
-    $idUsuario = $sesion->get("idUsuario");
+
+    $IdUsuario = $sesion->get("idUsuario");
+	$CodigoEntidad = $_POST['CodigoEntidad'];
+	$CodigoMunicipio = $_POST['CodigoMunicipio'];
+	$Periodo = $_POST['Periodo'];
 
     require_once ("../clases/class.Errores.php");
     $ObjErrores = new Errores();
@@ -24,7 +28,7 @@
 		// Error: 4 = UPLOAD_ERR_NO_FILE  = Valor: 4; No se subió ningún fichero.
 		if ($_FILES['upload']['error'] == 4)
 		{
-	    	header ("Location: ../inicio.php?menu=12&Estado=4");
+	    	header ('Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=   $IdUsuario&Per=$Periodo&Estado=4');
 	    	die();
 		}
 
@@ -47,7 +51,7 @@
 	// Si El Archivo Existe Redirigir y Mostrar Error
 	else if (file_exists($carpetaDestino . $_FILES['upload']['name']))
 	{
-    	header ("Location: ../inicio.php?menu=12&Estado=Warning");
+    	header ("Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo&Estado=Warning");
     	die();
 	}
 	else 
@@ -93,8 +97,6 @@
 					$Bandera = 2; // Si Bandera es 2 Se Encontro Una Cadena
 					$TipoError = 1;
 					$CodigoUsuario = $reg[4];
-					$CodigoEntidad = $_POST['CodigoEntidad'];
-					$CodigoMunicipio = $_POST['CodigoMunicipio'];
 
 					if ($Bandera === 2 && $CodigoUsuario !='' && $CodigoEntidad !='') {
 
@@ -103,6 +105,10 @@
 						,$CodigoUsuario
 						,$CodigoEntidad
 						,$TipoError
+						,$Periodo
+						,$CodigoMunicipio
+						,$IdUsuario
+						,$Cadena
 						);
 					}
 
@@ -127,7 +133,6 @@ while ($file = readdir($handle))
 			}
 	} 
 
-header("Location: ../inicio.php?menu=13&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio");
-
+header('Location: ../inicio.php?menu=menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo');
 
 ?>

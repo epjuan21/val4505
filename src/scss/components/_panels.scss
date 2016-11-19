@@ -1,4 +1,16 @@
 // Panels
+// Abrebiaturas
+/*
+  pnl   Panel
+  ctn   Container
+  lst   List
+  lft   Left
+  ttl   Title
+  det   Detail
+  rgt   Right
+*/
+
+
 
 .panel-left {
   width: 230px;
@@ -43,4 +55,39 @@
 
 .panel-footer a span i {
   color: $info;
+}
+
+
+
+// List Panel With Download Button
+
+.pnl-lst-cnt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 15px;
+  border: 1px solid #dbdee0;
+  border-radius: 3px;
+}
+
+.pnl-lst-lft .pnl-lst-ttl {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  color: rgb(85, 85, 85);
+}
+
+.pnl-lst-lft .pnl-lst-det {
+    font-size: 14px;
+  color: rgb(221, 88, 38);
+}
+
+.pnl-lst-rgt {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  text-align: left;
+  color: #999;
+}
+
+.pnl-lst-rgt a i {
+  margin-right: 3px;
 }

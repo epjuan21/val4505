@@ -35,7 +35,6 @@
         $Ent = $objEntidad->getEntidadId($_GET['CodEPS']);
     }
 
-
     $list_mun = $objMunicipio->getMunicipios();    
     
     // Funcion Para Exportar

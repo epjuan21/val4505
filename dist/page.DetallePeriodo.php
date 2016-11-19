@@ -11,7 +11,7 @@
 			<div class="title-container">
 				
 				<div class="title">
-					<?php echo "Importar Archivo de Errores - ".$Ent[$i]["ENTIDAD_NAME"];?>
+					<?php echo "DETALLE - ".$Ent[$i]["ENTIDAD_NAME"];?>
 				</div>
 				
 				<div class="subtitle">
@@ -27,8 +27,21 @@
 
 		</div>
 
-		<div class="param-content row-container">
+		<div class="param-content">
 			
+			<div class="pnl-lst-cnt">
+				<div class="pnl-lst-lft">
+					<span class="pnl-lst-ttl">Registros</span>
+					<span class="pnl-lst-det">187</span>
+				</div>
+
+				<div class="pnl-lst-rgt">
+					<a href="" class=""><i class="fa fa-arrow-down" aria-hidden="true"></i>Descargar</a>
+				</div>
+			</div>
+
+
+
 			<div class="panel-left">
 				<div class="panel-head">
 					<div class="panel-icon">
@@ -79,6 +92,7 @@
 				
 				<input type="hidden" name="CodigoEntidad" value="<?php echo $_GET['CodEPS'];?>">
 				<input type="hidden" name="CodigoMunicipio" value="<?php echo $_GET['CodMun'];?>">
+				<input type="hidden" name="Periodo" value="<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>">
 
 				<input type="submit" class="btn btn-primary btn-large" name="grabar-entidad" value="Subir" />
 

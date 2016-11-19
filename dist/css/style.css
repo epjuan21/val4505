@@ -1388,6 +1388,15 @@ footer {
 .label-yellow {
   background-color: #FFCC00; }
 
+/*
+  pnl   Panel
+  ctn   Container
+  lst   List
+  lft   Left
+  ttl   Title
+  det   Detail
+  rgt   Right
+*/
 .panel-left {
   width: 230px;
   border: 1px solid #E3E5E6; }
@@ -1430,6 +1439,35 @@ footer {
 
 .panel-footer a span i {
   color: #5BC0DE; }
+
+.pnl-lst-cnt {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 15px 15px;
+  border: 1px solid #dbdee0;
+  border-radius: 3px; }
+
+.pnl-lst-lft .pnl-lst-ttl {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  color: #555555; }
+
+.pnl-lst-lft .pnl-lst-det {
+  font-size: 14px;
+  color: #dd5826; }
+
+.pnl-lst-rgt {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  text-align: left;
+  color: #999; }
+
+.pnl-lst-rgt a i {
+  margin-right: 3px; }
 
 body {
   font-family: "Roboto", sans-serif;
