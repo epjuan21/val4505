@@ -5,7 +5,6 @@
 	box-sizing: border-box;
 	height: 36px;
 	line-height: 36px;
-	margin: 1em 0 1em;
 	padding: 0px 12px;
 	font-size: 1rem;
 	text-align: center;
@@ -16,12 +15,11 @@
 	border-radius: 0.2em;
 	outline: 0;
 	text-transform: uppercase;
-	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
 	transition: all 0.5s ease;
 }
 
 .btn:hover, a.btn:hover {
-	box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 4px 15px 0 rgba(0,0,0,0.15);
+	box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18),0 3px 10px 0 rgba(0,0,0,0.15);
 }
 
 .btn-large, a.btn-large {
@@ -65,7 +63,6 @@
 	display: inline;
 	line-height: 1.2;
 	padding: 0.3em 0.5em;
-	margin: 0 5px;
 	text-align: center;
 	text-decoration: none;
 	white-space: nowrap;
@@ -74,13 +71,13 @@
 	border-radius: 0.25em;
 	transition: background-color 0.5s ease-out;
   
-  &:hover {
-    background-color: darken($soft-grey, 20%);
-  }
-}
+	&:hover {
+		background-color: darken($soft-grey, 20%);
+	}
 
-.btn-min i {
-  margin-right: 5px;
+	i {
+		margin-right: 5px;
+	}
 }
 
 .btn-min-blue {

@@ -32,30 +32,13 @@
 			<div class="pnl-lst-cnt">
 				<div class="pnl-lst-lft">
 					<span class="pnl-lst-ttl">Registros</span>
-					<span class="pnl-lst-det">187</span>
+					<span class="pnl-lst-det"><?php echo $PeriodoEntidad[0]["Registros"];?></span>
 				</div>
 
 				<div class="pnl-lst-rgt">
-					<a href="" class=""><i class="fa fa-arrow-down" aria-hidden="true"></i>Descargar</a>
-				</div>
-			</div>
-
-
-
-			<div class="panel-left">
-				<div class="panel-head">
-					<div class="panel-icon">
-						<i class="fa fa-list fa-3x" aria-hidden="true"></i>
-					</div>
-					<div class="panel-body">
-						<div class="panel-title">Registros</div>
-						<div class="panel-subtitle"><?php echo $PeriodoEntidad[0]["Registros"];?></div>
-					</div>
-				</div>
-				<div class="panel-footer">
-					<a href="modulos/module.SeleccionValidador.php?CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>">
-						<span>Descargar</span>
-						<span><i class="fa fa-arrow-down" aria-hidden="true"></i></span>
+					<a href="modulos/module.SeleccionValidador.php?CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>" class="btn-min btn-min-red">
+					<i class="fa fa-arrow-down" aria-hidden="true"></i>
+					Descargar
 					</a>
 				</div>
 			</div>
@@ -64,10 +47,13 @@
 
 		<div class="param-content">
 				
-				<form action="modulos/module.BuscarUsuario.php" method="POST" class="form-group">
+				<form action="modulos/module.BuscarUsuario.php" method="POST">
 					
-					<label for="IdUsuario">Buscar Usuario</label>
-					<input type="text" name="NumeroIdUsuario" class="form-control">
+					<div class="form-group">
+						<label for="NumeroIdUsuario">Buscar Usuario</label>
+						<input type="text" name="NumeroIdUsuario" class="form-control">
+					</div>
+
 
 					<input type="hidden" name="Entidad" value="<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>" class="form-control">
 
@@ -77,6 +63,31 @@
 
 				</form>
 		</div>
+
+		<div class="param-content">
+			<div class="pnl-det-cnt">
+
+				<div class="pnl-det-hed">
+					<div class="pnl-det-ttl">
+						Errores
+						<span class="pnl-det-det">
+						<?php 
+						echo $NumeroErrores = $objErrores->getNumErrorsByType(1);
+						?>
+						</span>
+					</div>
+					<div class="pnl-det-sub">
+						<span>Tipo Error:</span>El afiliado no existe en la base de datos o sus datos no concuerdan con BDUA
+					</div>
+				</div>
+
+				<div class="pnl-det-fot">
+					<a href="modulos/module.ProcesarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>" class="btn-min btn-min-red">Procesar</a>
+				</div>
+			</div>			
+
+		</div>
+
 
 		<div class="item-container-column">
 			
@@ -143,22 +154,6 @@
 
 		</div>
 	
-		<div class="item-container">
-			<div class="item-title-container">
-				<div class="item-title">
-					Errores
-				</div>
-				<div class="item-subtitle">
-					<div class="item-periodo">
-						<?php 
-						echo $NumeroErrores = $objErrores->getNumErrorsByType(1);
-						?>	
-					</div>
-					<a href="inicio.php?menu=13&CodEPS=<?php echo $_GET['CodEPS'];?>&CodMun=<?php echo $_GET['CodMun'];?>">El afiliado no existe en la base de datos o sus datos no concuerdan con BDUA</a>
-				</div>
-			</div>
-
-		</div>
 
 	</div>
 

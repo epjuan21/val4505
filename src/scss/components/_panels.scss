@@ -6,11 +6,11 @@
   lst   List
   lft   Left
   ttl   Title
+  sub   Subtitle
   det   Detail
   rgt   Right
+  fot   Footer
 */
-
-
 
 .panel-left {
   width: 230px;
@@ -57,8 +57,6 @@
   color: $info;
 }
 
-
-
 // List Panel With Download Button
 
 .pnl-lst-cnt {
@@ -71,7 +69,7 @@
 }
 
 .pnl-lst-lft .pnl-lst-ttl {
-  font-family: "Open Sans", sans-serif;
+  font-family: $font-opens-sans;
   font-size: 18px;
   color: rgb(85, 85, 85);
 }
@@ -82,7 +80,7 @@
 }
 
 .pnl-lst-rgt {
-  font-family: 'Open Sans', sans-serif;
+  font-family: $font-opens-sans;
   font-size: 13px;
   text-align: left;
   color: #999;
@@ -90,4 +88,50 @@
 
 .pnl-lst-rgt a i {
   margin-right: 3px;
+}
+
+// List Panel With Detail
+
+.pnl-det-cnt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: left;
+  padding: 15px 15px;
+  border: 1px solid #dbdee0;
+  border-radius: 3px;
+}
+
+.pnl-det-hed {
+  border-bottom: 1px solid #dbdee0;
+  padding-bottom: 10px;
+}
+
+.pnl-det-ttl {
+  font-family: $font-opens-sans;
+  font-size: 18px;
+  color: rgb(85, 85, 85);
+  margin-bottom: 10px;
+}
+
+.pnl-det-ttl .pnl-det-det {
+  font-size: 14px;
+  color: rgb(221, 88, 38);
+}
+
+.pnl-det-sub {
+  font-family: $font-opens-sans;
+  font-size: 13px;
+  text-align: left;
+  color: #999;
+}
+
+.pnl-det-sub span {
+  color: #555;
+  font-size: 13px;
+  margin-right: 5px;
+}
+
+.pnl-det-fot {
+  margin-top: 10px;
 }

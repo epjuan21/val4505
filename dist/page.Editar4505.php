@@ -61,7 +61,7 @@ $R_ID = $Registro[$i]['R_ID'];
 				Formulario Actualización
 			</div>
 
-			<form action="modulos/module.Actualizar4505.php" method="POST">
+			<form action="modulos/module.Actualizar4505.php" method="POST" class="form-horizontal">
 
 				<!-- Entidad -->
 

@@ -28,6 +28,13 @@ class Errores extends ConnectionMySQL {
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
 
+	// Funcion Para Obtener Errores Para ser Procesados
+	public function gerErroresProc ($CodigoEntidad, $TipoError, $Periodo, $CodigoMunicipio, $IdUsuario){
+		$this->query = $this->conn->prepare("SELECT NumeroIdUsuario, CodigoEntidad FROM errores4505 WHERE CodigoEntidad = '$CodigoEntidad' AND TipoError = '$TipoError' AND Periodo = '$Periodo' AND CodigoMunicipio = '$CodigoMunicipio' AND IdUsuario = '$IdUsuario' ");
+		$this->query->execute();
+		return $this->query->fetchAll(PDO::FETCH_BOTH);
+	}
+
 	// Funcion para Obtener el Número de Errores Por Tipo
 	public function getNumErrorsByType ($TipoError) {
 		$this->query = $this->conn->prepare("SELECT COUNT(*) FROM errores4505 WHERE TipoError = '$TipoError'");

@@ -390,10 +390,33 @@ table {
 th {
   text-align: left; }
 
+form {
+  display: block; }
+
+.form-group {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 10px; }
+
+.form-horizontal .form-group {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-align: center;
+  align-items: center; }
+
 label {
   font-size: 14px;
-  font-weight: bold;
-  color: #737370; }
+  font-weight: normal;
+  color: #737370;
+  margin-bottom: 5px; }
+
+.form-horizontal label {
+  text-align: right;
+  margin-bottom: 0px; }
 
 input[type=text] {
   color: #737370;
@@ -408,26 +431,13 @@ select {
 select, .help-inline, select option {
   font-size: 13px; }
 
-.form-group {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 10px; }
-
 .form-group-alert, .form-group-alert label {
   color: #E84545; }
 
 .form-group-alert, .form-group-alert select {
   border-color: #E84545; }
 
-.form-group label {
-  text-align: right; }
-
 .form-control {
-  margin-left: 20px;
   border-radius: 2px;
   background-color: #E3E5E6;
   border: 1px solid #818A90; }
@@ -1272,7 +1282,6 @@ footer {
   box-sizing: border-box;
   height: 36px;
   line-height: 36px;
-  margin: 1em 0 1em;
   padding: 0px 12px;
   font-size: 1rem;
   text-align: center;
@@ -1283,11 +1292,10 @@ footer {
   border-radius: 0.2em;
   outline: 0;
   text-transform: uppercase;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   transition: all 0.5s ease; }
 
 .btn:hover, a.btn:hover {
-  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15); }
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 3px 10px 0 rgba(0, 0, 0, 0.15); }
 
 .btn-large, a.btn-large {
   height: 54px;
@@ -1314,6 +1322,44 @@ footer {
 
 .btn-alert, a.btn-alert {
   background-color: #E84545; }
+
+.btn-min {
+  font-size: 0.8rem;
+  font-family: "Open Sans", sans-serif;
+  display: inline;
+  line-height: 1.2;
+  padding: 0.3em 0.5em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #FFF;
+  background-color: #E3E5E6;
+  border-radius: 0.25em;
+  transition: background-color 0.5s ease-out; }
+  .btn-min:hover {
+    background-color: #adb3b6; }
+  .btn-min i {
+    margin-right: 5px; }
+
+.btn-min-blue {
+  background-color: #5BC0DE; }
+  .btn-min-blue:hover {
+    background-color: #2390b0; }
+
+.btn-min-orange {
+  background-color: #F0AD4E; }
+  .btn-min-orange:hover {
+    background-color: #c77c11; }
+
+.btn-min-green {
+  background-color: #00B8A9; }
+  .btn-min-green:hover {
+    background-color: #00524b; }
+
+.btn-min-red {
+  background-color: #E84545; }
+  .btn-min-red:hover {
+    background-color: #b11616; }
 
 .alert {
   position: relative;
@@ -1394,8 +1440,10 @@ footer {
   lst   List
   lft   Left
   ttl   Title
+  sub   Subtitle
   det   Detail
   rgt   Right
+  fot   Footer
 */
 .panel-left {
   width: 230px;
@@ -1461,13 +1509,54 @@ footer {
   color: #dd5826; }
 
 .pnl-lst-rgt {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 13px;
   text-align: left;
   color: #999; }
 
 .pnl-lst-rgt a i {
   margin-right: 3px; }
+
+.pnl-det-cnt {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: left;
+  align-items: left;
+  padding: 15px 15px;
+  border: 1px solid #dbdee0;
+  border-radius: 3px; }
+
+.pnl-det-hed {
+  border-bottom: 1px solid #dbdee0;
+  padding-bottom: 10px; }
+
+.pnl-det-ttl {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  color: #555555;
+  margin-bottom: 10px; }
+
+.pnl-det-ttl .pnl-det-det {
+  font-size: 14px;
+  color: #dd5826; }
+
+.pnl-det-sub {
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+  text-align: left;
+  color: #999; }
+
+.pnl-det-sub span {
+  color: #555;
+  font-size: 13px;
+  margin-right: 5px; }
+
+.pnl-det-fot {
+  margin-top: 10px; }
 
 body {
   font-family: "Roboto", sans-serif;
@@ -1558,7 +1647,7 @@ body {
   margin-bottom: 15px; }
 
 .param-content {
-  margin: 0px 10px 0px 10px; }
+  margin: 0px 20px 10px 20px; }
 
 .link-box {
   display: -ms-flexbox;
