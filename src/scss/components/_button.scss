@@ -57,3 +57,56 @@
 .btn-alert, a.btn-alert {
 	background-color: $red;
 }
+
+// Estilos Botones Mini
+.btn-min {
+	font-size: 0.8rem;
+	font-family: $font-opens-sans;
+	display: inline;
+	line-height: 1.2;
+	padding: 0.3em 0.5em;
+	margin: 0 5px;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	color: #FFF;
+	background-color: $soft-grey;
+	border-radius: 0.25em;
+	transition: background-color 0.5s ease-out;
+  
+  &:hover {
+    background-color: darken($soft-grey, 20%);
+  }
+}
+
+.btn-min i {
+  margin-right: 5px;
+}
+
+.btn-min-blue {
+  background-color: $info;
+  &:hover {
+     background-color: darken($info, 20%);
+  }
+}
+
+.btn-min-orange {
+  background-color: $warning;
+  &:hover {
+    background-color: darken($warning, 20%);
+  }
+}
+
+.btn-min-green {
+  background-color: $green;
+  &:hover {
+    background-color: darken($green, 20%);
+  }
+}
+
+.btn-min-red {
+  background-color: $red;
+  &:hover {
+    background-color: darken($red, 20%);
+  }
+}
