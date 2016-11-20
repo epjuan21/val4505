@@ -5,20 +5,25 @@ require_once ("../clases/class.Errores.php");
 $objRPED = new rped();
 $objErrores = new Errores();
 
-echo $CodEPS = $_GET["CodEPS"];
+$CodEPS = $_GET["CodEPS"];
 $TipoError = 1;
-echo $Per = $_GET["Per"];
-echo $CodMun = $_GET["CodMun"];
-echo $IdUser = $_GET["IdUser"];
+$Per = $_GET["Per"];
+$CodMun = $_GET["CodMun"];
+$IdUser = $_GET["IdUser"];
 
 
-$Errores = $objErrores->gerErroresProc ($CodEPS, $TipoError, $Per, $CodMun, $IdUser);
+$Errores = $objErrores->gerErroresProc($CodEPS, $TipoError, $Per, $CodMun, $IdUser);
 
 
+for ($i=0;$i<sizeof($Errores); $i++) { 
+	
+	$NumeroIdUsuario = $Errores[$i]["NumeroIdUsuario"];
 
+	$objRPED->deleteRegistroByCodUser($IdUser,$CodMun,$CodEPS,$Per,$NumeroIdUsuario);
 
-
-
+}
+	// Borrar Errores luego de Ser Procesados
+	$objErrores->delErroresProc($CodEPS, $TipoError, $Per, $CodMun, $IdUser);
 
 
 ?>

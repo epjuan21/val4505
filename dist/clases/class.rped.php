@@ -45,14 +45,21 @@ class rped extends ConnectionMySQL {
 		$this->query->execute();
 	}
 
+	// Borrar Registro Por ID | Funcion Usada para Borrar Usuarios en la Pagina page.Editar4505.php
 	public function deleteRegistro ($ID)
 	{
 		$this->query = $this->conn->prepare("DELETE FROM rped WHERE R_ID = '$ID' ");
 		$this->query->execute();
 	}
 
+	// Borrar Registro Segun Codigo Usuario | Funcion Usada para Borrar Usuarios Segun Errores Importados
+	public function deleteRegistroByCodUser ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaFinalReg, $NumeroIdUsuario)
+	{
+		$this->query = $this->conn->prepare("DELETE FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaFinalReg = '$FechaFinalReg' AND NumeroIdUsuario = '$NumeroIdUsuario' ");
+		$this->query->execute();
+	}
+
 	// Funcion para Obtener el Numero de Registros
-	
 	public function getNumRows ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg) {
 		$this->query = $this->conn->prepare("SELECT COUNT(*) FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg' ");
 		$this->query->execute();

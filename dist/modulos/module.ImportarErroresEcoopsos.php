@@ -10,6 +10,7 @@
     require_once ("../clases/class.Errores.php");
     $ObjErrores = new Errores();
 
+
 	date_default_timezone_set('America/Bogota');
 
 	// Definimos la Carpeta de Destino
@@ -27,8 +28,8 @@
 		// Si el Codigo del Error es 4 Significa
 		// Error: 4 = UPLOAD_ERR_NO_FILE  = Valor: 4; No se subió ningún fichero.
 		if ($_FILES['upload']['error'] == 4)
-		{
-	    	header ('Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=   $IdUsuario&Per=$Periodo&Estado=4');
+		{	
+	    	header ("Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo&Estado=4");
 	    	die();
 		}
 
@@ -81,6 +82,9 @@
 				// Almacenamos en la variable $Cadena el texto de los Errores
 				$Cadena = $reg[119];
 
+				// Almacenamos el Número de Documento del Usuario
+				$CodigoUsuario = $reg[4];
+
 				// Almacenamos en la variable $AfiliadoNoExiste La Cadena que nos indica que el Afiliado no Existe
 				$AfiliadoNoExiste = 'El afiliado no existe en la base de datos o sus datos no concuerdan con BDUA';
 				// Almacenamos en la variable $AfiliadoValoresDiferentes La Cadena que indica que Los Valores Son Diferentes
@@ -92,11 +96,24 @@
 				if ($pos !== false && $posdos !== false) {
 					$Bandera = 1; // Si Bandera es 1 Se Encontraron Ambas Cadenas
 				    //"Ambas cadenas Fueron Encontradas";
+					$TipoError = 2;
+
+					$ObjErrores->insertErroresEcoopsos(
+					null
+					,$CodigoUsuario
+					,$CodigoEntidad
+					,$TipoError
+					,$Periodo
+					,$CodigoMunicipio
+					,$IdUsuario
+					,utf8_encode($Cadena)
+					);
+
+
 				} else if ($pos !== false && $posdos === false) {
 				    //"Se Econtró la Primera y La Segunda No";
 					$Bandera = 2; // Si Bandera es 2 Se Encontro Una Cadena
 					$TipoError = 1;
-					$CodigoUsuario = $reg[4];
 
 					if ($Bandera === 2 && $CodigoUsuario !='' && $CodigoEntidad !='') {
 
@@ -133,6 +150,6 @@ while ($file = readdir($handle))
 			}
 	} 
 
-header('Location: ../inicio.php?menu=menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo');
+//header("Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo");
 
 ?>
