@@ -40,6 +40,7 @@
 					<i class="fa fa-arrow-down" aria-hidden="true"></i>
 					Descargar
 					</a>
+					<a href="modulos/module.EliminarPeriodo.php?IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>" class="btn-min btn-min-red"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</a>
 				</div>
 			</div>
 	

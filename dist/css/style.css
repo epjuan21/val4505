@@ -1514,6 +1514,9 @@ footer {
   text-align: left;
   color: #999; }
 
+.pnl-lst-rgt a {
+  margin-left: 5px; }
+
 .pnl-lst-rgt a i {
   margin-right: 3px; }
 
