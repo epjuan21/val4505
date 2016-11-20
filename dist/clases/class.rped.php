@@ -59,6 +59,32 @@ class rped extends ConnectionMySQL {
 		$this->query->execute();
 	}
 
+	// Funcion para Actualizar Nombres, Apellidos y Fecha de Nacimeinto Segun Archivo de Errores Importado
+	public function updateUser ($Apellido1, $Apellido2, $Nombre1, $Nombre2, $FechaNacimiento, $IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaFinalReg, $NumeroIdUsuario){
+
+		$sql = "UPDATE rped SET 
+			Apellido1=?,
+			Apellido2=?,
+			Nombre1=?,
+			Nombre2=?,
+			FechaNacimiento=?
+			WHERE
+			IdUsuario=?
+			AND
+			CodigoMunicipio=?
+			AND
+			CodigoEntidad=?
+			AND
+			FechaFinalReg=?
+			AND
+			NumeroIdUsuario=?";
+
+			$stmt=$this->conn->prepare($sql);
+
+			$stmt->execute(array($Apellido1, $Apellido2, $Nombre1, $Nombre2, $FechaNacimiento, $IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaFinalReg, $NumeroIdUsuario));
+			
+	}
+
 	// Funcion para Obtener el Numero de Registros
 	public function getNumRows ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg) {
 		$this->query = $this->conn->prepare("SELECT COUNT(*) FROM rped WHERE IdUsuario = '$IdUsuario' AND CodigoMunicipio = '$CodigoMunicipio' AND CodigoEntidad = '$CodigoEntidad' AND FechaInicialReg = '$FechaInicialReg' AND FechaFinalReg = '$FechaFinalReg' ");

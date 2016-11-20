@@ -36,7 +36,7 @@
 				</div>
 
 				<div class="pnl-lst-rgt">
-					<a href="modulos/module.SeleccionValidador.php?CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>" class="btn-min btn-min-red">
+					<a href="modulos/module.SeleccionValidador.php?CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>" class="btn-min btn-min-green">
 					<i class="fa fa-arrow-down" aria-hidden="true"></i>
 					Descargar
 					</a>
@@ -66,12 +66,11 @@
 
 		<div class="param-content">
 			<div class="pnl-det-cnt">
-
 				<div class="pnl-det-hed">
 					<div class="pnl-det-ttl">
 						Errores
 						<span class="pnl-det-det">
-						<?php 
+						<?php
 						echo $NumeroErrores = $objErrores->getNumErrorsByType(1);
 						?>
 						</span>
@@ -82,12 +81,32 @@
 				</div>
 
 				<div class="pnl-det-fot">
-					<a href="modulos/module.ProcesarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>" class="btn-min btn-min-red">Procesar</a>
+					<a href="modulos/module.ProcesarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&TipoError=1" class="btn-min btn-min-red">Procesar</a>
 				</div>
-			</div>			
-
+			</div>
 		</div>
 
+		<div class="param-content">
+			<div class="pnl-det-cnt">
+				<div class="pnl-det-hed">
+					<div class="pnl-det-ttl">
+						Errores
+						<span class="pnl-det-det">
+						<?php
+						echo $NumeroErrores = $objErrores->getNumErrorsByType(2);
+						?>
+						</span>
+					</div>
+					<div class="pnl-det-sub">
+						<span>Tipo Error:</span>Afiliado con valores en Nombres y/o Apellidos y/o Fecha de nacimiento diferentes a BDUA.
+					</div>
+				</div>
+
+				<div class="pnl-det-fot">
+					<a href="modulos/module.ProcesarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&TipoError=2" class="btn-min btn-min-red">Procesar</a>
+				</div>
+			</div>
+		</div>
 
 		<div class="item-container-column">
 			

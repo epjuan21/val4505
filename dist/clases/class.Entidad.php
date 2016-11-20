@@ -138,7 +138,7 @@ class Entidad extends ConnectionMySQL {
 		$this->conn=null;
 	}
 	public function updateEntidad () {
-		echo $_POST["ent-cod"];
+		
 		$sql = "UPDATE entidades SET 			
 			ENTIDAD_COD=?,
 			ENTIDAD_NAME=?

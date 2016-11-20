@@ -30,7 +30,7 @@ class Errores extends ConnectionMySQL {
 
 	// Funcion Para Obtener Errores Para ser Procesados
 	public function gerErroresProc ($CodigoEntidad, $TipoError, $Periodo, $CodigoMunicipio, $IdUsuario){
-		$this->query = $this->conn->prepare("SELECT NumeroIdUsuario, CodigoEntidad, Periodo, CodigoMunicipio, IdUsuario FROM errores4505 WHERE CodigoEntidad = '$CodigoEntidad' AND TipoError = '$TipoError' AND Periodo = '$Periodo' AND CodigoMunicipio = '$CodigoMunicipio' AND IdUsuario = '$IdUsuario' ");
+		$this->query = $this->conn->prepare("SELECT NumeroIdUsuario, CodigoEntidad, Periodo, CodigoMunicipio, IdUsuario, DetalleError FROM errores4505 WHERE CodigoEntidad = '$CodigoEntidad' AND TipoError = '$TipoError' AND Periodo = '$Periodo' AND CodigoMunicipio = '$CodigoMunicipio' AND IdUsuario = '$IdUsuario' ");
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
@@ -41,8 +41,6 @@ class Errores extends ConnectionMySQL {
 		$this->query = $this->conn->prepare("DELETE FROM errores4505 WHERE CodigoEntidad = '$CodigoEntidad' AND TipoError = '$TipoError' AND Periodo = '$Periodo' AND CodigoMunicipio = '$CodigoMunicipio' AND IdUsuario = '$IdUsuario' ");
 		$this->query->execute();
 	}
-
-
 
 	// Funcion para Obtener el Número de Errores Por Tipo
 	public function getNumErrorsByType ($TipoError) {

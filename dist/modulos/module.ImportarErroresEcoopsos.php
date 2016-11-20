@@ -7,6 +7,12 @@
 	$CodigoMunicipio = $_POST['CodigoMunicipio'];
 	$Periodo = $_POST['Periodo'];
 
+	function get_between($input, $start, $end) 
+	{ 
+	  $substr = substr($input, strlen($start)+strpos($input, $start), (strlen($input) - strpos($input, $end))*(-1)); 
+	  return $substr; 
+	}
+
     require_once ("../clases/class.Errores.php");
     $ObjErrores = new Errores();
 
@@ -97,6 +103,8 @@
 					$Bandera = 1; // Si Bandera es 1 Se Encontraron Ambas Cadenas
 				    //"Ambas cadenas Fueron Encontradas";
 					$TipoError = 2;
+					$Cadena = utf8_encode($Cadena);
+					$Cadena = get_between($Cadena,'(',')');
 
 					$ObjErrores->insertErroresEcoopsos(
 					null
@@ -106,9 +114,8 @@
 					,$Periodo
 					,$CodigoMunicipio
 					,$IdUsuario
-					,utf8_encode($Cadena)
+					,$Cadena 
 					);
-
 
 				} else if ($pos !== false && $posdos === false) {
 				    //"Se Econtró la Primera y La Segunda No";
@@ -150,6 +157,6 @@ while ($file = readdir($handle))
 			}
 	} 
 
-//header("Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo");
+header("Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo");
 
 ?>
