@@ -65,15 +65,17 @@
 				</form>
 		</div>
 
+		<?php
+		$NumeroErrores1 = $objErrores->getNumErrorsByType(1);
+		if ($NumeroErrores1 != 0) {
+		?>
 		<div class="param-content">
 			<div class="pnl-det-cnt">
 				<div class="pnl-det-hed">
 					<div class="pnl-det-ttl">
 						Errores
 						<span class="pnl-det-det">
-						<?php
-						echo $NumeroErrores = $objErrores->getNumErrorsByType(1);
-						?>
+						<?php echo $NumeroErrores;?> 
 						</span>
 					</div>
 					<div class="pnl-det-sub">
@@ -86,16 +88,18 @@
 				</div>
 			</div>
 		</div>
-
+		<?php
+		}
+		$NumeroErrores2 = $objErrores->getNumErrorsByType(2);
+		if ($NumeroErrores2 != 0) {
+		?>
 		<div class="param-content">
 			<div class="pnl-det-cnt">
 				<div class="pnl-det-hed">
 					<div class="pnl-det-ttl">
 						Errores
 						<span class="pnl-det-det">
-						<?php
-						echo $NumeroErrores = $objErrores->getNumErrorsByType(2);
-						?>
+						<?php echo $NumeroErrores2;?> 
 						</span>
 					</div>
 					<div class="pnl-det-sub">
@@ -108,6 +112,9 @@
 				</div>
 			</div>
 		</div>
+		<?php
+		}
+		?>
 
 		<div class="item-container-column">
 			
