@@ -48,72 +48,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["NumeroIdUsuario"]);
 	fwrite($txt,"|");
-		if (trim($reg[$i]["Apellido1"]=='CASTANEDA'))
-		{
-			fwrite($txt,'CASTAÑEDA');
-		}
-		else if (trim($reg[$i]["Apellido1"]=='CANAS'))
-		{
-			fwrite($txt,'CAÑAS');
-		} 
-		else if (trim($reg[$i]["Apellido1"]=='MUNOZ'))
-		{
-			fwrite($txt,'MUÑOZ');
-		} 
-		else if(trim($reg[$i]["Apellido1"]=='CATANO'))
-		{
-			fwrite($txt,'CATAÑO');
-		}
-		else if(trim($reg[$i]["Apellido1"]=='CASTANO'))
-		{
-			fwrite($txt,'CASTAÑO');
-		}
-		else if (trim($reg[$i]["Apellido1"]=='CANAVERAL'))
-		{
-		fwrite($txt,'CAÑAVERAL');
-		}
-		else if (trim($reg[$i]["Apellido2"]=='GANAN'))
-		{
-		fwrite($txt,'GAÑAN');
-		} 
-		else if (trim($reg[$i]["Apellido1"]=='PATINO'))
-		{
-		fwrite($txt,'PATIÑO');
-		} 
-		else
-		{
-			fwrite($txt,trim($reg[$i]["Apellido1"]));
-		}
-	//fwrite($txt,$reg[$i]["Apellido1"]));		// 5. Apellido1
+	fwrite($txt,$reg[$i]["Apellido1"]));		// 5. Apellido1
 	fwrite($txt,"|");
-		if (trim($reg[$i]["Apellido2"]=='MUNOZ'))
-		{
-			fwrite($txt,'MUÑOZ');
-		}
-		else if (trim($reg[$i]["Apellido2"]=='CASTANEDA'))
-		{
-			fwrite($txt,'CASTAÑEDA');
-		}
-		else if (trim($reg[$i]["Apellido2"]=='MONTANO'))
-		{
-			fwrite($txt,'MONTAÑO');
-		}
-		else if (trim($reg[$i]["Apellido2"]=='CANAS'))
-		{
-			fwrite($txt,'CAÑAS');
-		}
-		else if (trim($reg[$i]["Apellido2"]=='PATINO'))
-		{
-			fwrite($txt,'PATIÑO');
-		}
-		else if (trim($reg[$i]["Apellido2"]=='CATANO'))
-		{
-			fwrite($txt,'CATAÑO');
-		}
-		else {
-			fwrite($txt,trim($reg[$i]["Apellido2"]));
-		}
-	//fwrite($txt,trim($reg[$i]["Apellido2"]));			// 6. Apellido2
+	fwrite($txt,trim($reg[$i]["Apellido2"]));	// 6. Apellido2
 	fwrite($txt,"|");
 	fwrite($txt,trim($reg[$i]["Nombre1"]));
 	fwrite($txt,"|");
