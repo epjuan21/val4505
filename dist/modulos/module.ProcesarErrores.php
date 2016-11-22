@@ -11,15 +11,13 @@ $Per = $_GET["Per"];
 $CodMun = $_GET["CodMun"];
 $IdUser = $_GET["IdUser"];
 
-
 $Errores = $objErrores->gerErroresProc($CodEPS, $TipoError, $Per, $CodMun, $IdUser);
-
 
 // Tipo Error 1: El afiliado no existe en la base de datos o sus datos no concuerdan con BDUA
 // Tipo Error 2: Afiliado con valores en Nombres y/o Apellidos y/o Fecha de nacimiento diferentes a BDUA
 
 
-if ($TipoError == 1) {
+if ($TipoError == 1 && $IdUser != '') {
 	for ($i=0;$i<sizeof($Errores); $i++) { 
 
 		$NumeroIdUsuario = $Errores[$i]["NumeroIdUsuario"];
@@ -33,7 +31,7 @@ if ($TipoError == 1) {
 
 	header("Location: ../inicio.php?menu=12&CodEPS=$CodEPS&CodMun=$CodMun&CodUs=$IdUser&Per=$Per");
 
-} else if ($TipoError == 2) {
+} else if ($TipoError == 2 && $IdUser != '') {
 	for ($i=0;$i<sizeof($Errores); $i++) {
 
 		$NumeroIdUsuario = $Errores[$i]["NumeroIdUsuario"];
@@ -56,10 +54,6 @@ if ($TipoError == 1) {
 
 	}
 
-
-
-
 }
-
 
 ?>
