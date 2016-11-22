@@ -7,6 +7,10 @@
 	$CodigoMunicipio = $_POST['CodigoMunicipio'];
 	$Periodo = $_POST['Periodo'];
 
+	if (!$IdUsuario) {
+		$sesion->termina_sesion();
+	}
+
 	function get_between($input, $start, $end) 
 	{ 
 	  $substr = substr($input, strlen($start)+strpos($input, $start), (strlen($input) - strpos($input, $end))*(-1)); 
