@@ -48,7 +48,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["NumeroIdUsuario"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["Apellido1"]));		// 5. Apellido1
+	fwrite($txt,trim($reg[$i]["Apellido1"]));		// 5. Apellido1
 	fwrite($txt,"|");
 	fwrite($txt,trim($reg[$i]["Apellido2"]));	// 6. Apellido2
 	fwrite($txt,"|");
