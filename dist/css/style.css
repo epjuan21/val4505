@@ -1444,6 +1444,7 @@ footer {
   det   Detail
   rgt   Right
   fot   Footer
+  hed   Head
 */
 .panel-left {
   width: 230px;
@@ -1496,23 +1497,23 @@ footer {
   -ms-flex-align: center;
   align-items: center;
   padding: 15px 15px;
-  border: 1px solid #dbdee0;
+  border: 1px solid #E3E5E6;
   border-radius: 3px; }
 
 .pnl-lst-lft .pnl-lst-ttl {
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
-  color: #555555; }
+  color: #E3E5E6; }
 
 .pnl-lst-lft .pnl-lst-det {
   font-size: 14px;
-  color: #dd5826; }
+  color: #F3F3F3; }
 
 .pnl-lst-rgt {
   font-family: "Open Sans", sans-serif;
   font-size: 13px;
   text-align: left;
-  color: #999; }
+  color: #E3E5E6; }
 
 .pnl-lst-rgt a {
   margin-left: 5px; }
@@ -1530,17 +1531,17 @@ footer {
   -ms-flex-align: left;
   align-items: left;
   padding: 15px 15px;
-  border: 1px solid #dbdee0;
+  border: 1px solid #E3E5E6;
   border-radius: 3px; }
 
 .pnl-det-hed {
-  border-bottom: 1px solid #dbdee0;
+  border-bottom: 1px solid #E3E5E6;
   padding-bottom: 10px; }
 
 .pnl-det-ttl {
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
-  color: #555555;
+  color: #E3E5E6;
   margin-bottom: 10px; }
 
 .pnl-det-ttl .pnl-det-det {
@@ -1551,15 +1552,65 @@ footer {
   font-family: "Open Sans", sans-serif;
   font-size: 13px;
   text-align: left;
-  color: #999; }
+  color: #E3E5E6; }
 
 .pnl-det-sub span {
-  color: #555;
+  color: #E3E5E6;
   font-size: 13px;
   margin-right: 5px; }
 
 .pnl-det-fot {
   margin-top: 10px; }
+
+.pnl-btn-cnt {
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  -ms-grid-row-align: center;
+  align-items: center;
+  padding: 15px 15px;
+  border: 1px solid #E3E5E6;
+  border-radius: 3px;
+  font-family: "Open Sans", sans-serif; }
+
+.btn-hed-cnt {
+  width: 100%;
+  padding-bottom: 10px;
+  margin-bottom: 7px;
+  border-bottom: 1px solid #E3E5E6; }
+
+.btn-hed-cnt .btn-hed-ttl {
+  color: #737370;
+  font-size: 19px;
+  text-transform: uppercase; }
+
+.btn-hed-cnt .btn-hed-ttl span {
+  font-size: 13px;
+  color: #737370;
+  text-transform: none; }
+
+.pnl-btn-fot {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.btn-fot-ctn .btn-lft-tlt {
+  color: #737370;
+  font-size: 15px;
+  margin-bottom: 3px; }
+
+.btn-fot-ctn .btn-lft-sub {
+  font-size: 18px;
+  color: #E84545; }
+
+.pnl-btn-rgt a i {
+  margin-right: 3px; }
+
+.pnl-btn-rgt a {
+  margin-left: 5px; }
 
 body {
   font-family: "Roboto", sans-serif;

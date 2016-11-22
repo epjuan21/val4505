@@ -17,9 +17,6 @@
 				<div class="subtitle">
 				<?php
 				$PeriodoEntidad = $objEntidad->getPeriodoEntidad($_GET["CodEPS"],$sesion->get("idUsuario"),$_GET["CodMun"],$_GET["Per"]);
-
-				echo $PeriodoEntidad[0]["Periodo"]." - ".$PeriodoEntidad[0]["Año"];
-
 				?>
 				</div>
 
@@ -29,21 +26,41 @@
 
 		<div class="param-content">
 			
-			<div class="pnl-lst-cnt">
-				<div class="pnl-lst-lft">
-					<span class="pnl-lst-ttl">Registros</span>
-					<span class="pnl-lst-det"><?php echo $PeriodoEntidad[0]["Registros"];?></span>
+			<div class="pnl-btn-cnt">
+				<div class="btn-hed-cnt">
+					<div class="btn-hed-ttl">
+						<?php echo $Ent[$i]["ENTIDAD_NAME"];?>
+						<span>
+						<?php echo $PeriodoEntidad[0]["Periodo"]." ".$PeriodoEntidad[0]["Año"];?>
+						</span>
+					</div>
 				</div>
-
-				<div class="pnl-lst-rgt">
-					<a href="modulos/module.SeleccionValidador.php?CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>" class="btn-min btn-min-green">
-					<i class="fa fa-arrow-down" aria-hidden="true"></i>
-					Descargar
-					</a>
-					<a href="modulos/module.EliminarPeriodo.php?IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>" class="btn-min btn-min-red"><i class="fa fa-trash-o" aria-hidden="true"></i>Eliminar</a>
+				
+				<div class="pnl-btn-fot">
+				
+					<div class="btn-fot-ctn">
+						<div class="btn-lft-tlt">
+							Registros
+						</div>
+						<div class="btn-lft-sub">
+							<?php echo $PeriodoEntidad[0]["Registros"];?>
+						</div>
+					</div>
+				
+					<div class="pnl-btn-rgt">
+						<a href="modulos/module.SeleccionValidador.php?CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>" class="btn-min btn-min-green">
+						<i class="fa fa-arrow-down" aria-hidden="true"></i>
+						Descargar
+						</a>
+						<a href="modulos/module.EliminarPeriodo.php?IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>" class="btn-min btn-min-red"><i class="fa fa-trash-o" aria-hidden="true"></i>
+						Eliminar
+						</a>
+					</div>	
+				
 				</div>
+				
 			</div>
-	
+
 		</div>
 
 		<div class="param-content">
