@@ -1541,21 +1541,21 @@ footer {
 .pnl-det-ttl {
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
-  color: #E3E5E6;
+  color: #737370;
   margin-bottom: 10px; }
 
 .pnl-det-ttl .pnl-det-det {
   font-size: 14px;
-  color: #dd5826; }
+  color: #E84545; }
 
 .pnl-det-sub {
   font-family: "Open Sans", sans-serif;
   font-size: 13px;
   text-align: left;
-  color: #E3E5E6; }
+  color: #818A90; }
 
 .pnl-det-sub span {
-  color: #E3E5E6;
+  color: #737370;
   font-size: 13px;
   margin-right: 5px; }
 

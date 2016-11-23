@@ -115,24 +115,24 @@
 .pnl-det-ttl {
   font-family: $font-opens-sans;
   font-size: 18px;
-  color: $soft-grey;
+  color: $dark-grey;
   margin-bottom: 10px;
 }
 
 .pnl-det-ttl .pnl-det-det {
   font-size: 14px;
-  color: rgb(221, 88, 38);
+  color: $red;
 }
 
 .pnl-det-sub {
   font-family: $font-opens-sans;
   font-size: 13px;
   text-align: left;
-  color: $soft-grey;
+  color: $middle-grey;
 }
 
 .pnl-det-sub span {
-  color: $soft-grey;
+  color: $dark-grey;
   font-size: 13px;
   margin-right: 5px;
 }
