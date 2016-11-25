@@ -79,7 +79,6 @@
 
 		$now = new DateTime;
 		$FechaRegistro = $now->format('Y-m-d H:i:s-U');		// Fecha Registro
-		//$CodigoMunicipio = $_POST["MunicipioReporte"];		// Codigo Municipio
 
 		// Mientras no Sea el Final del Archivo
 		while (!feof($fp))
@@ -87,7 +86,8 @@
 			$line = stream_get_line($fp, 1000000, "\n");
 			$reg = explode("|", $line);
 
-			if ($line)
+			// Si Hay Datos y Si es ECOOPSOS	
+			if ($line && $CodigoEntidad == 'ESS091')
 			{
 				// Almacenamos en la variable $Cadena el texto de los Errores
 				$Cadena = $reg[119];
@@ -142,6 +142,53 @@
 
 				}
 
+			// Si Hay Datos y Si es SAVIASALUD	
+			} 
+			else if ($line && $CodigoEntidad == 'EPSS40')
+			{
+
+				// Almacenamos el Dato Actual Que Contiene El Error
+				$CadenaError = 	$reg[3];
+				//echo "<br>";
+
+				// Cadena Buscada Para Numero de Documento
+				$NumeroDoc = 'Numero Doc:';
+
+				// Cadena Buscada Para Fecha de Nacimiento
+				$DatoArchivo = 'Dato archivo';
+
+
+				// Buscar Cadena de Numero de Documento
+				$BuscarNumDoc = strpos($CadenaError, $NumeroDoc);
+
+				// Buscar Cadena de Dato Archivo
+				$BucarDatoArchivo = strpos($CadenaError, $DatoArchivo);
+
+
+				if ($BuscarNumDoc !== false) // Si Es Verdadero Se Encontro la Cadena Numero Doc
+				{
+
+					$TipoError = 1;
+
+					$CodigoUsuario = mb_substr($CadenaError, 11 ,mb_strlen($CadenaError),'UTF-8');
+
+					$ObjErrores->insertErroresEcoopsos(
+					null
+					,$CodigoUsuario
+					,$CodigoEntidad
+					,$TipoError
+					,$Periodo
+					,$CodigoMunicipio
+					,$IdUsuario
+					,$CadenaError
+					);
+
+				}
+
+			
+
+
+
 			}
 			
 		}
@@ -161,6 +208,6 @@ while ($file = readdir($handle))
 			}
 	} 
 
-header("Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo");
+//header("Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo");
 
 ?>

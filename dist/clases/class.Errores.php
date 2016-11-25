@@ -43,8 +43,15 @@ class Errores extends ConnectionMySQL {
 	}
 
 	// Funcion para Obtener el Número de Errores Por Tipo
-	public function getNumErrorsByType ($TipoError) {
-		$this->query = $this->conn->prepare("SELECT COUNT(*) FROM errores4505 WHERE TipoError = '$TipoError'");
+	public function getNumErrorsByType ($CodigoEntidad, $TipoError, $Periodo, $CodigoMunicipio, $IdUsuario) {
+		$this->query = $this->conn->prepare("
+			SELECT COUNT(*) FROM errores4505 WHERE 
+			TipoError = '$TipoError' AND
+			CodigoEntidad = '$CodigoEntidad' AND
+			Periodo = '$Periodo' AND
+			CodigoMunicipio = '$CodigoMunicipio' AND
+			IdUsuario = '$IdUsuario'
+			");
 		$this->query->execute();
 		$count = $this->query->fetch(PDO::FETCH_NUM);
 		return reset($count);

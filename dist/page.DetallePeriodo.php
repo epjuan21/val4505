@@ -83,7 +83,7 @@
 		</div>
 
 		<?php
-		$NumeroErrores1 = $objErrores->getNumErrorsByType(1);
+		$NumeroErrores1 = $objErrores->getNumErrorsByType($PeriodoEntidad[0]["CodigoEntidad"], 1, $PeriodoEntidad[0]["FechaFinalReg"], $PeriodoEntidad[0]["CodigoMunicipio"], $PeriodoEntidad[0]["IdUsuario"]);
 		if ($NumeroErrores1 != 0) {
 		?>
 		<div class="param-content">
@@ -92,7 +92,7 @@
 					<div class="pnl-det-ttl">
 						Errores
 						<span class="pnl-det-det">
-						<?php echo $NumeroErrores;?> 
+						<?php echo $NumeroErrores1;?> 
 						</span>
 					</div>
 					<div class="pnl-det-sub">
@@ -107,7 +107,7 @@
 		</div>
 		<?php
 		}
-		$NumeroErrores2 = $objErrores->getNumErrorsByType(2);
+		$NumeroErrores2 = $objErrores->getNumErrorsByType($PeriodoEntidad[0]["CodigoEntidad"], 2, $PeriodoEntidad[0]["FechaFinalReg"], $PeriodoEntidad[0]["CodigoMunicipio"], $PeriodoEntidad[0]["IdUsuario"]);
 		if ($NumeroErrores2 != 0) {
 		?>
 		<div class="param-content">
