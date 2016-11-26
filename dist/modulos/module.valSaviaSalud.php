@@ -601,6 +601,14 @@ for ($i=0;$i<sizeof($reg);$i++)
 				fwrite($txt,'999');
 			}	
 		}
+		else if ($reg[$i]["ControlPrenatal"] > 25)
+		{
+
+			$Controles = $reg[$i]["ControlPrenatal"];
+			$Controles = substr($Controles,0,1);
+
+			fwrite($txt,$Controles);
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["ControlPrenatal"]);
