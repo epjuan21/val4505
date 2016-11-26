@@ -101,7 +101,8 @@
 				</div>
 
 				<div class="pnl-det-fot">
-					<a href="modulos/module.ProcesarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&TipoError=1" class="btn-min btn-min-red">Procesar</a>
+					<a href="modulos/module.ProcesarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&TipoError=1" class="btn-min btn-min-green">Procesar</a>
+					<a href="modulos/module.EliminarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&TipoError=1" class="btn-min btn-min-red">Eliminar</a>
 				</div>
 			</div>
 		</div>
