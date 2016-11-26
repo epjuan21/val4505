@@ -148,15 +148,25 @@
 			{
 
 				// Almacenamos el Dato Actual Que Contiene El Error
-				$CadenaError = 	$reg[3];
-				//echo "<br>";
+				
+				if (array_key_exists(3, $reg)){
+					$CadenaError = 	$reg[3];
+				}
+
+
+				if (array_key_exists(3, $reg)){
+					$TextoError = 	$reg[2];
+				}
+
+
+				$CadenaError = mb_convert_encoding($CadenaError,"UTF-8","UCS-2");
+				$TextoError = mb_convert_encoding($reg[2],"UTF-8","UCS-2")."<br>";
 
 				// Cadena Buscada Para Numero de Documento
 				$NumeroDoc = 'Numero Doc:';
 
 				// Cadena Buscada Para Fecha de Nacimiento
 				$DatoArchivo = 'Dato archivo';
-
 
 				// Buscar Cadena de Numero de Documento
 				$BuscarNumDoc = strpos($CadenaError, $NumeroDoc);
@@ -167,6 +177,7 @@
 
 				if ($BuscarNumDoc !== false) // Si Es Verdadero Se Encontro la Cadena Numero Doc
 				{
+
 
 					$TipoError = 1;
 
@@ -180,7 +191,7 @@
 					,$Periodo
 					,$CodigoMunicipio
 					,$IdUsuario
-					,$CadenaError
+					,$TextoError
 					);
 
 				}
@@ -208,6 +219,6 @@ while ($file = readdir($handle))
 			}
 	} 
 
-//header("Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo");
+header("Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo");
 
 ?>
