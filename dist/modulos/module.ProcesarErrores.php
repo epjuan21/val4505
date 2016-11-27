@@ -19,9 +19,11 @@ $Errores = $objErrores->gerErroresProc($CodEPS, $TipoError, $Per, $CodMun, $IdUs
 
 if ($TipoError == 1 && $IdUser != '') {
 
-	for ($i=0;$i<=sizeof($Errores); $i++) { 
+	for ($i=0;$i<sizeof($Errores); $i++) { 
 
 		$NumeroIdUsuario = $Errores[$i]["NumeroIdUsuario"];
+
+		//var_dump($NumeroIdUsuario);
 
 		$objRPED->deleteRegistroByCodUser($IdUser,$CodMun,$CodEPS,$Per,$NumeroIdUsuario);
 
@@ -34,7 +36,7 @@ if ($TipoError == 1 && $IdUser != '') {
 
 } else if ($TipoError == 2 && $IdUser != '') {
 	
-	for ($i=0;$i<=sizeof($Errores); $i++) {
+	for ($i=0;$i<sizeof($Errores); $i++) {
 
 		$NumeroIdUsuario = $Errores[$i]["NumeroIdUsuario"];
 

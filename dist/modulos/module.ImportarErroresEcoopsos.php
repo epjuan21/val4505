@@ -187,7 +187,7 @@
 
 					$TipoError = 1;
 
-					$CodigoUsuario = mb_substr($CadenaError, 11 ,mb_strlen($CadenaError),'UTF-8');
+					$CodigoUsuario = mb_substr($CadenaError, 12 ,mb_strlen($CadenaError),'UTF-8');
 
 					$ObjErrores->insertErrores(
 					null
