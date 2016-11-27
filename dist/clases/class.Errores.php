@@ -6,9 +6,9 @@ class Errores extends ConnectionMySQL {
 	public $query;
 
 	// Funcion Para Insertar Errores de Ecoopsos
-	public function insertErroresEcoopsos ($IdError, $CodigoUsuario, $IdEntidad, $TipoError, $Periodo, $CodigoMunicipio, $IdUsuario, $DetalleError) {
+	public function insertErrores ($IdError, $CodigoUsuario, $IdEntidad, $TipoError, $Periodo, $CodigoMunicipio, $IdUsuario, $DetalleError, $MensajeError) {
 
-		$sql="INSERT INTO errores4505 VALUES(?,?,?,?,?,?,?,?)";
+		$sql="INSERT INTO errores4505 VALUES(?,?,?,?,?,?,?,?,?)";
 		$stmt=$this->conn->prepare($sql);
 		$stmt->bindValue(1,$IdError,PDO::PARAM_INT);
 		$stmt->bindValue(2,$CodigoUsuario,PDO::PARAM_STR);
@@ -18,6 +18,7 @@ class Errores extends ConnectionMySQL {
 		$stmt->bindValue(6,$CodigoMunicipio,PDO::PARAM_STR);
 		$stmt->bindValue(7,$IdUsuario,PDO::PARAM_STR);
 		$stmt->bindValue(8,$DetalleError,PDO::PARAM_STR);
+		$stmt->bindValue(9,$MensajeError,PDO::PARAM_STR);
 		$stmt->execute();
 	}
 
@@ -30,7 +31,7 @@ class Errores extends ConnectionMySQL {
 
 	// Funcion Para Obtener Errores Para ser Procesados
 	public function gerErroresProc ($CodigoEntidad, $TipoError, $Periodo, $CodigoMunicipio, $IdUsuario){
-		$this->query = $this->conn->prepare("SELECT NumeroIdUsuario, CodigoEntidad, Periodo, CodigoMunicipio, IdUsuario, DetalleError FROM errores4505 WHERE CodigoEntidad = '$CodigoEntidad' AND TipoError = '$TipoError' AND Periodo = '$Periodo' AND CodigoMunicipio = '$CodigoMunicipio' AND IdUsuario = '$IdUsuario' ");
+		$this->query = $this->conn->prepare("SELECT NumeroIdUsuario, CodigoEntidad, Periodo, CodigoMunicipio, IdUsuario, DetalleError, MensajeError FROM errores4505 WHERE CodigoEntidad = '$CodigoEntidad' AND TipoError = '$TipoError' AND Periodo = '$Periodo' AND CodigoMunicipio = '$CodigoMunicipio' AND IdUsuario = '$IdUsuario' ");
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
@@ -57,6 +58,28 @@ class Errores extends ConnectionMySQL {
 		return reset($count);
 		//return $numRows = $this->query->rowCount();
 	}
+
+	// Funcion para obtener Cantidad de Errores por Entidad
+	public function getErrorByEPS($CodigoEntidad, $Periodo, $CodigoMunicipio, $IdUsuario) {
+		$this->query = $this->conn->prepare("
+			SELECT COUNT(TipoError) AS Cantidad
+			,MensajeError
+			,CodigoEntidad
+			,TipoError
+			FROM
+			errores4505
+			WHERE CodigoEntidad = '$CodigoEntidad'
+			AND Periodo = '$Periodo'
+			AND CodigoMunicipio = '$CodigoMunicipio'
+			AND IdUsuario = '$IdUsuario'
+			GROUP BY TipoError, CodigoEntidad
+			");
+		$this->query->execute();
+		return $this->query->fetchAll(PDO::FETCH_BOTH);
+	}
+
+
+
 
 }
 

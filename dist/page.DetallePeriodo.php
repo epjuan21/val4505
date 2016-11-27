@@ -65,74 +65,52 @@
 
 		<div class="param-content">
 				
-				<form action="modulos/module.BuscarUsuario.php" method="POST">
-					
-					<div class="form-group">
-						<label for="NumeroIdUsuario">Buscar Usuario</label>
-						<input type="text" name="NumeroIdUsuario" class="form-control">
-					</div>
+			<form action="modulos/module.BuscarUsuario.php" method="POST">
+				
+				<div class="form-group">
+					<label for="NumeroIdUsuario">Buscar Usuario</label>
+					<input type="text" name="NumeroIdUsuario" class="form-control">
+				</div>
 
 
-					<input type="hidden" name="Entidad" value="<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>" class="form-control">
+				<input type="hidden" name="Entidad" value="<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>" class="form-control">
 
-					<input type="hidden" name="Periodo" value="<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>" class="form-control">
+				<input type="hidden" name="Periodo" value="<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>" class="form-control">
 
-					<input type="submit" value="Buscar" class="btn">
+				<input type="submit" value="Buscar" class="btn">
 
-				</form>
+			</form>
 		</div>
 
-		<?php
-		$NumeroErrores1 = $objErrores->getNumErrorsByType($PeriodoEntidad[0]["CodigoEntidad"], 1, $PeriodoEntidad[0]["FechaFinalReg"], $PeriodoEntidad[0]["CodigoMunicipio"], $PeriodoEntidad[0]["IdUsuario"]);
-		if ($NumeroErrores1 != 0) {
-		?>
 		<div class="param-content">
+			<?php
+			$Err = $objErrores->getErrorByEPS($PeriodoEntidad[0]["CodigoEntidad"], $PeriodoEntidad[0]["FechaFinalReg"], $PeriodoEntidad[0]["CodigoMunicipio"], $PeriodoEntidad[0]["IdUsuario"]);
+
+			for ($i=0;$i<sizeof($Err);$i++)
+			{
+			?>	
 			<div class="pnl-det-cnt">
 				<div class="pnl-det-hed">
 					<div class="pnl-det-ttl">
 						Errores
 						<span class="pnl-det-det">
-						<?php echo $NumeroErrores1;?> 
+						<?php echo $Err[$i]["Cantidad"];?> 
 						</span>
 					</div>
 					<div class="pnl-det-sub">
-						<span>Tipo Error:</span>El afiliado no existe en la base de datos o sus datos no concuerdan con BDUA
+						<span>Tipo Error:</span><?php echo $Err[$i]["MensajeError"];?>
 					</div>
 				</div>
 
 				<div class="pnl-det-fot">
-					<a href="modulos/module.ProcesarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&TipoError=1" class="btn-min btn-min-green">Procesar</a>
-					<a href="modulos/module.EliminarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&TipoError=1" class="btn-min btn-min-red">Eliminar</a>
+					<a href="modulos/module.ProcesarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&TipoError=<?php echo $Err[$i]["TipoError"];?>" class="btn-min btn-min-green">Procesar</a>
+					<a href="modulos/module.EliminarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&TipoError=<?php echo $Err[$i]["TipoError"];?>" class="btn-min btn-min-red">Eliminar</a>
 				</div>
 			</div>
+			<?php
+			}	
+			?>
 		</div>
-		<?php
-		}
-		$NumeroErrores2 = $objErrores->getNumErrorsByType($PeriodoEntidad[0]["CodigoEntidad"], 2, $PeriodoEntidad[0]["FechaFinalReg"], $PeriodoEntidad[0]["CodigoMunicipio"], $PeriodoEntidad[0]["IdUsuario"]);
-		if ($NumeroErrores2 != 0) {
-		?>
-		<div class="param-content">
-			<div class="pnl-det-cnt">
-				<div class="pnl-det-hed">
-					<div class="pnl-det-ttl">
-						Errores
-						<span class="pnl-det-det">
-						<?php echo $NumeroErrores2;?> 
-						</span>
-					</div>
-					<div class="pnl-det-sub">
-						<span>Tipo Error:</span>Afiliado con valores en Nombres y/o Apellidos y/o Fecha de nacimiento diferentes a BDUA.
-					</div>
-				</div>
-
-				<div class="pnl-det-fot">
-					<a href="modulos/module.ProcesarErrores.php?CodEPS=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Per=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&TipoError=2" class="btn-min btn-min-red">Procesar</a>
-				</div>
-			</div>
-		</div>
-		<?php
-		}
-		?>
 
 		<div class="item-container-column">
 			

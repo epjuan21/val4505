@@ -106,11 +106,15 @@
 				if ($pos !== false && $posdos !== false) {
 					$Bandera = 1; // Si Bandera es 1 Se Encontraron Ambas Cadenas
 				    //"Ambas cadenas Fueron Encontradas";
+
+					// Afiliado con valores en Nombres y/o Apellidos y/o Fecha de nacimiento diferentes a BDUA
+
 					$TipoError = 2;
+					$MensajeError = substr($Cadena, 80,88);
 					$Cadena = utf8_encode($Cadena);
 					$Cadena = get_between($Cadena,'(',')');
-
-					$ObjErrores->insertErroresEcoopsos(
+					
+					$ObjErrores->insertErrores(
 					null
 					,$CodigoUsuario
 					,$CodigoEntidad
@@ -118,17 +122,19 @@
 					,$Periodo
 					,$CodigoMunicipio
 					,$IdUsuario
-					,$Cadena 
+					,$Cadena
+					,$MensajeError
 					);
 
 				} else if ($pos !== false && $posdos === false) {
 				    //"Se Econtró la Primera y La Segunda No";
 					$Bandera = 2; // Si Bandera es 2 Se Encontro Una Cadena
 					$TipoError = 1;
+					$MensajeError = substr($Cadena, 1,80);
 
 					if ($Bandera === 2 && $CodigoUsuario !='' && $CodigoEntidad !='') {
 
-						$ObjErrores->insertErroresEcoopsos(
+						$ObjErrores->insertErrores(
 						null
 						,$CodigoUsuario
 						,$CodigoEntidad
@@ -137,6 +143,7 @@
 						,$CodigoMunicipio
 						,$IdUsuario
 						,$Cadena
+						,$MensajeError
 						);
 					}
 
@@ -178,12 +185,11 @@
 				if ($BuscarNumDoc !== false) // Si Es Verdadero Se Encontro la Cadena Numero Doc
 				{
 
-
 					$TipoError = 1;
 
 					$CodigoUsuario = mb_substr($CadenaError, 11 ,mb_strlen($CadenaError),'UTF-8');
 
-					$ObjErrores->insertErroresEcoopsos(
+					$ObjErrores->insertErrores(
 					null
 					,$CodigoUsuario
 					,$CodigoEntidad
@@ -191,14 +197,11 @@
 					,$Periodo
 					,$CodigoMunicipio
 					,$IdUsuario
+					,$CadenaError
 					,$TextoError
 					);
 
 				}
-
-			
-
-
 
 			}
 			
