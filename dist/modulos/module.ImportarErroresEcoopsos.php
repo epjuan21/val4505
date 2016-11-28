@@ -1,11 +1,17 @@
 <?php
     require_once("../clases/class.Session.php");
+    require_once ("../clases/class.rped.php");
+
     $sesion = new sesion();
+    $objRPED = new rped();
 
     $IdUsuario = $sesion->get("idUsuario");
 	$CodigoEntidad = $_POST['CodigoEntidad'];
 	$CodigoMunicipio = $_POST['CodigoMunicipio'];
 	$Periodo = $_POST['Periodo'];
+
+
+	$RegistrosNumerados = $objRPED->gerRegNum($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $Periodo);
 
 	if (!$IdUsuario) {
 		$sesion->termina_sesion();
@@ -80,9 +86,11 @@
 		$now = new DateTime;
 		$FechaRegistro = $now->format('Y-m-d H:i:s-U');		// Fecha Registro
 
+		$i = 0;
 		// Mientras no Sea el Final del Archivo
 		while (!feof($fp))
 		{
+
 			$line = stream_get_line($fp, 1000000, "\n");
 			$reg = explode("|", $line);
 
@@ -103,7 +111,8 @@
 				$pos = strpos($Cadena, $AfiliadoNoExiste);
 				$posdos = strpos($Cadena, $AfiliadoValoresDiferentes);
 
-				if ($pos !== false && $posdos !== false) {
+				if ($pos !== false && $posdos !== false) 
+				{
 					$Bandera = 1; // Si Bandera es 1 Se Encontraron Ambas Cadenas
 				    //"Ambas cadenas Fueron Encontradas";
 
@@ -126,13 +135,16 @@
 					,$MensajeError
 					);
 
-				} else if ($pos !== false && $posdos === false) {
+				} 
+				else if ($pos !== false && $posdos === false) 
+				{
 				    //"Se Econtró la Primera y La Segunda No";
 					$Bandera = 2; // Si Bandera es 2 Se Encontro Una Cadena
 					$TipoError = 1;
 					$MensajeError = substr($Cadena, 1,80);
 
-					if ($Bandera === 2 && $CodigoUsuario !='' && $CodigoEntidad !='') {
+					if ($Bandera === 2 && $CodigoUsuario !='' && $CodigoEntidad !='') 
+					{
 
 						$ObjErrores->insertErrores(
 						null
@@ -165,9 +177,13 @@
 					$TextoError = 	$reg[2];
 				}
 
+				if (array_key_exists(0, $reg)){
+					$CadenaLinea = 	$reg[0];
+				}
 
 				$CadenaError = mb_convert_encoding($CadenaError,"UTF-8","UCS-2");
-				$TextoError = mb_convert_encoding($reg[2],"UTF-8","UCS-2")."<br>";
+				$TextoError = mb_convert_encoding($TextoError,"UTF-8","UCS-2");
+				$CadenaLinea = mb_convert_encoding($CadenaLinea,"UTF-8","UCS-2");
 
 				// Cadena Buscada Para Numero de Documento
 				$NumeroDoc = 'Numero Doc:';
@@ -178,7 +194,7 @@
 				// Buscar Cadena de Numero de Documento
 				$BuscarNumDoc = strpos($CadenaError, $NumeroDoc);
 
-				// Buscar Cadena de Dato Archivo
+				// Buscar Cadena de Dato Archivo que Indica Fecha de Nacimiento Errada
 				$BucarDatoArchivo = strpos($CadenaError, $DatoArchivo);
 
 
@@ -200,12 +216,62 @@
 					,$CadenaError
 					,$TextoError
 					);
+				}
+				else if ($BucarDatoArchivo !== false) // Si Es Verdadero Se Encontro la Cadena Dato Archivo
+				{
+					
+					$TipoError = 3;
 
+					//var_dump($CadenaError);
+					// Obtenemos El Primer Caracter de la Cadena Error
+					$var = substr($CadenaError, 14, 1);
+					
+					//var_dump($var);
+
+					// Si el Primer Caracter es Numerico Se Asume que es Una Fecha
+					if (is_numeric($var)){
+
+						$CadenaFecha = substr($CadenaError, 44, 10);
+
+						//var_dump($CadenaFecha);
+						//var_dump($CadenaLinea);
+
+						$Year = substr($CadenaFecha, 6, 4);
+						$Month = substr($CadenaFecha, 3, 2);
+						$Day = substr($CadenaFecha, 0, 2);
+
+						$FechaNueva = $Year."-".$Month."-".$Day;
+
+						for ($i=1;$i<=sizeof($RegistrosNumerados);$i++) 
+						{
+							if ($i == $CadenaLinea){
+								// Obtenemos el Numero de Documento del Usuairo Segun La Linea en el Archivo de Errores
+								$CodigoUsuario = $RegistrosNumerados[$i-1]["NumeroIdUsuario"];
+
+								$ObjErrores->insertErrores(
+								null
+								,$CodigoUsuario
+								,$CodigoEntidad
+								,$TipoError
+								,$Periodo
+								,$CodigoMunicipio
+								,$IdUsuario
+								,$FechaNueva
+								,$TextoError
+								);
+
+
+							}
+
+						}
+
+					}
 				}
 
 			}
-			
+		
 		}
+
 		fclose($fp);
 	}
 

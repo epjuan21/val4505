@@ -37,6 +37,27 @@ class rped extends ConnectionMySQL {
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
 
+	// Funcion Para Obtener Registros Numerados
+	public function gerRegNum($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaFinalReg) {
+		$this->query = $this->conn->prepare("
+			SELECT
+			@rownum:=@rownum+1 AS Linea
+			,IdUsuario
+			,CodigoMunicipio
+			,CodigoEntidad
+			,FechaFinalReg
+			,NumeroIdUsuario
+			FROM rped
+			,(SELECT @rownum:=0) r
+			WHERE IdUsuario = '$IdUsuario'
+			AND CodigoMunicipio = '$CodigoMunicipio'
+			AND CodigoEntidad = '$CodigoEntidad'
+			AND FechaFinalReg = '$FechaFinalReg'
+			");
+		$this->query->execute();
+		return $this->query->fetchAll(PDO::FETCH_BOTH);
+	}
+
 	// Borra Periodos Seleccionados Por Entidad desde la Pagina de Importar
 	
 	public function deletePeriod ($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaInicialReg, $FechaFinalReg)
@@ -59,9 +80,8 @@ class rped extends ConnectionMySQL {
 		$this->query->execute();
 	}
 
-	// Funcion para Actualizar Nombres, Apellidos y Fecha de Nacimeinto Segun Archivo de Errores Importado
+	// Funcion para Actualizar Nombres, Apellidos y Fecha de Nacimeinto Segun Archivo de Errores Importado de ECOOPSOS
 	public function updateUser ($Apellido1, $Apellido2, $Nombre1, $Nombre2, $FechaNacimiento, $IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaFinalReg, $NumeroIdUsuario){
-
 		$sql = "UPDATE rped SET 
 			Apellido1=?,
 			Apellido2=?,
@@ -79,10 +99,30 @@ class rped extends ConnectionMySQL {
 			AND
 			NumeroIdUsuario=?";
 
-			$stmt=$this->conn->prepare($sql);
+		$stmt=$this->conn->prepare($sql);
 
-			$stmt->execute(array($Apellido1, $Apellido2, $Nombre1, $Nombre2, $FechaNacimiento, $IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaFinalReg, $NumeroIdUsuario));
+		$stmt->execute(array($Apellido1, $Apellido2, $Nombre1, $Nombre2, $FechaNacimiento, $IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaFinalReg, $NumeroIdUsuario));
 			
+	}
+
+	// Funcion para Atualizar Fecha de Nacimiento Segun Archivo de Errores de SAVIASALUD
+	public function updateFchNac($FechaNacimiento, $IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaFinalReg, $NumeroIdUsuario){
+		$sql = "UPDATE rped SET
+			FechaNacimiento=?
+			WHERE
+			IdUsuario=?
+			AND
+			CodigoMunicipio=?
+			AND
+			CodigoEntidad=?
+			AND
+			FechaFinalReg=?
+			AND
+			NumeroIdUsuario=?";
+		
+		$stmt=$this->conn->prepare($sql);
+		$stmt->execute(array($FechaNacimiento, $IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaFinalReg, $NumeroIdUsuario));
+
 	}
 
 	// Funcion para Obtener el Numero de Registros
