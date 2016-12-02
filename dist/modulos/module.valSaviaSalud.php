@@ -210,7 +210,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaPeso"]);
 	fwrite($txt,"|");
-		if ($reg[$i]["PesoKilogramos"] > 1000)
+		if ($reg[$i]["PesoKilogramos"] > 250)
 		{
 			$Peso = substr($reg[$i]["PesoKilogramos"], 0, 2);
 			fwrite($txt,$Peso);
