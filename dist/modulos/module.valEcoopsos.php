@@ -94,6 +94,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 			{
 				fwrite($txt,'21');
 			}
+			else if ($edadDias <= 90 && $reg[$i]["SifilisGestacional"]=='21')
+			{
+				fwrite($txt,'21');
+			}
 			else
 			{
 				fwrite($txt,'0');
