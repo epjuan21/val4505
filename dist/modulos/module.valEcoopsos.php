@@ -1201,7 +1201,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		if ($edad >= '45' && $reg[$i]["ResultadoCreatinina"] == '999' || $reg[$i]["ResultadoCreatinina"] == '0'))
 		{	
-			if (($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100') && $reg[$i]["FechaTomaCreatininaInput"] == '1845-01-01')
+			if ($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100')
 			{
 				fwrite($txt,'999');
 			}
