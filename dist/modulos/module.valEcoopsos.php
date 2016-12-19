@@ -1193,6 +1193,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 			{
 				fwrite($txt,'1845-01-01');
 			}
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["FechaTomaCreatininaInput"]);
@@ -1209,6 +1210,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 			{
 				fwrite($txt,'0');
 			}
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["ResultadoCreatinina"]);
