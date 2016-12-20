@@ -1217,19 +1217,33 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ResultadoCreatinina"]); // 107. Creatinina
 	fwrite($txt,"|");
-		if (($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100') && $reg[$i]["FechaHemoglobinaGlicosiladaInput"] == '1845-01-01')
+		if ($edad >= '45' && ($reg[$i]["FechaHemoglobinaGlicosiladaInput"] == '1800-01-01' || $reg[$i]["FechaHemoglobinaGlicosiladaInput"] == '1845-01-01'))
 		{
-			fwrite($txt,'1800-01-01');
+			if (($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100') && $reg[$i]["FechaHemoglobinaGlicosiladaInput"] == '1845-01-01')
+			{
+				fwrite($txt,'1800-01-01');
+			}
+			else
+			{
+				fwrite($txt,'1845-01-01');
+			}
 		}
 		else
 		{
-			fwrite($txt,$reg[$i]["FechaHemoglobinaGlicosiladaInput"]);
+		fwrite($txt,$reg[$i]["FechaHemoglobinaGlicosiladaInput"]);
 		}
 	//fwrite($txt,$reg[$i]["FechaHemoglobinaGlicosiladaInput"]); // 108. Fecha Hemoglobina Glicosilada
 	fwrite($txt,"|");
-		if (($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100') && $reg[$i]["FechaHemoglobinaGlicosiladaInput"] == '1845-01-01')
+		if ($edad >= '45' && ($reg[$i]["ResultadoHemoglobinaGlicosilada"] == '999' || $reg[$i]["ResultadoHemoglobinaGlicosilada"] == '0'))
 		{
-			fwrite($txt,'999');
+			if (($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100') && $reg[$i]["FechaHemoglobinaGlicosiladaInput"] == '1845-01-01')
+			{	
+				fwrite($txt,'999');
+			}
+			else
+			{
+				fwrite($txt,'0');
+			}	
 		}
 		else
 		{
