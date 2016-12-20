@@ -95,6 +95,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 			{
 				fwrite($txt,'21');
 			}
+			else if ($edadDias <= 90 && $reg[$i]["SifilisGestacional"]=='21')
+			{
+				fwrite($txt,'21');
+			}
 			else
 			{
 				fwrite($txt,'0');
@@ -693,7 +697,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}
-		else
+		else if ($edad == 5 && $reg[$i]["ValoracionAgudezaVisualInput"] == '1800-01-01')
+		{
+			fwrite($txt,'1845-01-01');
+		}
+		else	
 		{
 			fwrite($txt,$reg[$i]["ValoracionAgudezaVisualInput"]);
 		}
@@ -767,7 +775,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["SuministroVitaminaAMenor"]); // 71. Suministro de Vitamina A en la Ultima Consulta de Menor de 10 Años
 	fwrite($txt,"|");
-		if ($edad < 10) 
+		if ($edad < 10 || $edad >= 30) 
 		{
 			fwrite($txt,'1845-01-01');
 		} 
@@ -782,7 +790,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["ConsultaJovenPrimeraVezInput"]); // 72. Consulta de Joven Primera Vez
 	fwrite($txt,"|");
 	// Pagina 49: La opción 1845-01-01 se usa: Para población mayor de 45 años
-		if ($edad >= 45 && $reg[$i]["ConsultaAdultoPrimeraVezInput"] == '1845-01-01')
+		if ($edad >= 45 && ($reg[$i]["ConsultaAdultoPrimeraVezInput"] == '1845-01-01' ||  $reg[$i]["ConsultaAdultoPrimeraVezInput"] == '1800-01-01'))
 		{
 			if ($edad == 45 || $edad == 50 || $edad == 55 || $edad == 60 || $edad == 65 || $edad == 65 || $edad == 70 || $edad == 75 || $edad == 80 || $edad == 85 || $edad == 90)
 			{
@@ -1176,9 +1184,16 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTomaGlisemiaInput"]); // 105. Fecha de la Toma de Glisemia Basal
 	fwrite($txt,"|");
-		if (($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100') && $reg[$i]["FechaTomaCreatininaInput"] == '1845-01-01')
+		if ($edad >= 45 && ($reg[$i]["FechaTomaCreatininaInput"] == '1800-01-01' || $reg[$i]["FechaTomaCreatininaInput"] == '1845-01-01'))
 		{
-			fwrite($txt,'1800-01-01');
+			if ($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100')
+			{
+				fwrite($txt,'1800-01-01');
+			}
+			else
+			{
+				fwrite($txt,'1845-01-01');
+			}
 		}
 		else
 		{
@@ -1186,9 +1201,16 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,	$reg[$i]["FechaTomaCreatininaInput"]); // 106. Fecha de Creatinina
 	fwrite($txt,"|");
-		if (($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100') && $reg[$i]["FechaTomaCreatininaInput"] == '1845-01-01')
-		{
-			fwrite($txt,'999');
+		if ($edad >= '45' && ($reg[$i]["ResultadoCreatinina"] == '999' || $reg[$i]["ResultadoCreatinina"] == '0'))
+		{	
+			if ($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100')
+			{
+				fwrite($txt,'999');
+			}
+			else
+			{
+				fwrite($txt,'0');
+			}
 		}
 		else
 		{
