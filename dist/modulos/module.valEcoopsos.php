@@ -21,6 +21,7 @@ $numId = '000890981494';
 $cons = 'S01';
 
 $nombreArchivo = $res."".str_replace("-", "", $FechaFinal)."".$tipoId."".$numId."".$cons.".txt";
+
 $txt = fopen("$nombreArchivo","w");
 
 fwrite($txt,"1");
