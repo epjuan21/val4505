@@ -668,7 +668,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ValoracionAgudezaVisualInput"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ConsultaOftalmologiaInput"]);
+		if ($edad == 60 && $reg[$i]["ConsultaOftalmologiaInput"] == '1845-01-01')
+		{
+			fwrite($txt,'1800-01-01');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["ConsultaOftalmologiaInput"]);
+		}
+	//fwrite($txt,$reg[$i]["ConsultaOftalmologiaInput"]); // 63. Consulta por Oftalmología
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaDiagnosticoDesnutricion"]);
 	fwrite($txt,"|");
