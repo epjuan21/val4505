@@ -76,9 +76,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["CodigoNivelEducativo"]);
 	fwrite($txt,"|");
-
-		$Edad = $edadDias / 365;
-		
 		if ($reg[$i]["Sexo"] == 'M')
 		{
 			fwrite($txt,'0');
@@ -133,7 +130,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["SifilisGestacional"]); // 15. Sifilis Gestacional y Congenita
 	fwrite($txt,"|");
-		if ($edad < 10 || $edad >= 57)
+		if (($edad < 10 || $edad >= 57 || $reg[$i]["Gestacion"] == '21') && $reg[$i]["HipertensionInducidaGestacion"] == '0')
 		{
 			fwrite($txt,'0');
 		}
@@ -886,7 +883,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ResultadoSerologiaSifilis"]); // 81. Resultado Serología Para Sífilis
 	fwrite($txt,"|");
-		if ($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00')
+		if ($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
 		{
 			fwrite($txt,'1800-01-01');
 		}
