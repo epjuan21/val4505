@@ -729,13 +729,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ConsultaCyDPrimeraVezInput"]);
 	fwrite($txt,"|");
-		if ($Edad >= 10 && $reg[$i]["SuministroSulfatoFerrosoMenor"]=='0' && $reg[$i]["SuministroSulfatoFerrosoMenor"]!='0')
+		if ($edad >= 10 && $reg[$i]["SuministroSulfatoFerrosoMenor"]=='0' && $reg[$i]["SuministroSulfatoFerrosoMenor"]!='0')
 		{
 			fwrite($txt,$reg[$i]["SuministroSulfatoFerrosoMenor"]); 
 		} else if ($edad < 10 && $reg[$i]["SuministroSulfatoFerrosoMenor"] > 0 && $reg[$i]["SuministroSulfatoFerrosoMenor"]!='0')
 		{
 			fwrite($txt,$reg[$i]["SuministroSulfatoFerrosoMenor"]);
-		} else if ($Edad >= 10 && $reg[$i]["SuministroSulfatoFerrosoMenor"]=='21')
+		} else if ($edad >= 10 && $reg[$i]["SuministroSulfatoFerrosoMenor"]=='21')
 		{
 			fwrite($txt,'0');
 		}
