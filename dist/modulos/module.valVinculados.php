@@ -184,7 +184,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 			fwrite($txt,'21');
 
 		}
-		else if ($reg[$i]["ConsultaMujerMenorVictimaInput"] == '1800-01-01' && $reg[$i]["VictimaMaltrato"] == '21')
+		else if ($reg[$i]["ConsultaMujerMenorVictimaInput"] == '1800-01-01' && ($reg[$i]["VictimaMaltrato"] == '21' || $reg[$i]["VictimaMaltrato"] == '2'))
 		{
 			fwrite($txt,'3');
 		}
