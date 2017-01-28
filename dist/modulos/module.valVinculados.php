@@ -1008,7 +1008,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		} else if ($edad <= 10 and $reg[$i]["CalidadMuestraCitologia"]!='0')
 		{
 			fwrite($txt,'0');
-		} else if ($edad >= 10 and $reg[$i]["Sexo"]=='F' and $reg[$i]["CalidadMuestraCitologia"]=='0')
+		} else if ($edad >= 10 && $reg[$i]["Sexo"]=='F' && $reg[$i]["CalidadMuestraCitologia"]=='0')
 		{
 			fwrite($txt,'999');
 		} else {
@@ -1019,10 +1019,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if ($reg[$i]["Sexo"]=='M')
 		{
 			fwrite($txt,'0');
-		} else if ($edad <= 10 and $reg[$i]["CodigoHabilitacionIPSTomaMuestra"]!='0')
+		} else if ($edad <= 10 && $reg[$i]["CodigoHabilitacionIPSTomaMuestra"]!='0')
 		{
 			fwrite($txt,'0');
-		} else if ($edad >= 10 and $reg[$i]["Sexo"]=='F' and $reg[$i]["CodigoHabilitacionIPSTomaMuestra"]=='0')
+		} else if ($edad >= 10 && $reg[$i]["Sexo"]=='F' && $reg[$i]["CodigoHabilitacionIPSTomaMuestra"]=='0')
 		{
 			fwrite($txt,'999');
 		} else {
@@ -1064,7 +1064,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ResultadoBiopsiaCervical"]); // 94. Resultado Biopsia Cervical
 	fwrite($txt,"|");
-		if ($edad >= 10 && $reg[$i]["Sexo"]=='F' && $reg[$i]["CodigoHabilitacionTomaBiopsia"]=='0') 
+		if ($edad >= 10 && $reg[$i]["Sexo"]=='F' && $reg[$i]["CodigoHabilitacionTomaBiopsia"]=='0' && $reg[$i]["ResultadoBiopsiaCervical"] != '0') 
 		{
 			fwrite($txt,'999');
 		} 
