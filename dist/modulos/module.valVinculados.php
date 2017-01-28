@@ -186,7 +186,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 		else if ($reg[$i]["ConsultaMujerMenorVictimaInput"] == '1800-01-01' && $reg[$i]["VictimaMaltrato"] == '21')
 		{
-			fwrite($txt,'2');
+			fwrite($txt,'3');
 		}
 		else
 		{
