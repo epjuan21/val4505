@@ -1110,9 +1110,17 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaResultadoBiopsiaSeno"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ResultadoBiopsiaSeno"]);
+	fwrite($txt,$reg[$i]["ResultadoBiopsiaSeno"]);	// 101. Resultado Biopsia Seno por BACAF
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["CodigoHabilitacionBiopsiaSeno"]);
+		if ($reg[$i]["ResultadoBiopsiaSeno"] == '0' && $reg[$i]["CodigoHabilitacionBiopsiaSeno"] == '999')
+		{
+			fwrite($txt,'0');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["CodigoHabilitacionBiopsiaSeno"]);
+		}
+	//fwrite($txt,$reg[$i]["CodigoHabilitacionBiopsiaSeno"]); // 102. Código de habilitación IPS donde se toma Biopsia Seno por BACAF
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaTomaHemoglobinaInput"]);
 	fwrite($txt,"|");
