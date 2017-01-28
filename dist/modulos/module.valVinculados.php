@@ -1064,7 +1064,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ResultadoBiopsiaCervical"]); // 94. Resultado Biopsia Cervical
 	fwrite($txt,"|");
-		if ($edad >= 10 && $reg[$i]["Sexo"]=='F' && $reg[$i]["CodigoHabilitacionTomaBiopsia"]=='0' && $reg[$i]["ResultadoBiopsiaCervical"] != '0') 
+		if ($edad >= 10 && $reg[$i]["Sexo"] == 'F' && $reg[$i]["CodigoHabilitacionTomaBiopsia"] == '0' && $reg[$i]["ResultadoBiopsiaCervical"] != 0) 
 		{
 			fwrite($txt,'999');
 		} 
