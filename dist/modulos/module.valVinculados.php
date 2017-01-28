@@ -17,7 +17,7 @@ $reg = $objRPED->getRPED($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaIni
 
 $res='SGD280RPED';
 $tipoId = 'MU';
-$numId = '000000005091';
+$numId = '0000000'.$CodigoMunicipio;
 $cons = 'N01';
 
 $nombreArchivo = $res."".str_replace("-", "", $FechaFinal)."".$tipoId."".$numId."".$cons.".txt";
