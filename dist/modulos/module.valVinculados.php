@@ -182,7 +182,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 		else if ($edad < 19 && $reg[$i]["VictimaMaltrato"]=='0')
 		{
 			fwrite($txt,'21');
-		} else {
+
+		else if($reg[$i]["ConsultaMujerMenorVictimaInput"] == '1800-01-01' && $reg[$i]["VictimaMaltrato"]=='21')
+		{
+			fwrite($txt,'2');
+		}
+		else
+		{
 			fwrite($txt,$reg[$i]["VictimaMaltrato"]);
 		}
 	//fwrite($txt,$reg[$i]["VictimaMaltrato"]); // 22. Victima Maltrato
