@@ -19,7 +19,7 @@ class Municipio extends ConnectionMySQL {
 
 	public function insertMunicipio () {
 
-		$sql="INSERT INTO municipios VALUES(?,?,?)";
+		$sql="INSERT INTO municipios VALUES(?,?,?,?)";
 		$stmt=$this->conn->prepare($sql);		
 		$stmt->bindValue(1,null,PDO::PARAM_INT);
 		$stmt->bindValue(2,$_POST["mun-name"],PDO::PARAM_STR);
