@@ -1,7 +1,7 @@
 <?php
 	require_once ("../clases/class.Municipio.php");
 	    $objMunicipio = new Municipio();
-	        $Municipio = $objMunicipio->getEntidadId($_POST["ent-cod"]);
+	        $Municipio = $objMunicipio->getMunicipioId($_POST["mun-cod"]);
 	    
 	if ($Municipio) {
 
