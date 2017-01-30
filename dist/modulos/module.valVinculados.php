@@ -138,6 +138,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
+		else if ($reg[$i]["Gestacion"] == '21' && $reg[$i]["HipertensionInducidaGestacion"] == '21')
+		{
+			fwrite($txt,'0');	
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["HipertensionInducidaGestacion"]);
