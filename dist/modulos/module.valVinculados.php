@@ -912,7 +912,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); // 82. Fecha de Toma de Elisa para VIH
 	fwrite($txt,"|");
-		if ($reg[$i]["ResultadoElisaVIH"] == '0' && ($reg[$i]["FechaTomaElisaVIHInput"] == '1800-01-01' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00' || ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaElisaVIHInput"] == '1845-01-01')))
+		if ($reg[$i]["ResultadoElisaVIH"] == '0' && ($reg[$i]["FechaTomaElisaVIHInput"] == '1800-01-01' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00' || ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaElisaVIHInput"] == '1845-01-01')))
 		{
 			fwrite($txt,'22');
 		}
