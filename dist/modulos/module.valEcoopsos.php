@@ -63,7 +63,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["PertenenciaEtnica"]);
 	fwrite($txt,"|");
-	fwrite($txt,'9999'); // 12. Código de ocupación
+		if ($reg[$i]["CodigoOcupacion"] = '429' || $reg[$i]["CodigoOcupacion"] = '490' || $reg[$i]["CodigoOcupacion"] = '611' || $reg[$i]["CodigoOcupacion"] = '996' || $reg[$i]["CodigoOcupacion"] = '997')
+		{
+			fwrite($txt,'9999');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["CodigoOcupacion"]);
+		}
+	//fwrite($txt,'9999'); // 12. Código de ocupación
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["CodigoNivelEducativo"]);
 	fwrite($txt,"|");
