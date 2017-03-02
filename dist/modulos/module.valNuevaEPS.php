@@ -1090,9 +1090,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaTomaBaciloscopiaInput"]); // 112. Fecha Toma de Baciloscopia de Diagnóstico
 	fwrite($txt,"|");
-		if (($reg[$i]["FechaTomaBaciloscopiaInput"] != '1800-01-01' || $reg[$i]["FechaTomaBaciloscopiaInput"] != '1845-01-01') && $reg[$i]["ResultadoBaciloscopia"] == '4')
+		if ($reg[$i]["ResultadoBaciloscopia"] == '1845-01-01' && $reg[$i]["ResultadoBaciloscopia"] == '1')
 		{
-			fwrite($txt,'1');
+			fwrite($txt,'4');
 		} 
 		else 
 		{
