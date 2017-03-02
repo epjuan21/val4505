@@ -169,7 +169,40 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["Lepra"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ObesidadDesnutricion"]); // 21. Obsesidad o Desnutrición Proteico Calórica
+		if ($reg[$i]["PesoKilogramos"] > 1000)
+		{	
+			$Peso = substr($reg[$i]["PesoKilogramos"], 0, 2);
+		}
+		else
+		{
+			$Peso = $reg[$i]["PesoKilogramos"];
+		}
+		
+		if ($reg[$i]["TallaCentimetros"] > 200)
+		{
+			$Talla = substr($reg[$i]["TallaCentimetros"], 0,2);
+		}
+		else
+		{
+			$Talla =$reg[$i]["TallaCentimetros"];
+		}
+	
+		$cm = $Talla;
+		$kg = $Peso;
+		$mt = $cm/100;
+		$mtCuadrado= pow ($mt,2);
+
+		$imc = $kg / ($mtCuadrado);
+	
+	if ($imc >= 30)
+	{
+		fwrite($txt,1);
+	}
+	else
+	{
+		fwrite($txt,$reg[$i]["ObesidadDesnutricion"]);
+	}
+	//fwrite($txt,$reg[$i]["ObesidadDesnutricion"]); // 21. Obsesidad o Desnutrición Proteico Calórica
 	fwrite($txt,"|");
 		if ($edad < 19 && $reg[$i]["VictimaMaltrato"] == '0')
 		{
