@@ -991,7 +991,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ResultadoBiopsiaCervical"]); // 94. Resultado Biopsia Cervical
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["CodigoHabilitacionTomaBiopsia"]); // 95. Codigo de Habilitacion IPS donde se toma la Biopsia Cervical
+		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["CitologiaCUResultados"] == '999')
+		{
+			fwrite($txt,'0');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["CodigoHabilitacionTomaBiopsia"]);
+		}
+	//fwrite($txt,$reg[$i]["CodigoHabilitacionTomaBiopsia"]); // 95. Codigo de Habilitacion IPS donde se toma la Biopsia Cervical
 	fwrite($txt,"|");
 		if ($edadDias >= 12775 && $reg[$i]["Sexo"] == 'F' && $reg[$i]["FechaMamografiaInput"] == '1845-01-01') // 12775 Equivale a 35 Años
 		{
