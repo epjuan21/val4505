@@ -500,7 +500,26 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ControlRecienNacidoInput"]); 52. Control del Recien Nacido
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["PlanificacionFamiliarPrimeraVezInput"]); //53. Planificacion Familiar Primera Vez Input
+		// Validar que cuando la variable 53 registre un dato diferente a 1845-01-01 
+		// la variable 9 corresponda a >= 10 años y < 60 años
+		// Validar que cuando la variable 53 registre 1845-01-01, la variable 9 corresponda a < 10 años
+		if ($edad < 10 || $edad >= 60)
+		{
+			fwrite($txt,'1845-01-01');
+		} 
+		else if ($edad >= 10 && $edad < 60 && $reg[$i]["PlanificacionFamiliarPrimeraVezInput"] == '1845-01-01')
+		{
+			fwrite($txt,'1800-01-01');
+		}
+		else if ($edad == 60 && $reg[$i]["PlanificacionFamiliarPrimeraVezInput"] == '1845-01-01')
+		{
+			fwrite($txt,'1845-01-01');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["PlanificacionFamiliarPrimeraVezInput"]);
+		}
+		//fwrite($txt,$reg[$i]["PlanificacionFamiliarPrimeraVezInput"]); //53. Planificacion Familiar Primera Vez
 	fwrite($txt,"|");
 		if ($edad < 10 || $edad >= 60) 
 		{
