@@ -950,7 +950,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaColposcopiaInput"]); // 91. Fecha Colposcopia
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["CitologiaCUResultados"]=='17' || $edad < 10)
+		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["CitologiaCUResultados"] == '999')
 		{
 			fwrite($txt,'0');
 		} 
