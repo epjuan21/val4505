@@ -95,6 +95,7 @@ class Entidad extends ConnectionMySQL {
 			,CodigoEntidad
 			,CodigoMunicipio
 			,municipios.MUN_NAME AS Municipio
+			,municipios.MUN_ENT_NIT AS Nit
 			,FechaInicialReg
 			,FechaFinalReg
 			,substr(FechaFinalReg,6,2) AS CodPer

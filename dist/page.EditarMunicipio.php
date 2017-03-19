@@ -16,7 +16,8 @@
 
 				<input type="text" name="CodigoHabilitacion" placeholder="Codigo Habilicación" value="<?php echo $Municipio[$i]["MUN_ENT_COD_HAB"];?>">
 
-	
+				<input type="text" name="Nit" placeholder="NIT" value="<?php echo $Municipio[$i]["MUN_ENT_NIT"];?>">
+
 				<input type="hidden" name="IdMunicipio" value="<?php echo $Municipio[$i]["MUN_ID"];?>">
 
 				<input type="submit" class="btn btn-primary btn-large ent-submit" name="grabar-entidad" value="Actualizar" />

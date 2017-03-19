@@ -1,7 +1,9 @@
 <?php
 error_reporting(E_ALL);
+// Datos Provenientes de page.DetallePeriodo
 $IdUsuario = $_GET["IdUser"];
 $CodigoMunicipio = $_GET["CodMun"];
+$Nit = $_GET["Nit"];
 $CodigoEntidad = $_GET["CodEnt"];
 $FechaInicialReg = $_GET["FecIn"];
 $FechaFinalReg = $_GET["FecFn"];
@@ -38,6 +40,6 @@ switch ($CodigoEntidad) {
 
 }
 
-header ("Location: ../modulos/".$module.".php?IdU=$IdUsuario&CodM=$CodigoMunicipio&CodE=$CodigoEntidad&FIn=$FechaInicialReg&FFn=$FechaFinalReg");
+header ("Location: ../modulos/".$module.".php?IdU=$IdUsuario&CodM=$CodigoMunicipio&CodE=$CodigoEntidad&FIn=$FechaInicialReg&FFn=$FechaFinalReg&Nit=$Nit");
 
 ?>

@@ -48,7 +48,7 @@
 					</div>
 				
 					<div class="pnl-btn-rgt">
-						<a href="modulos/module.SeleccionValidador.php?CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>" class="btn-min btn-min-green">
+						<a href="modulos/module.SeleccionValidador.php?CodEnt=<?php echo $PeriodoEntidad[0]["CodigoEntidad"];?>&CodMun=<?php echo $PeriodoEntidad[0]["CodigoMunicipio"];?>&FecIn=<?php echo $PeriodoEntidad[0]["FechaInicialReg"];?>&FecFn=<?php echo $PeriodoEntidad[0]["FechaFinalReg"];?>&IdUser=<?php echo $PeriodoEntidad[0]["IdUsuario"];?>&Nit=<?php echo $PeriodoEntidad[0]["Nit"];?>" class="btn-min btn-min-green">
 						<i class="fa fa-arrow-down" aria-hidden="true"></i>
 						Descargar
 						</a>
