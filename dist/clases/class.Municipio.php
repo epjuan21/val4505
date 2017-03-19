@@ -12,7 +12,7 @@ class Municipio extends ConnectionMySQL {
 	}
 
 	public function getMunicipioId ($idMunicipio) {
-		$this->query = $this->conn->prepare("SELECT MUN_ID, MUN_NAME, MUN_COD, MUN_ENT_COD_HAB FROM municipios WHERE MUN_COD = '$idMunicipio' ");
+		$this->query = $this->conn->prepare("SELECT MUN_ID, MUN_NAME, MUN_COD, MUN_ENT_COD_HAB FROM municipios WHERE MUN_ID = '$idMunicipio' ");
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
@@ -31,8 +31,6 @@ class Municipio extends ConnectionMySQL {
 
 	public function updateMunicipio () {
 
-		echo $_POST["mun-cod"];
-
 		$sql = "UPDATE municipios SET 			
 			MUN_NAME=?,
 			MUN_COD=?,
@@ -43,11 +41,11 @@ class Municipio extends ConnectionMySQL {
 	
 			$stmt=$this->conn->prepare($sql);
 			
-			$stmt->bindValue(1,$_POST["mun-name"],PDO::PARAM_STR);
-			$stmt->bindValue(2,$_POST["mun-cod"],PDO::PARAM_STR);
-			$stmt->bindValue(3,$_POST["mun-cod-hab"],PDO::PARAM_STR);
+			$stmt->bindValue(1,$_POST["NombreMunicipio"],PDO::PARAM_STR);
+			$stmt->bindValue(2,$_POST["CodigoMunicipio"],PDO::PARAM_STR);
+			$stmt->bindValue(3,$_POST["CodigoHabilitacion"],PDO::PARAM_STR);
 
-			$stmt->bindValue(3,$_POST["mun-id"],PDO::PARAM_STR);
+			$stmt->bindValue(4,$_POST["IdMunicipio"],PDO::PARAM_STR);
 
 			$stmt->execute();
 	}

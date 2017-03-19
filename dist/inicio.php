@@ -1,5 +1,5 @@
 <?php
-    error_reporting(E_ALL);
+    error_reporting(E_ALL); // Mostrar Todos los Errores
     date_default_timezone_set('America/Bogota');
     
     require_once("modulos/module.LeerArchivos.php");
@@ -36,6 +36,12 @@
     }
 
     $list_mun = $objMunicipio->getMunicipios();    
+
+    // Obtener Municipio por ID
+    if (isset($_GET['MunId'])){
+        $Municipio = $objMunicipio->getMunicipioId($_GET['MunId']);
+    }
+
     
     // Funcion Para Exportar
     $regEnt = $objRPED->getRegByEnt();

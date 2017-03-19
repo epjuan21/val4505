@@ -16,7 +16,7 @@
 			?>
 				<li>
 					<div class="entidad-item"><?php echo $list_mun[$i]["MUN_NAME"];?></div>
-					<div class="entidad-item-edit"><a href="?menu=4&CodEPS=<?php echo $list_mun[$i]["MUN_COD"];?>" title="Editar"><i class="fa fa-pencil-square-o fa-lg"></i></a></div>
+					<div class="entidad-item-edit"><a href="?menu=14&MunId=<?php echo $list_mun[$i]["MUN_ID"];?>" title="Editar"><i class="fa fa-pencil-square-o fa-lg"></i></a></div>
 					<div class="entidad-detalle"><?php echo $list_mun[$i]["MUN_COD"];?></div>
 				</li>
 			<?php

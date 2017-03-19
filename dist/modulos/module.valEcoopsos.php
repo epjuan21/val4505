@@ -3,6 +3,7 @@ require_once ("../clases/class.rped.php");
 include ("module.ManejoFechas.php");
 $objRPED = new rped();
 
+// Datos Provenientes de module.SeleccionarValidador.php
 $IdUsuario = $_GET["IdU"];
 $CodigoMunicipio = $_GET["CodM"];
 $CodigoEntidad = $_GET["CodE"];

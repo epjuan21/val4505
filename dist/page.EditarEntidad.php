@@ -6,7 +6,6 @@
 			Entidades
 		</div>
 
-
 		<div class="param-content">
 
 			<form action="modulos/module.ActualizarEntidad.php" class="form" method="POST">
@@ -21,10 +20,8 @@
 
 			</form>
 
-
 		</div>
 		
 	</div>
-
 
 </div>
