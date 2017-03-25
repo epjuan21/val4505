@@ -3,8 +3,10 @@ require_once ("../clases/class.rped.php");
 include ("module.ManejoFechas.php");
 $objRPED = new rped();
 
+// Datos Provenientes de module.SeleccionarValidador.php
 $IdUsuario = $_GET["IdU"];
 $CodigoMunicipio = $_GET["CodM"];
+$Nit = $_GET["Nit"];
 $CodigoEntidad = $_GET["CodE"];
 $FechaInicio = $_GET["FIn"];
 $FechaFinal = $_GET["FFn"];
@@ -17,7 +19,7 @@ $reg = $objRPED->getRPED($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaIni
 
 $res='SGD280RPED';
 $tipoId = 'NI';
-$numId = '000890981494';
+$numId = '000'.$Nit;
 $cons = 'S01';
 
 $nombreArchivo = $res."".str_replace("-", "", $FechaFinal)."".$tipoId."".$numId."".$cons.".txt";
