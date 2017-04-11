@@ -145,6 +145,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'21');
 		}
+		else if ($reg[$i]["Gestacion"] == '0')
+		{
+			fwrite($txt,'0'); 
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["SifilisGestacional"]); 
