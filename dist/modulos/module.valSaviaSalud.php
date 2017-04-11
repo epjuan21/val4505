@@ -145,7 +145,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'21');
 		}
-		else if ($reg[$i]["Gestacion"] == '0' || ($edad < 10 || $edad >= 60))
+		else if ($reg[$i]["Gestacion"] == '0' || ($edad < 10 || $edad >= 60) || $reg[$i]["Gestacion"] == '21' || (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0))
 		{
 			fwrite($txt,'0'); 
 		}
