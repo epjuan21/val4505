@@ -1236,7 +1236,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		// Si es diferente de no aplica, la variable 17 es igual a 1
 		// Si Tiene Tratamiento Contra Hipotiroidismo Congenito (Variable 114 Diferente de 0) Debe Tener Hipotiroidismo (Variable 17 = 1)
-		if (($reg[$i]["HipotiroidismoCongenito"] == '0' || $reg[$i]["HipotiroidismoCongenito"] == '2' ) && $reg[$i]["TratamientoHipotiroidismoCongenito"] != '0')
+		if ($edad >= 3 || $reg[$i]["HipotiroidismoCongenito"] == '0')
 		{
 			fwrite($txt,'0');
 		}
