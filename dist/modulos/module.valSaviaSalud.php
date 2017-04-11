@@ -155,11 +155,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["SifilisGestacional"]); // 15. Sifilis Gestacional y Congenita
 	fwrite($txt,"|");
-		if ($edad < 10 || $edad >= 57)
-		{
-			fwrite($txt,'0');
-		}
-		else if($reg[$i]["Gestacion"] != '1' && $reg[$i]["HipertensionInducidaGestacion"] == '2')
+		if ($reg[$i]["Gestacion"] == '0' || ($edad < 10 || $edad >= 60) || $reg[$i]["Gestacion"] == '21' || (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0))
 		{
 			fwrite($txt,'0');
 		}
