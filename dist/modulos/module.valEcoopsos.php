@@ -272,11 +272,12 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaProbableParto"]); // 33. Fecha Probable Parto
 	fwrite($txt,"|");
-		if ($edad < 6 && $reg[$i]["EdadGestacional"]!='0')
+		if (($edad < 6 && $reg[$i]["EdadGestacional"]!='0') || ($edad >= 6 && $reg[$i]["EdadGestacional"] == '999'))
 		{
 			fwrite($txt,'0');
 		}
-		else {
+		else
+		{
 			fwrite($txt,$reg[$i]["EdadGestacional"]);
 		}
 	//fwrite($txt,$reg[$i]["EdadGestacional"]); // 34. Edad Gestacion al Nacer
