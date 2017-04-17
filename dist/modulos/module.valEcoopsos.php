@@ -351,11 +351,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// 540 Dias Equivalen a 18 Meses
 		// 1800 Dias Equivalen a 60 Meses
 		// Si es menor a 18 meses debe registrar no aplica en la variable 39
-		if ($edadDias < 549 || $edad >= 6)
+		if ($edadDias < 548 || $edad >= 6)
 		{
 			fwrite($txt,'0');
 		}
-		else if (($edadDias >= 549 && $edad < 6) && $reg[$i]["DPT"] == 0)
+		else if (($edadDias >= 548 && $edad < 6) && $reg[$i]["DPT"] == 0)
 		{
 			fwrite($txt,'22');
 		}
