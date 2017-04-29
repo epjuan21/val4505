@@ -38,6 +38,10 @@ switch ($CodigoEntidad) {
 		$module = "module.valVinculados";
 		break;
 
+	case '05411':
+		$module = "module.valVinculados";
+		break;
+
 }
 
 header ("Location: ../modulos/".$module.".php?IdU=$IdUsuario&CodM=$CodigoMunicipio&CodE=$CodigoEntidad&FIn=$FechaInicialReg&FFn=$FechaFinalReg&Nit=$Nit");

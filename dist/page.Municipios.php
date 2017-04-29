@@ -44,6 +44,8 @@
 				<input type="text" name="mun-cod" placeholder="Código Municipio">
 
 				<input type="text" name="mun-cod-hab" placeholder="Código Habilitación Entidad">
+
+				<input type="text" name="mun-ent-nit" placeholder="NIT Entidad">
 				
 				<input type="submit" class="btn btn-primary btn-large mun-submit" name="grabar-municipio" value="Agregar" />
 
