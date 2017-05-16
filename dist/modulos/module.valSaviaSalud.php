@@ -897,42 +897,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		}
-		else if ($reg[$i]["HipotiroidismoCongenito"] == '21' || ($edadDias < 950 || $reg[$i]["HipotiroidismoCongenito"] != '0'))
-		{
-			if ($reg[$i]["HipotiroidismoCongenito"] == '21' || ($edadDias < 950 || $reg[$i]["HipotiroidismoCongenito"] != '0') || ($reg[$i]["FechaTSHNeonatalInput"] == '1800-01-01' && $edadDias > 2))
-			{
-				if ($reg[$i]["HipotiroidismoCongenito"] == '21' || ($edadDias < 950 || $reg[$i]["HipotiroidismoCongenito"] != '0'))
-				{
-					if ($reg[$i]["HipotiroidismoCongenito"] == '0' || $edadDias >= 950)
-					{
-						if ($reg[$i]["HipotiroidismoCongenito"] == '21' || ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0'))
-						{
-							fwrite($txt,'1800-01-01');
-						}
-						else
-						{
-							fwrite($txt,'1845-01-01');
-						}
-						
-					}
-					else
-					{
-						fwrite($txt,'1800-01-01');
-					}
-					
-				}
-				else 
-				{
-					fwrite($txt,'1845-01-01');
-				}
-				
-			}
-			else
-			{
-				fwrite($txt,'1800-01-01');
-			}
-			
-		}
 		else
 		{
 			fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]);
@@ -941,47 +905,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		$DateTHS = date($reg[$i]["FechaTSHNeonatalInput"]);
 		$YearTSH = substr($DateTHS, 0, 4);
-		if ($edadDias < 30 && $reg[$i]["ResultadoTSHNeonatal"] == '0')
-		{
-			fwrite($txt,'22');
-		}
-		else if ($edadDias >= 1086)
+		if ($edad >= 3)
 		{
 			fwrite($txt,'0');
-		}
-		else if ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
-		{
-			fwrite($txt,'22');
-		}
-		else if ($YearTSH > 1900 && $reg[$i]["ResultadoTSHNeonatal"] =='0')
-		{
-			fwrite($txt,'1');
-		}
-		else if ($reg[$i]["HipotiroidismoCongenito"] == '21' || ($edadDias < 950 || $reg[$i]["HipotiroidismoCongenito"] != '0'))
-		{
-			if ($reg[$i]["HipotiroidismoCongenito"] == '0'  ||  $edadDias >= 950)
-			{
-				if ($reg[$i]["HipotiroidismoCongenito"] == '21' || ($edadDias < 1086 || $reg[$i]["HipotiroidismoCongenito"] != '0'))
-				{
-					if ($reg[$i]["HipotiroidismoCongenito"] == '2' && $reg[$i]["ResultadoTSHNeonatal"] == '0')
-					{
-						fwrite($txt,'0');
-					}
-					else
-					{
-						fwrite($txt,'22');
-					}
-				}
-				else
-				{
-					fwrite($txt,'0');
-				}
-				
-			}
-			else
-			{
-				fwrite($txt,'22');
-			}			
 		}
 		else
 		{
