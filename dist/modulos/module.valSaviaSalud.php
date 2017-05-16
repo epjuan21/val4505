@@ -253,7 +253,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}
-		else
+		else if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaProbableParto"] == '1800-01-01')
+		{
+			fwrite($txt,'1845-01-01');
+		}
+		else	
 		{
 			fwrite($txt,$reg[$i]["FechaProbableParto"]); 
 		}
@@ -586,6 +590,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		}
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["ControlPrenatalPrimeraVezInput"] == '1800-01-01')
+		{
+			fwrite($txt,'1845-01-01');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["ControlPrenatalPrimeraVezInput"]);
@@ -619,6 +627,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 
 			fwrite($txt,$Controles);
 		}
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["ControlPrenatal"] == '999')
+		{
+			fwrite($txt,'0');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["ControlPrenatal"]);
@@ -628,6 +640,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["UltimoControlPrenatal"]=='1845-01-01')
 		{	
 			fwrite($txt,'1800-01-01');
+		}
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["UltimoControlPrenatal"] == '1800-01-01')
+		{
+			fwrite($txt,'1845-01-01');	
 		}
 		else
 		{
@@ -639,6 +655,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'21');
 		}
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["SuministroAcidoFolico"] == '21')
+		{
+			fwrite($txt,'0');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["SuministroAcidoFolico"]);
@@ -648,6 +668,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["SuministroSulfatoFerroso"] == '0')
 		{
 			fwrite($txt,'21');
+		}
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["SuministroSulfatoFerroso"] == '21')
+		{
+			fwrite($txt,'0');
 		}
 		else
 		{
