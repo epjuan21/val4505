@@ -628,7 +628,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 
 			$Controles = $reg[$i]["ControlPrenatal"];
 			$Controles = substr($Controles,0,1);
-
+			if ($reg[$i]["Gestacion"] == '2')
+			{
+				fwrite($txt,'0');	
+			}
+			
 			fwrite($txt,$Controles);
 		}
 		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["ControlPrenatal"] == '999' || $reg[$i]["ControlPrenatal"] == '9'))
