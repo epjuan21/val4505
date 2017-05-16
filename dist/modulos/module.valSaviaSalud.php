@@ -257,7 +257,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		}
-		else	
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["FechaProbableParto"] == '1800-01-01')
+		{
+			fwrite($txt,'1845-01-01');
+		}
+		else
 		{
 			fwrite($txt,$reg[$i]["FechaProbableParto"]); 
 		}
@@ -627,7 +631,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 
 			fwrite($txt,$Controles);
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["ControlPrenatal"] == '999')
+		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["ControlPrenatal"] == '999' || $reg[$i]["ControlPrenatal"] == '9'))
 		{
 			fwrite($txt,'0');
 		}
