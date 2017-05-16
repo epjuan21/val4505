@@ -909,6 +909,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
+		if ($reg[$i]["HipotiroidismoCongenito"] == '21' && $reg[$i]["ResultadoTSHNeonatal"] == '0')
+		{
+			fwrite($txt,'21');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["ResultadoTSHNeonatal"]); 
