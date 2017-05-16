@@ -619,7 +619,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["ControlPrenatal"]); // 57. Control Prenatal
 	fwrite($txt,"|");
 		$DateUltimoControlPrenatal = date($reg[$i]["UltimoControlPrenatal"]);
-		$YearUltimoControlPrenatal = substr($DateTHS, 0, 4);
+		$YearUltimoControlPrenatal = substr($YearUltimoControlPrenatal, 0, 4);
 		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["UltimoControlPrenatal"]=='1845-01-01')
 		{	
 			fwrite($txt,'1800-01-01');
