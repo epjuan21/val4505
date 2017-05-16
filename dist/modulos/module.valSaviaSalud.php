@@ -809,6 +809,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		}
+		else if ($reg[$i]["Gestacion"] == '2')
+		{
+			fwrite($txt,'1845-01-01');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["FechaAntigenoHepatitisBGestantesInput"]);
@@ -822,6 +826,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		else if ($reg[$i]["Sexo"] == 'F' && $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == '0' && $reg[$i]["Gestacion"] == '1') 
 		{
 			fwrite($txt,'22');
+		}
+		else if ($reg[$i]["Gestacion"] == '2')
+		{
+			fwrite($txt,'0');
 		}
 		else
 		{
