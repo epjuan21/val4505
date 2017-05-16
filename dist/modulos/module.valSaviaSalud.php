@@ -624,7 +624,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{	
 			fwrite($txt,'1800-01-01');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["UltimoControlPrenatal"] == '1800-01-01' || $reg[$i]["UltimoControlPrenatal"] > 1845)
+		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["UltimoControlPrenatal"] == '1800-01-01' || $reg[$i]["UltimoControlPrenatal"] > 1845))
 		{
 			fwrite($txt,'1845-01-01');	
 		}
