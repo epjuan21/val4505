@@ -249,13 +249,20 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["TallaCentimetros"]); // 32. Talla en Centimetros
 	fwrite($txt,"|");
+		//Calcularemos la Diferencia en Dias Entre la Fecha Del Reporte y La Fecha Probable del Parto
+		// Debe Ser Menor a 280 o 9 Meses
+		$FechaParto = $reg[$i]["FechaProbableParto"];
+		$FechaReporte = $FechaFinal;
+
+		$diferencia = diferenciaFecha($FechaReporte, $FechaParto);
+
 		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaProbableParto"] == '1845-01-01')
 		{
 			fwrite($txt,'1800-01-01');
 		}
-		else if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaProbableParto"] == '1800-01-01')
+		else if ($reg[$i]["Gestacion"] == '1' && $diferencia > 280)
 		{
-			fwrite($txt,'1845-01-01');
+			fwrite($txt,'1800-01-01');
 		}
 		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["FechaProbableParto"] == '1800-01-01')
 		{
