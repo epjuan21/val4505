@@ -608,34 +608,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if (($reg[$i]["Gestacion"] == '0' || (($edad >= 10 && $edad < 57) && $reg[$i]["Gestacion"] == '0')))
-		{
-			fwrite($txt,'0');
-		}
-		else if ($edad >= 10 && $reg[$i]["Sexo"] == 'F' &&  $reg[$i]["ControlPrenatal"] == '0')
-		{
-			if ($reg[$i]["Gestacion"] == '21')
-			{
-				fwrite($txt,'0');
-			}
-			else
-			{
-				fwrite($txt,'999');
-			}	
-		}
-		else if ($reg[$i]["ControlPrenatal"] > 25)
-		{
-
-			$Controles = $reg[$i]["ControlPrenatal"];
-			$Controles = substr($Controles,0,1);
-			if ($reg[$i]["Gestacion"] == '2')
-			{
-				fwrite($txt,'0');	
-			}
-			
-			fwrite($txt,$Controles);
-		}
-		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["ControlPrenatal"] == '999' || $reg[$i]["ControlPrenatal"] == '9'))
+		else if ($reg[$i]["Gestacion"] == '2')
 		{
 			fwrite($txt,'0');
 		}
