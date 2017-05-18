@@ -905,11 +905,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		$DateTHS = date($reg[$i]["FechaTSHNeonatalInput"]);
 		$YearTSH = substr($DateTHS, 0, 4);
-		if ($edad > 3)
+		if ($edad >= 3)
 		{
 			fwrite($txt,'0');
 		}
-		else if (($reg[$i]["HipotiroidismoCongenito"] == '21' && $reg[$i]["ResultadoTSHNeonatal"] == '0') || $edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
+		else if ($edad < 3 && $reg[$i]["HipotiroidismoCongenito"] != '0')
 		{
 			fwrite($txt,'21');
 		}
