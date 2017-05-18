@@ -178,7 +178,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
+		else if ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0') // Se puede tener en cuenta para la Pregunta 85. Resultado TSH Neonatal
 		{
 			fwrite($txt,'21');
 		}
@@ -909,7 +909,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($reg[$i]["HipotiroidismoCongenito"] == '21' && $reg[$i]["ResultadoTSHNeonatal"] == '0')
+		else if (($reg[$i]["HipotiroidismoCongenito"] == '21' && $reg[$i]["ResultadoTSHNeonatal"] == '0') || $edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
 		{
 			fwrite($txt,'21');
 		}
