@@ -905,7 +905,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		$DateTHS = date($reg[$i]["FechaTSHNeonatalInput"]);
 		$YearTSH = substr($DateTHS, 0, 4);
-		if ($edad >= 3)
+		if ($edad > 3)
 		{
 			fwrite($txt,'0');
 		}
