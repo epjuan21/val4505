@@ -911,7 +911,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 		else if ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
 		{
-			fwrite($txt,'0');
+			fwrite($txt,'22');
 		}
 		else
 		{
