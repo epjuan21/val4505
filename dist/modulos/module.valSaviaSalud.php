@@ -754,7 +754,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["SuministroVitaminaAMenor"]); // 71. Suministro de Vitamina A en la Ultima Consulta de Menor de 10 Años
 	fwrite($txt,"|");
 		// Debe registrar diferente de 1845-01-01, si tiene entre 10 y 29 años
-		if (($edad < 10 || $edad > 29) || ($reg[$i]["ConsultaJovenPrimeraVezInput"] == '1845-01-01' && ($edad > 10 && $edad < 29)))
+		if (($edad < 10 || $edad > 29) || ($reg[$i]["ConsultaJovenPrimeraVezInput"] == '1845-01-01' && ($edad >= 10 && $edad <= 29)))
 		{
 			fwrite($txt,'1845-01-01');
 		}
