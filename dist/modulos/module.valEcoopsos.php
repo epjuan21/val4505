@@ -808,7 +808,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["ConsultaJovenPrimeraVezInput"]); // 72. Consulta de Joven Primera Vez
 	fwrite($txt,"|");
 	// Pagina 49: La opción 1845-01-01 se usa: Para población menor de 45 años
-		if ($edad < 45) 
+		$DateConsultaAdultoPrimeraVezInput = date($reg[$i]["ConsultaAdultoPrimeraVezInput"]); // Fecha Variable 87. Fecha Citologia Cervicouterina
+		$YearConsultaAdultoPrimeraVezInput = substr($DateConsultaAdultoPrimeraVezInput, 0, 4);
+		if ($edad < 45 || $YearConsultaAdultoPrimeraVezInput > 1900) 
 		{
 			fwrite($txt,'1845-01-01'); 
 		} 
