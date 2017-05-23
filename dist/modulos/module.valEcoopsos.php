@@ -808,21 +808,14 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["ConsultaJovenPrimeraVezInput"]); // 72. Consulta de Joven Primera Vez
 	fwrite($txt,"|");
 	// Pagina 49: La opción 1845-01-01 se usa: Para población menor de 45 años
-		if ($edad >= 45 && ($reg[$i]["ConsultaAdultoPrimeraVezInput"] == '1845-01-01' ||  $reg[$i]["ConsultaAdultoPrimeraVezInput"] == '1800-01-01'))
+		if ($edad < 45) 
 		{
-			if ($edad == 45 || $edad == 50 || $edad == 55 || $edad == 60 || $edad == 65 || $edad == 70 || $edad == 75 || $edad == 80 || $edad == 85 || $edad == 90)
-			{
-				fwrite($txt,'1800-01-01');
-			}
-			else
-			{
-				fwrite($txt,'1845-01-01');
-			}	
-		}
-		else if ($edad < 45)
+			fwrite($txt,'1845-01-01'); 
+		} 
+		else if ($edad >= 45 && $reg[$i]["ConsultaAdultoPrimeraVezInput"] == '1845-01-01')
 		{
-			fwrite($txt,'1845-01-01');
-		}
+			fwrite($txt,'1800-01-01');
+		} 
 		else
 		{
 			fwrite($txt,$reg[$i]["ConsultaAdultoPrimeraVezInput"]);
