@@ -814,7 +814,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01'); 
 		} 
-		else if ($edad >= 45 && $reg[$i]["ConsultaAdultoPrimeraVezInput"] == '1845-01-01' && fmod($edad,5) == 0))
+		else if ($edad >= 45 && $reg[$i]["ConsultaAdultoPrimeraVezInput"] == '1845-01-01' && fmod($edad,5) == 0)
 		{
 			fwrite($txt,'1800-01-01');
 		} 
