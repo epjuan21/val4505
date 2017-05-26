@@ -667,11 +667,14 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'21');
 		}
-		else if ($reg[$i]["Gestacion"]=='2')
+		else if ($reg[$i]["Gestacion"] == '2')
 		{
 			fwrite($txt,'0');
 		}
-
+		else 
+		{
+			fwrite($txt,$reg[$i]["SuministroAcidoFolico"]);
+		}
 	//fwrite($txt,$reg[$i]["SuministroAcidoFolico"]); // 59. Suministro de Acido Folico en el Ultimo Control Prenatal
 	fwrite($txt,"|");
 		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2')
