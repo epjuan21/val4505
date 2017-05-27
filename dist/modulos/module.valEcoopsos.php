@@ -929,7 +929,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		} else {
-			fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]);
+			fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"].'-EDAD-'.$DiasTSH);
 		}
 	//fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]); // 84. Fecha TSH Neonatal
 	fwrite($txt,"|");
