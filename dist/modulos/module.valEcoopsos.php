@@ -99,7 +99,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// La opción 0 se usa: 
 		// Cuando corresponde a un hombre que no es RN (<28 días de nacido)  
 		// Cuando la variable 14 registra 0, 2 o  21 
-		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2' || $reg[$i]["Gestacion"]=='0' $reg[$i]["Gestacion"]=='21')
+		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2' || $reg[$i]["Gestacion"] == '0' || $reg[$i]["Gestacion"]=='21')
 		{
 			fwrite($txt,'0');
 		}
