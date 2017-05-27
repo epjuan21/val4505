@@ -921,11 +921,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	$DateTSHNeonatal = date($reg[$i]["FechaTSHNeonatalInput"]);
 	$YearTSHNeonatal = substr($DateTSHNeonatal, 0, 4);
-		if ($edadDias < 2)
+	
+	//Calcular Edad Desde Nacimiento Hasta TSH
+	$DiasTSH = calcularEdadenDias ($reg[$i]["FechaNacimiento"], $reg[$i]["FechaTSHNeonatalInput"]);
+	
+		if ($DiasTSH < 2)
 		{
-			fwrite($txt,'1845-01-01-EDAD'.$edadDias);
+			fwrite($txt,'1845-01-01');
 		} else {
-			fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"].'-EDAD'.$edadDias);
+			fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]);
 		}
 	//fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]); // 84. Fecha TSH Neonatal
 	fwrite($txt,"|");
