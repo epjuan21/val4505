@@ -860,7 +860,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["PacienteEnfermedadMental"]); // 77. Paciente con Diagnóstico de: Ansiedad, Depresión, Esquizofrenia, déficit de atención, consumo SPA y Bipolaridad recibió Atención en los últimos 6 meses por Equipo Interdisciplinario Completo
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["Gestacion"] == '2')
 		{
 			fwrite($txt,'1845-01-01');
 		} 
@@ -874,7 +874,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaAntigenoHepatitisBGestantesInput"]); // 78. Fecha Antigeno de Superficie Hepatitis B en Gestantes
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["Gestacion"] == '2')
 		{
 			fwrite($txt,'0');
 		}
