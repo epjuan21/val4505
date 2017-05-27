@@ -927,21 +927,31 @@ for ($i=0;$i<sizeof($reg);$i++)
 	
 		if ($DiasTSH < 2)
 		{
+			fwrite($txt,'1845-01-01');		
+		} 
+		else if ($DiasTSH >= 2 && $YearTSHNeonatal > 1900)
+		{
 			fwrite($txt,'1845-01-01');
-		} else {
-			fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"].'-EDAD-'.$DiasTSH);
+		}
+		else	
+		{
+			fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]);
 		}
 	//fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]); // 84. Fecha TSH Neonatal
 	fwrite($txt,"|");
-	if ($edad > 1)
+	if ($DiasTSH < 2)
 	{
 		fwrite($txt,'0');
 	} 
-	else if ($YearTSHNeonatal > 1900)
+	else if ($DiasTSH >= 2 && $YearTSHNeonatal > 1900)
+	{
+		fwrite($txt,'0');
+	}
+	else if ($YearTSHNeonatal > 1900 && $DiasTSH < 2)
 	{
 		fwrite($txt,'1');
 	}
-	else
+	else 
 	{
 		fwrite($txt,$reg[$i]["ResultadoTSHNeonatal"]);
 	}
