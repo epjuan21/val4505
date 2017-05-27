@@ -505,7 +505,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// Validar que cuando la variable 49 registre un dato diferente a 1845-01-01 la variable 14 corresponda a 1
 
 		// Validar que cuando la variable 49 registre un dato diferente a 1845-01-01 la variable 14 corresponda a 2
-		if ($reg[$i]["Gestacion"]=='0' || $reg[$i]["Gestacion"]=='2' || $reg[$i]["Gestacion"]=='21')
+		if ($reg[$i]["Gestacion"]=='0' || $reg[$i]["Gestacion"]=='21')
 		{
 			fwrite($txt,'1845-01-01');
 		} 
@@ -524,7 +524,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["FechaAtencionParto"]); // 49. Fecha Atencion Parto o Cesarea
 	// SEGUN Secretaria Seccional de Salud cuando registre un dato diferente a 1845-01-01 no debe ser gestante. 2
 	fwrite($txt,"|");
-		if ($reg[$i]["Gestacion"]=='0' || $reg[$i]["Gestacion"]=='2' || $reg[$i]["Gestacion"]=='21')
+		if ($reg[$i]["Gestacion"]=='0' || $reg[$i]["Gestacion"]=='21')
 		{
 			fwrite($txt,'1845-01-01');
 		} 
