@@ -923,7 +923,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	$YearTSHNeonatal = substr($DateTSHNeonatal, 0, 4);
 		if ($edadDias < 2)
 		{
-			fwrite($txt,'1845-01-01');
+			fwrite($txt,'1845-01-01-EDAD'.$edadDias);
 		} else {
 			fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]);
 		}
