@@ -99,20 +99,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// La opción 0 se usa: 
 		// Cuando corresponde a un hombre que no es RN (<28 días de nacido)  
 		// Cuando la variable 14 registra 0, 2 o  21 
-		if ($reg[$i]["Sexo"]=='M' || ($reg[$i]["Gestacion"]=='21' || $reg[$i]["Gestacion"]=='0'))
+		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2' || $reg[$i]["Gestacion"]=='0' $reg[$i]["Gestacion"]=='21')
 		{
-			if($edadDias <= 90 && $reg[$i]["SifilisGestacional"]=='0' && $reg[$i]["Gestacion"]=='0')
-			{
-				fwrite($txt,'21');
-			}
-			else if ($edadDias <= 90 && $reg[$i]["SifilisGestacional"]=='21')
-			{
-				fwrite($txt,'21');
-			}
-			else
-			{
-				fwrite($txt,'0');
-			}
+			fwrite($txt,'0');
 		}
 		else if ($edad < 60 && $reg[$i]["SifilisGestacional"]=='0')
 		{
