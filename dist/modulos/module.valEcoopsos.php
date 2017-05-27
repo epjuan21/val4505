@@ -638,7 +638,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ControlPrenatal"]); // 57. Control Prenatal
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"]=='M' && $reg[$i]["Gestacion"] != '1')
+	$DateUltimoControlPrenatal = date($reg[$i]["UltimoControlPrenatal"]); // Fecha Variable 87. Fecha Citologia Cervicouterina
+	$YearUltimoControlPrenatal = substr($DateUltimoControlPrenatal, 0, 4);
+		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"] == '2' || ( $reg[$i]["Gestacion"] == '2' && $YearUltimoControlPrenatal > 1900))
 		{
 			fwrite($txt,"1845-01-01");
 		} 
