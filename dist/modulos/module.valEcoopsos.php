@@ -101,7 +101,14 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// Cuando la variable 14 registra 0, 2 o  21 
 		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2' || $reg[$i]["Gestacion"] == '0' || $reg[$i]["Gestacion"]=='21')
 		{
-			fwrite($txt,'0');
+			if ($edadDias < 90)
+			{
+				fwrite($txt,'21');
+			}
+			else
+			{
+				fwrite($txt,'0');
+			}			
 		}
 		else if ($edad < 60 && $reg[$i]["SifilisGestacional"]=='0')
 		{
