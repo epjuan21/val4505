@@ -896,8 +896,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ResultadoElisaVIH"]); // 83. Resultado ELISA para VIH
 	fwrite($txt,"|");
+		$DateTHS = date($reg[$i]["FechaTSHNeonatalInput"]);
+		$YearTSH = substr($DateTHS, 0, 4);
 		// Si Variable 17 es 21 Variable 84 Puede Ser 1800-01-01
-		if ($edad >= 3)
+		if ($YearTSH > 1900 && $edadDias > 2)
 		{
 			fwrite($txt,'1845-01-01');
 		}
@@ -907,8 +909,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]); // 84. Fecha TSH Neonatal
 	fwrite($txt,"|");
-		$DateTHS = date($reg[$i]["FechaTSHNeonatalInput"]);
-		$YearTSH = substr($DateTHS, 0, 4);
+
 		if ($edad >= 3)
 		{
 			fwrite($txt,'0');
