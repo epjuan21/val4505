@@ -909,13 +909,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]); // 84. Fecha TSH Neonatal
 	fwrite($txt,"|");
-		if ($YearTSH > 1900 && $edadDias > 2)
+		if (($YearTSH > 1900 && $edadDias > 2) || $reg[$i]["FechaTSHNeonatalInput"] == '1845-01-01')
 		{
 			fwrite($txt,'0');
-		}
-		else if ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
-		{
-			fwrite($txt,'22');
 		}
 		else
 		{
