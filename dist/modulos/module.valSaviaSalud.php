@@ -909,8 +909,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]); // 84. Fecha TSH Neonatal
 	fwrite($txt,"|");
-
-		if ($edad >= 3)
+		if ($YearTSH > 1900 && $edadDias > 2)
 		{
 			fwrite($txt,'0');
 		}
