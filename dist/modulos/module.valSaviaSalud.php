@@ -899,9 +899,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 		$DateTHS = date($reg[$i]["FechaTSHNeonatalInput"]);
 		$YearTSH = substr($DateTHS, 0, 4);
 		// Si Variable 17 es 21 Variable 84 Puede Ser 1800-01-01
-		if ($YearTSH > 1900 && $edadDias > 2)
+		if ($YearTSH > 1900 && $edadDias > 2 && $reg[$i]["HipotiroidismoCongenito"] == '0')
 		{
-			fwrite($txt,'1800-01-01');
+			fwrite($txt,'1845-01-01');
 		}
 		else
 		{
@@ -911,7 +911,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		if (($YearTSH > 1900 && $edadDias > 2) || $reg[$i]["FechaTSHNeonatalInput"] == '1845-01-01')
 		{
-			fwrite($txt,'22');
+			fwrite($txt,'0');
 		}
 		else
 		{
