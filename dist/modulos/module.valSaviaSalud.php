@@ -903,6 +903,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		}
+		else if ($reg[$i]["HipotiroidismoCongenito"] == '21' || $edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
+		{
+			fwrite($txt,'1800-01-01');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]);
@@ -912,6 +916,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if (($YearTSH > 1900 && $edadDias > 2) || $reg[$i]["FechaTSHNeonatalInput"] == '1845-01-01')
 		{
 			fwrite($txt,'0');
+		}
+		else if ($reg[$i]["HipotiroidismoCongenito"] == '21' || $edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0')
+		{
+			fwrite($txt,'22');
 		}
 		else
 		{
