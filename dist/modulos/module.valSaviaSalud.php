@@ -601,6 +601,8 @@ for ($i=0;$i<sizeof($reg);$i++)
 		
 	//fwrite($txt,$reg[$i]["FechaSuministroMetodoAnticonceptivo"]); //55. Fecha Suministro Metodo Anticonceptivo
 	fwrite($txt,"|");
+		$DateControlPrenatalPrimeraVez = date($reg[$i]["ControlPrenatalPrimeraVezInput"]);
+		$YearControlPrenatalPrimeraVez = substr($DateControlPrenatalPrimeraVez, 0, 4);
 		if ($reg[$i]["Sexo"] == 'F' && $reg[$i]["Gestacion"] == '1' && $reg[$i]["ControlPrenatalPrimeraVezInput"] == '1845-01-01')
 		{
 			fwrite($txt,'1800-01-01');
@@ -610,6 +612,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 			fwrite($txt,'1845-01-01');
 		}
 		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["ControlPrenatalPrimeraVezInput"] == '1800-01-01')
+		{
+			fwrite($txt,'1845-01-01');
+		}
+		else if ($reg[$i]["Gestacion"] == '2' && $YearControlPrenatalPrimeraVez > 1900)
 		{
 			fwrite($txt,'1845-01-01');
 		}
