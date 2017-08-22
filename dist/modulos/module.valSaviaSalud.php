@@ -635,7 +635,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 		else if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["ControlPrenatal"] == '0')
 		{
-			fwrite($txt,$reg[$i]["ControlPrenatal"]);
+			fwrite($txt,'999');
 		}
 		else
 		{
