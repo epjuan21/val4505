@@ -173,7 +173,8 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["HipertensionInducidaGestacion"]); // 16. Hipertension Inducida por la Gestacion
 	fwrite($txt,"|");
-		// La opcion 0 se Utiliza en Mayores de 3 Años
+		// La opcion 0 - No Aplica se Utiliza en Mayores de 3 Años
+		// La opcion 21 - Riesgo no Evaluado Solo Aplica Para Menores de 36 Meses
 		if ($edad >= 3)
 		{
 			fwrite($txt,'0');
@@ -917,11 +918,12 @@ for ($i=0;$i<sizeof($reg);$i++)
 		$DateTHS = date($reg[$i]["FechaTSHNeonatalInput"]);
 		$YearTSH = substr($DateTHS, 0, 4);
 		// Si Variable 17 es 21 Variable 84 Puede Ser 1800-01-01
+		// Si la Variable 17 es 0 La Variable 84 debe Ser 1845-01-01
 		if ($YearTSH > 1900 && $edadDias > 2 && $reg[$i]["HipotiroidismoCongenito"] == '0')
 		{
 			fwrite($txt,'1845-01-01');
 		}
-		else if ($reg[$i]["HipotiroidismoCongenito"] == '0')
+		else if ($reg[$i]["HipotiroidismoCongenito"] == '0' || $edad >= 3)
 		{
 			fwrite($txt,'1845-01-01');
 		}
@@ -939,7 +941,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($reg[$i]["HipotiroidismoCongenito"] == '0')
+		else if ($reg[$i]["HipotiroidismoCongenito"] == '0' || $edad >= 3)
 		{
 			fwrite($txt,'0');
 		}
