@@ -357,7 +357,16 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// 540 Dias Equivalen a 18 Meses
 		// 1800 Dias Equivalen a 60 Meses
 		// Si es menor a 18 meses debe registrar no aplica en la variable 39
-		if ($edadDias < 549 || $edad >= 6)
+	
+		// Calcularemos la Diferencia Entre Fecha de Nacimiento y Fecha Actual
+		$ANac = substr($reg[$i]["FechaNacimiento"],0,4);
+		$MesNac = substr($reg[$i]["FechaNacimiento"],5,2);
+
+		$AAc = substr($FechaFinal,0,4);
+		$MesAc = substr($FechaFinal,5,2);
+
+		$Dif = (($AAc * 12)+$MesAc)   -(($ANac * 12)+$MesNac);
+		if ($Dif < 18 || $edad >= 6)
 		{
 			fwrite($txt,'0');
 		}
