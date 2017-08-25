@@ -245,7 +245,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 
 		if ($reg[$i]["TallaCentimetros"] > 225 && $reg[$i]["TallaCentimetros"]!='999')
 		{
-			$talla = $reg[$i]["TallaCentimetros"] * 0.1;
+			$talla = $reg[$i]["TallaCentimetros"] / 10;
 			fwrite($txt,$talla);
 		} 
 		else
