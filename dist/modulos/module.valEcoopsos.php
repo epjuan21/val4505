@@ -910,6 +910,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}
+		else if ($reg[$i]["Gestacion"] == '21')
+		{
+			fwrite($txt,'1845-01-01');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]);
