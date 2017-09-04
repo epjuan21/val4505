@@ -753,7 +753,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ResultadoElisaVIH"]);
 	fwrite($txt,"|");
-		if ($edadDias < 2)
+	$DateTHS = date($reg[$i]["FechaTSHNeonatalInput"]);
+	$YearTSH = substr($DateTHS, 0, 4);
+		if ($YearTSH > 1900 && $edadDias > 2 && $reg[$i]["HipotiroidismoCongenito"] == '0')
 		{
 			fwrite($txt,'1845-01-01');
 		} else {
