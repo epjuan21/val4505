@@ -1017,10 +1017,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}	
-		else if ($reg[$i]["Sexo"] == 'F' && $reg[$i]["ResultadoHemoglobina"] == '0')
-		{
-			fwrite($txt,'1845-01-01');
-		}
 		else
 		{
 			fwrite($txt,$reg[$i]["FechaTomaHemoglobinaInput"]);
