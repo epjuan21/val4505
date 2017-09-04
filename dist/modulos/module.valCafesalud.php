@@ -68,25 +68,18 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["CodigoNivelEducativo"]);
 	fwrite($txt,"|");
-		if ($Edad <= 10 && $reg[$i]["Sexo"]=='F')
+		//registrar no aplica en sexo F menor de 10 años o mayor de 60 años y todos los de sexo M
+		if ($reg[$i]["Sexo"] == 'M')
 		{
 			fwrite($txt,'0');
-		} 
-		else if ($reg[$i]["Sexo"]=='F' && $reg[$i]["Gestacion"]=='0' && ($Edad >= 10 && $Edad < 60))
+		}
+		else if ($edad < 10 || $edad >= 60)
+		{
+			fwrite($txt,'0');
+		}
+		else if (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0)
 		{
 			fwrite($txt,'21');
-		}
-		else if ($reg[$i]["SifilisGestacional"]=='21' && $reg[$i]["Gestacion"]=='21')
-		{
-			fwrite($txt,'0');
-		}
-		else if ($reg[$i]["SifilisGestacional"]=='21' && $reg[$i]["Gestacion"]=='0')
-		{
-			fwrite($txt,'21');
-		}
-		else if ($Edad >= 60 && $reg[$i]["Gestacion"]=='21')
-		{
-			fwrite($txt,'0');
 		}
 		else
 		{
@@ -94,35 +87,21 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["Gestacion"]); // 14. Gestacion
 	fwrite($txt,"|");
-		if ($edadDias > 91 && $reg[$i]["Sexo"]=='M' && ($reg[$i]["Gestacion"]=='21' || $reg[$i]["Gestacion"]=='0'))
+		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["SifilisGestacional"] == '0')
 		{
-			fwrite($txt,'0');
+			fwrite($txt,'21');
 		}
-		else if ($Edad < 60 && $reg[$i]["SifilisGestacional"]=='0')
+		else if ($reg[$i]["Gestacion"] == '0' || ($edad < 10 || $edad >= 60) || $reg[$i]["Gestacion"] == '21' || (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0))
 		{
-			if ($reg[$i]["Gestacion"]=='0' && $edadDias > 91) 
-			{
-				fwrite($txt,'0');
-			}
-			else
-			{
-				fwrite($txt,'21');
-			}
-			
+			fwrite($txt,'0'); 
 		}
-		else if ($Edad >= 60 && $reg[$i]["SifilisGestacional"]=='0' && $reg[$i]["Sexo"]=='F')
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["SifilisGestacional"] == '21')
 		{
-			if ($reg[$i]["Gestacion"]=='0')
-			{
-				fwrite($txt,'0');
-			}
-			else
-			{
-				fwrite($txt,'21');
-			}
+			fwrite($txt,'0'); 
 		}
-		else {
-			fwrite($txt,$reg[$i]["SifilisGestacional"]);
+		else
+		{
+			fwrite($txt,$reg[$i]["SifilisGestacional"]); 
 		}
 	//fwrite($txt,$reg[$i]["SifilisGestacional"]); // 15. Sifilis Gestacional y Congenita
 	fwrite($txt,"|");
