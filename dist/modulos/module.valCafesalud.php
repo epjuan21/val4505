@@ -93,7 +93,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 		else if ($reg[$i]["Gestacion"] == '0' || ($edad < 10 || $edad >= 60) || $reg[$i]["Gestacion"] == '21' || (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0))
 		{
+			if ($edadDias < 91){
+				fwrite($txt,'21'); 
+			} else {
 			fwrite($txt,'0'); 
+			}
 		}
 		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["SifilisGestacional"] == '21')
 		{
