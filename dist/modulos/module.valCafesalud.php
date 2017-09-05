@@ -1041,13 +1041,25 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaTomaHDLInput"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["FechaTomaBaciloscopiaInput"]); // 112. Fecha Toma de Baciloscopia de Diagnóstico
+		if ($reg[$i]["SintomaticoRespiratorio"] == '1' && $reg[$i]["FechaTomaBaciloscopiaInput"] == '1845-01-01')
+		{
+			fwrite($txt,'1800-01-01');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["FechaTomaBaciloscopiaInput"]);
+		}
+	//fwrite($txt,$reg[$i]["FechaTomaBaciloscopiaInput"]); // 112. Fecha Toma de Baciloscopia de Diagnóstico
 	fwrite($txt,"|");
 		$DateResultadoBasiloscopia = date($reg[$i]["FechaTomaBaciloscopiaInput"]);
 		$YearResultadoBasiloscopia = substr($DateResultadoBasiloscopia, 0, 4);
 		if ($YearResultadoBasiloscopia > 1900 && $reg[$i]["ResultadoBaciloscopia"] == '4')
 		{
 			fwrite($txt,'1');
+		}
+		else if ($reg[$i]["SintomaticoRespiratorio"] == '1' && $reg[$i]["ResultadoBaciloscopia"] == '4')
+		{
+			fwrite($txt,'22');
 		}
 		else
 		{
