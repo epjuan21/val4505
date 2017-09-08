@@ -20,7 +20,12 @@ $reg = $objRPED->getRPED($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $FechaIni
 $res='SGD280RPED';
 $tipoId = 'NI';
 $numId = '000'.$Nit;
-$cons = 'S01';
+
+if ($CodigoEntidad == 'EPSS40'){
+	$cons = 'S01';
+} else if ($CodigoEntidad == 'EPS040') {
+	$cons = 'C01';
+}
 
 $nombreArchivo = $res."".str_replace("-", "", $FechaFinal)."".$tipoId."".$numId."".$cons.".txt";
 $txt = fopen("$nombreArchivo","w");
