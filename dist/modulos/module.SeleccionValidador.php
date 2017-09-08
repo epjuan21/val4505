@@ -14,6 +14,10 @@ switch ($CodigoEntidad) {
 		$module = "module.valSaviaSalud";
 		break;
 
+	case 'EPS040':
+		$module = "module.valSaviaSalud";
+		break;
+		
 	case 'ESS091':
 		$module = "module.valEcoopsos";
 		break;
