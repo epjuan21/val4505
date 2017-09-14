@@ -906,6 +906,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ResultadoSerologiaSifilis"]); // 81. Resultado Serología Para Sífilis
 	fwrite($txt,"|");
+		$DateFechaTomaElisaVIH = date($reg[$i]["FechaTomaElisaVIHInput"]); // Fecha Variable 87. Fecha Citologia Cervicouterina
+		$YearFechaTomaElisaVIH = substr($DateFechaTomaElisaVIH, 0, 4);
+	
 		if (($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80') && $reg[$i]["Gestacion"] == '1')
 		{
 			fwrite($txt,'1800-01-01');
@@ -924,8 +927,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'22');
 		}
-		else
+		else if ($reg[$i]["Gestacion"] == 1 && $YearFechaTomaElisaVIH > 1900) 
 		{
+			fwrite($txt,'1');
+		}
+		else {
 			fwrite($txt,$reg[$i]["ResultadoElisaVIH"]);
 		}
 	//fwrite($txt,$reg[$i]["ResultadoElisaVIH"]); // 83. Resultado ELISA par VIH
