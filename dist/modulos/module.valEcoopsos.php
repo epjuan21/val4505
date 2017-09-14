@@ -906,7 +906,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ResultadoSerologiaSifilis"]); // 81. Resultado Serología Para Sífilis
 	fwrite($txt,"|");
-		if ($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80' || $reg[$i]["Gestacion"] == '1')
+		if (($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80') && $reg[$i]["Gestacion"] == '1')
 		{
 			fwrite($txt,'1800-01-01');
 		}
