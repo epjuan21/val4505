@@ -923,15 +923,12 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); // 82. Fecha de Toma de Elisa para VIH
 	fwrite($txt,"|");
-		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["ResultadoElisaVIH"] == '0')
-		{
-			fwrite($txt,'22');
-		}
-		else if ($reg[$i]["Gestacion"] == '1' && $YearFechaTomaElisaVIH > 1900)
+		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["ResultadoElisaVIH"] == '0' && $YearFechaTomaElisaVIH > 1900)
 		{
 			fwrite($txt,'1');
 		}
-		else {
+		else
+		{
 			fwrite($txt,$reg[$i]["ResultadoElisaVIH"]);
 		}
 	//fwrite($txt,$reg[$i]["ResultadoElisaVIH"]); // 83. Resultado ELISA par VIH
