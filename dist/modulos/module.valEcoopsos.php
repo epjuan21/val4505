@@ -830,6 +830,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 		fwrite($txt,'0');
 	//fwrite($txt,$reg[$i]["PreservativosITSInput"]); // 74. Preservativos Entregados a Pacientes con ITS
 	fwrite($txt,"|");
+		$DateAsesoriaPreElisa = date($reg[$i]["AsesoriaPreElisaInput"]);
+		$YearAsesoriaPreElisa = substr($DateAsesoriaPreElisa, 0, 4);
+	
 		if($reg[$i]["Gestacion"] == '1' && $reg[$i]["AsesoriaPreElisaInput"] == '1845-01-01')
 		{
 			fwrite($txt,'1800-01-01');
@@ -913,6 +916,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}
+		// Si La Variable 75. Asesoría pre test Elisa para VIH Tiene El Valor 1800-01-01 La Variable 82 Tambien Debe Tener 1800-01-1
+		else if ($reg[$i]["AsesoriaPreElisaInput"] == '1800-01-01' && $YearFechaTomaElisaVIH > 1900)
+		{
+			fwrite($txt,'1800-01-01');
+		}	
 		else if ($reg[$i]["Gestacion"] == '21' || $reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0')
 		{
 			fwrite($txt,'1845-01-01');
@@ -923,9 +931,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); // 82. Fecha de Toma de Elisa para VIH
 	fwrite($txt,"|");
-		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["ResultadoElisaVIH"] == '0' && $YearFechaTomaElisaVIH > 1900)
+		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["ResultadoElisaVIH"] == '0' && $YearFechaTomaElisaVIH > 1900 && $YearAsesoriaPreElisa > 1900)
 		{
 			fwrite($txt,'1');
+		}
+		else if ($reg[$i]["AsesoriaPreElisaInput"] == '1800-01-01' && $YearFechaTomaElisaVIH > 1900)
+		{
+			fwrite($txt,'22');
 		}
 		else
 		{
