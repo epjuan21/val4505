@@ -917,7 +917,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 			fwrite($txt,'1800-01-01');
 		}
 		// Si La Variable 75. Asesoría pre test Elisa para VIH Tiene El Valor 1800-01-01 La Variable 82 Tambien Debe Tener 1800-01-1
-		else if ($reg[$i]["AsesoriaPreElisaInput"] == '1800-01-01' && $YearFechaTomaElisaVIH > 1900)
+		else if ($reg[$i]["AsesoriaPreElisaInput"] == '1800-01-01' && $YearFechaTomaElisaVIH > 1900 || ($reg[$i]["Gestacion"] == '1' && $reg[$i]["AsesoriaPreElisaInput"] == '1845-01-01'))
 		{
 			fwrite($txt,'1800-01-01');
 		}	
