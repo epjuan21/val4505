@@ -33,7 +33,15 @@ switch ($CodigoEntidad) {
 	case 'EPSM03':
 		$module = "module.valCafesalud";
 		break;
-
+		
+	case 'EPSS45':
+		$module = "module.valCafesalud";
+		break;
+		
+	case 'EPS044':
+		$module = "module.valCafesalud";
+		break;
+		
 	case '05091':
 		$module = "module.valVinculados";
 		break;
