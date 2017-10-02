@@ -894,7 +894,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		$DateFechaTomaElisaVIH = date($reg[$i]["FechaTomaElisaVIHInput"]); // Fecha Variable 87. Fecha Citologia Cervicouterina
 		$YearFechaTomaElisaVIH = substr($DateFechaTomaElisaVIH, 0, 4);
-	fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); // 82. Fecha de Toma de Elisa para VIH
+	if ($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
+	{
+		fwrite($txt,'1845-01-01');
+	}
+	else
+	{
+		fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]);
+	}
+	//fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); // 82. Fecha de Toma de Elisa para VIH
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ResultadoElisaVIH"]); // 83. Resultado ELISA par VIH
 	fwrite($txt,"|");
