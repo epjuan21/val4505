@@ -631,10 +631,17 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2' || $reg[$i]["Gestacion"]=='0')
 		{
 			fwrite($txt,'0');
-		} else if ($reg[$i]["Sexo"]=='F' && $reg[$i]["Gestacion"]=='21')
+		} 
+		else if ($reg[$i]["Sexo"]=='F' && $reg[$i]["Gestacion"]=='21')
 		{
 			fwrite($txt,'0');
-		} else {
+		} 
+		else ($reg[$i]["Sexo"]=='F' && $reg[$i]["Gestacion"]=='1' && $reg[$i]["ControlPrenatal"] == '0')
+		{
+			fwrite($txt,'999');
+		}
+		else
+		{
 			fwrite($txt,$reg[$i]["ControlPrenatal"]);
 		}
 	//fwrite($txt,$reg[$i]["ControlPrenatal"]); // 57. Control Prenatal
@@ -659,16 +666,20 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if ($reg[$i]["Sexo"]=='M' && $reg[$i]["Gestacion"]!='1')
 		{
 			fwrite($txt,'0');
-		} else if ($reg[$i]["Gestacion"]=='1')
+		} 
+		else if ($reg[$i]["Gestacion"]=='1')
 		{
 			fwrite($txt,'21');
-		} else if (($reg[$i]["SuministroAcidoFolico"]=='21' && $reg[$i]["Gestacion"]=='21') || ($reg[$i]["Gestacion"]=='0'))
+		} 
+		else if (($reg[$i]["SuministroAcidoFolico"]=='21' && $reg[$i]["Gestacion"]=='21') || ($reg[$i]["Gestacion"]=='0'))
 		{
 			fwrite($txt,'0');
-		} else if ($reg[$i]["SuministroAcidoFolico"]=='1' && $reg[$i]["Gestacion"]=='21')
+		} 
+		else if ($reg[$i]["SuministroAcidoFolico"]=='1' && $reg[$i]["Gestacion"]=='21')
 		{
 			fwrite($txt,'0');
-		} else if ($reg[$i]["SuministroAcidoFolico"]=='20' && $reg[$i]["Gestacion"]=='21')
+		} 
+		else if ($reg[$i]["SuministroAcidoFolico"]=='20' && $reg[$i]["Gestacion"]=='21')
 		{
 			fwrite($txt,'0');
 		} else {
