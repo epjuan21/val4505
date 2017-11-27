@@ -914,9 +914,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 	{
 		fwrite($txt,'1800-01-01');
 	}
+	else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
+	{
+		fwrite($txt,'1800-01-01');
+	}
 	else
 	{
-		fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]);
+		fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); 
 	}
 	//fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); // 82. Fecha de Toma de Elisa para VIH
 	fwrite($txt,"|");
