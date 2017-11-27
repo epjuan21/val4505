@@ -832,9 +832,25 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		$DateAsesoriaPreElisa = date($reg[$i]["AsesoriaPreElisaInput"]);
 		$YearAsesoriaPreElisa = substr($DateAsesoriaPreElisa, 0, 4);
-	fwrite($txt,$reg[$i]["AsesoriaPreElisaInput"]); // 75. Asesoria Pre Test Elisa para VIH
+		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["AsesoriaPreElisaInput"] == '1845-01-01')
+		{
+			fwrite($txt,'1800-01-01');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["AsesoriaPreElisaInput"]);
+		}
+	//fwrite($txt,$reg[$i]["AsesoriaPreElisaInput"]); // 75. Asesoria Pre Test Elisa para VIH
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["AsesoriaPostElisaInput"]); // 76. Asesoria Post Test Elisa para VIH
+		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["AsesoriaPostElisaInput"] == '1845-01-01')
+		{
+			fwrite($txt,'1800-01-01');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["AsesoriaPostElisaInput"]);
+		}
+	//fwrite($txt,$reg[$i]["AsesoriaPostElisaInput"]); // 76. Asesoria Post Test Elisa para VIH
 	fwrite($txt,"|");
 		if ($reg[$i]["EnfermedadMental"] == '21'&&  $reg[$i]["PacienteEnfermedadMental"] == '1')
 		{
