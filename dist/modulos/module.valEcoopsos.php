@@ -918,7 +918,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 	{
 		fwrite($txt,'1800-01-01');
 	}
-	else
+	else if ($reg[$i]["Gestacion"] == '21' && $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
+	{
+		fwrite($txt,'1800-01-01');
+	}	
+	else		
 	{
 		fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); 
 	}
