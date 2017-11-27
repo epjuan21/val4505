@@ -910,25 +910,37 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		$DateFechaTomaElisaVIH = date($reg[$i]["FechaTomaElisaVIHInput"]); // Fecha Variable 87. Fecha Citologia Cervicouterina
 		$YearFechaTomaElisaVIH = substr($DateFechaTomaElisaVIH, 0, 4);
-	if ($reg[$i]["Gestacion"] == '1' && ($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80' || $reg[$i]["FechaTomaElisaVIHInput"] == '1845-01-01'))
-	{
-		fwrite($txt,'1800-01-01');
-	}
-	else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
-	{
-		fwrite($txt,'1800-01-01');
-	}
-	else if (($reg[$i]["Gestacion"] == '21' || ($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0)  && $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
-	{
-		fwrite($txt,'1800-01-01');
-	}	
-	else		
-	{
-		fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); 
-	}
+		if ($reg[$i]["Gestacion"] == '1' && ($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80' || $reg[$i]["FechaTomaElisaVIHInput"] == '1845-01-01'))
+		{
+			fwrite($txt,'1800-01-01');
+		}
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
+		{
+			fwrite($txt,'1800-01-01');
+		}
+		else if (($reg[$i]["Gestacion"] == '21' || ($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0)  && $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
+		{
+			fwrite($txt,'1800-01-01');
+		}	
+		else		
+		{
+			fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); 
+		}
 	//fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); // 82. Fecha de Toma de Elisa para VIH
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ResultadoElisaVIH"]); // 83. Resultado ELISA par VIH
+		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["ResultadoElisaVIH"] == '0'))
+		{
+			fwrite($txt,'22');
+		}
+		else if (($reg[$i]["Gestacion"] == '21' || ($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0))
+		{
+			fwrite($txt,'22');
+		}	
+		else		
+		{
+			fwrite($txt,$reg[$i]["ResultadoElisaVIH"]); 
+		}
+	//fwrite($txt,$reg[$i]["ResultadoElisaVIH"]); // 83. Resultado ELISA par VIH
 	fwrite($txt,"|");
 	$DateTSHNeonatal = date($reg[$i]["FechaTSHNeonatalInput"]);
 	$YearTSHNeonatal = substr($DateTSHNeonatal, 0, 4);
