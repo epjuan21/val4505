@@ -94,7 +94,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,$reg[$i]["Gestacion"]);
 		}
-	//fwrite($txt,$reg[$i]["Gestacion"]); // 14. <Gestacion></Gestacion>
+	//fwrite($txt,$reg[$i]["Gestacion"]); // 14. Gestacion
 	fwrite($txt,"|");
 		// La opción 0 se usa: 
 		// Cuando corresponde a un hombre que no es RN (<28 días de nacido)  
@@ -918,7 +918,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	{
 		fwrite($txt,'1800-01-01');
 	}
-	else if ($reg[$i]["Gestacion"] == '21' && $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
+	else if (($reg[$i]["Gestacion"] == '21' || ($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0)  && $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
 	{
 		fwrite($txt,'1800-01-01');
 	}	
