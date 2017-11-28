@@ -918,9 +918,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
+		else if ($reg[$i]["Gestacion"] == '2')
 		{
-			fwrite($txt,'1800-01-01');
+			fwrite($txt,'1845-01-01');
 		}
 		else if (($reg[$i]["Gestacion"] == '21' || ($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0)  && ($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80' || $reg[$i]["FechaTomaElisaVIHInput"] == '1845-01-01'))
 		{
