@@ -928,7 +928,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); // 82. Fecha de Toma de Elisa para VIH
 	fwrite($txt,"|");
-		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["ResultadoElisaVIH"] == '0')
+		if ($reg[$i]["Sexo"] == 'M' || ($edad < 10 || $edad >= 60))
+		{
+			fwrite($txt,'0');
+		}
+		else if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["ResultadoElisaVIH"] == '0')
 		{
 			fwrite($txt,'22');
 		}
