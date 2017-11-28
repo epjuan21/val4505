@@ -936,7 +936,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'22');
 		}	
-		else if ($reg[$i]["Gestacion"] == '0' && $reg[$i]["ResultadoElisaVIH"] == '1845-01-01' )
+		else if ($reg[$i]["Gestacion"] == '0' && $reg[$i]["FechaTomaElisaVIHInput"] == '1845-01-01' )
 		{
 			fwrite($txt,'0');
 		}	
