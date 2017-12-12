@@ -536,7 +536,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaAtencionParto"]); // 49. Fecha Atencion Parto o Cesarea
 	fwrite($txt,"|");
-		if ($edad < 10 || $edad >= 60)
+		if (($edad < 10 || $edad >= 60) || $reg[$i]["Gestacion"] == '2')
 		{
 			fwrite($txt,'1845-01-01'); 
 		}
