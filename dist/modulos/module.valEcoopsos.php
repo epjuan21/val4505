@@ -836,6 +836,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["AsesoriaPreElisaInput"] == '1800-01-01')
+		{
+			fwrite($txt,'1845-01-01');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["AsesoriaPreElisaInput"]);
@@ -845,6 +849,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["AsesoriaPostElisaInput"] == '1845-01-01')
 		{
 			fwrite($txt,'1800-01-01');
+		}
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["AsesoriaPostElisaInput"] == '1800-01-01')
+		{
+			fwrite($txt,'1845-01-01');
 		}
 		else
 		{
