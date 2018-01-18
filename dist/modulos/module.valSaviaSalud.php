@@ -725,7 +725,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ValoracionAgudezaVisualInput"]);
 	fwrite($txt,"|");
-		if (($edad == 55 || $edad == 60) && $reg[$i]["ConsultaOftalmologiaInput"] == '1845-01-01')
+		if (($edad == 55 || $edad == 60 || $edad == 70) && $reg[$i]["ConsultaOftalmologiaInput"] == '1845-01-01')
 		{
 			fwrite($txt,'1800-01-01');
 		}
