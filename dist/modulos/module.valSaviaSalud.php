@@ -692,7 +692,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'21');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["SuministroSulfatoFerroso"] == '21')
+		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["SuministroSulfatoFerroso"] == '21' || $reg[$i]["SuministroSulfatoFerroso"] == '1' ))
 		{
 			fwrite($txt,'0');
 		}
