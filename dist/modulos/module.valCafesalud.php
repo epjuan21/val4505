@@ -154,10 +154,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ObesidadDesnutricion"]); // 21. Obsesidad o Desnutrición Proteico Calórica
 	fwrite($txt,"|");
-		if ($edad >= 19 and $reg[$i]["Sexo"]=='M')
+		if ($edad >= 18 && $reg[$i]["Sexo"] == 'M')
 		{
 			fwrite($txt,'0');
-		} else if ($edad < 19 and $reg[$i]["VictimaMaltrato"]=='0')
+		} 
+		else if ($edad < 18 && $reg[$i]["VictimaMaltrato"]=='0')
 		{
 			fwrite($txt,'21');
 		} else {
