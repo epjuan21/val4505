@@ -748,7 +748,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ConsultaPsicologiaInput"]);
 	fwrite($txt,"|");
-		if ($edad >= 10 && $reg[$i]["ConsultaCyDPrimeraVezInput"] == '1800-01-01')
+		if ($edad >= 10)
 		{
 			fwrite($txt,'1845-01-01');
 		}
