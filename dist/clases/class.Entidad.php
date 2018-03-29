@@ -40,7 +40,7 @@ class Entidad extends ConnectionMySQL {
 				END AS Periodo
 			,FechaFinalReg AS FechaFinalReg
 			,substr(FechaFinalReg,1,4) AS Año
-			FROM val4505.rped
+			FROM rped
 			WHERE CodigoEntidad = '$IdEntidad'
 			GROUP BY FechaFinalReg");		
 		$this->query->execute();
