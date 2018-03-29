@@ -15,7 +15,7 @@ class Entidad extends ConnectionMySQL {
 	// Funcion para Listar Entidades Importadas Por Usuario
 	public function getListEnt($IdUsuario){
 		$this->query = $this->conn->prepare(
-			"SELECT val4505.entidades.ENTIDAD_NAME, val4505.entidades.ENTIDAD_COD, val4505.rped.CodigoMunicipio FROM val4505.rped LEFT JOIN entidades ON (val4505.rped.CodigoEntidad = val4505.entidades.ENTIDAD_COD) WHERE val4505.rped.IdUsuario = '$IdUsuario' GROUP BY val4505.entidades.ENTIDAD_NAME");		
+			"SELECT entidades.ENTIDAD_NAME, entidades.ENTIDAD_COD, rped.CodigoMunicipio FROM rped LEFT JOIN entidades ON (rped.CodigoEntidad = entidades.ENTIDAD_COD) WHERE rped.IdUsuario = '$IdUsuario' GROUP BY entidades.ENTIDAD_NAME");		
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
