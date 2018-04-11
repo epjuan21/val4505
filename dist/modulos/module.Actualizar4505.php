@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Bogota');
 require_once ("../clases/class.rped.php");
 $objRPED = new rped();
 // Se Obtiene el ID del Registro Para Asegurarnos de Modificar Solo El Registro Seleccionado
