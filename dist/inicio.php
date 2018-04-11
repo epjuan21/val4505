@@ -1,5 +1,9 @@
 <?php
     error_reporting(E_ALL); // Mostrar Todos los Errores
+    if( ! ini_get('date.timezone') ) 
+    {
+     date_default_timezone_set('GMT');
+    }
     date_default_timezone_set('America/Bogota');
     
     require_once("modulos/module.LeerArchivos.php");
