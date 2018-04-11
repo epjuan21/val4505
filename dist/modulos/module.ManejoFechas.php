@@ -1,13 +1,5 @@
 <?php
 date_default_timezone_set('America/Bogota');
-
-if (date_default_timezone_get()) {
-    echo 'date_default_timezone_set: ' . date_default_timezone_get() . '<br />';
-}
-
-if (ini_get('date.timezone')) {
-    echo 'date.timezone: ' . ini_get('date.timezone');
-}
 //date_default_timezone_set('America/Bogota');
 function calcularEdad ($FechaFin, $FechaNacimiento)
 {
