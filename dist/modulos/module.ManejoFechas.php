@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set('Europe/London');
+date_default_timezone_set('America/Bogota');
 
 if (date_default_timezone_get()) {
     echo 'date_default_timezone_set: ' . date_default_timezone_get() . '<br />';
