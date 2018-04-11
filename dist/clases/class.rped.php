@@ -706,10 +706,10 @@ class rped extends ConnectionMySQL {
 		$this->query->bindValue(3,$_POST["FechaFinalReg"], PDO::PARAM_STR);
 		$this->query->bindValue(4,strtoupper($_POST["TipoIdUsuario"]), PDO::PARAM_STR);
 		$this->query->bindValue(5,$_POST["NumeroIdUsuario"], PDO::PARAM_STR);
-		$this->query->bindValue(6,mb_strtoupper($_POST["Apellido1"],'UTF-8'), PDO::PARAM_STR);
-		$this->query->bindValue(7,mb_strtoupper($_POST["Apellido2"],'UTF-8'),PDO::PARAM_STR);
-		$this->query->bindValue(8,mb_strtoupper($_POST["Nombre1"],'UTF-8'),PDO::PARAM_STR);
-		$this->query->bindValue(9,mb_strtoupper($_POST["Nombre2"],'UTF-8'),PDO::PARAM_STR);
+		$this->query->bindValue(6,strtoupper ($_POST["Apellido1"],'UTF-8'), PDO::PARAM_STR);
+		$this->query->bindValue(7,strtoupper ($_POST["Apellido2"],'UTF-8'),PDO::PARAM_STR);
+		$this->query->bindValue(8,strtoupper ($_POST["Nombre1"],'UTF-8'),PDO::PARAM_STR);
+		$this->query->bindValue(9,strtoupper($_POST["Nombre2"],'UTF-8'),PDO::PARAM_STR);
 		$this->query->bindValue(10,$_POST["FechaNacimiento"],PDO::PARAM_STR);
 		$this->query->bindValue(11,$_POST["Sexo"],PDO::PARAM_STR);
 		$this->query->bindValue(12,$_POST["PertenenciaEtnica"],PDO::PARAM_STR);
