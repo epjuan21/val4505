@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Bogota');
 function calcularEdad ($FechaFin, $FechaNacimiento)
 {
 	$dateExport = date($FechaFin);
