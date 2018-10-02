@@ -542,7 +542,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2' || $reg[$i]["Gestacion"]=='0')
 		{
 			fwrite($txt,'0');
-		} else if ($reg[$i]["Gestacion"]='1' && $reg[$i]["ControlPrenatal"]=='0')
+		} else if ($reg[$i]["Gestacion"]=='1' && $reg[$i]["ControlPrenatal"]=='0')
 		{
 			fwrite($txt,'999');
 		} else {
@@ -756,7 +756,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	$DateTHS = date($reg[$i]["FechaTSHNeonatalInput"]);
 	$YearTSH = substr($DateTHS, 0, 4);
-		if ($YearTSH > 1900 && $edadDias > 2 && ($reg[$i]["HipotiroidismoCongenito"] == '0' || $reg[$i]["HipotiroidismoCongenito"] == '2'))
+		if ($YearTSH > 1900 && $edadDias > 6 )
 		{
 			fwrite($txt,'1845-01-01');
 		} else {
@@ -764,11 +764,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTSHNeonatalInput"]); // 84. Fecha TSH Neonatal
 	fwrite($txt,"|");
-		if ($edadDias > 30)
-		{
-			fwrite($txt,'0');
-		}
-		else if ($edadDias < 30)
+		if ($YearTSH > 1900 && $edadDias > 6 )
 		{
 			fwrite($txt,'22');
 		}
