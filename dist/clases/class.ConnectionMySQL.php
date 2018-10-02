@@ -3,7 +3,7 @@ abstract class ConnectionMySQL {
 
 	private static $db_host = 'localhost';
 	private static $db_user = 'root';
-	private static $db_pass = '1234321234Juan';
+	private static $db_pass = '';
 	protected $db_name = 'val4505';
 
 	public function __construct(){
