@@ -725,7 +725,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		if ($edad >= 55 && ($reg[$i]["ConsultaOftalmologiaInput"] == '1800-01-01' || $reg[$i]["ConsultaOftalmologiaInput"] == '1845-01-01'))
 		{
-			if ($edad == 55 || $edad == 60 || $edad == 65 || $edad == 70 || $edad == 75 || $edad == 80 || $edad == 85 || $edad == 90)
+			if ($edad == 55 || $edad == 60 || $edad == 65 || $edad == 70 || $edad == 75 || $edad == 80 || $edad == 85 || $edad == 90 || $edad == 95)
 			{
 				fwrite($txt,'1800-01-01');
 			}
