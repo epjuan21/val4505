@@ -802,7 +802,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 
 	//fwrite($txt,$reg[$i]["ConsultaJovenPrimeraVezInput"]); // 72. Consulta de Joven Primera Vez
 	fwrite($txt,"|");
-		if ($edad < 45) 
+		if ($edad < 45)
 		{
 			fwrite($txt,'1845-01-01'); 
 		} 
