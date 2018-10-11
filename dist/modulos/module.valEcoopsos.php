@@ -538,7 +538,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaSalidaParto"]); // 50. Fecha Salida de la Atención del Parto o Cesárea
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2' || ($edad >= 10 && $edad < 60))
+		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2' || ($edad < 10 || $edad >= 60))
 		{
 			fwrite($txt,'1845-01-01');
 			
