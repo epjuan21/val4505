@@ -226,10 +226,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FluorosisDental"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["FechaPeso"]);
+	fwrite($txt,$reg[$i]["FechaPeso"]); // 29. Fecha Peso
 	fwrite($txt,"|");
 	$PesoKilogramos = $reg[$i]["PesoKilogramos"];
-
 		if ($PesoKilogramos > 1000)
 		{
 			$Peso = substr($reg[$i]["PesoKilogramos"], 0, 2);
@@ -244,7 +243,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,$reg[$i]["PesoKilogramos"]);
 		}
-		
 	//fwrite($txt,$reg[$i]["PesoKilogramos"]); // 30. Peso en Kilogramos
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaTalla"]);

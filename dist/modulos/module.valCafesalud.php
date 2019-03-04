@@ -32,6 +32,7 @@ fwrite($txt,$numReg."\r\n");
 
 for ($i=0;$i<sizeof($reg);$i++)
 {
+	// Varaibles
 	$edad = calcularEdad($FechaFinal, $reg[$i]["FechaNacimiento"]);
 	$edadDias = calcularEdadenDias ($reg[$i]["FechaNacimiento"], $FechaFinal);
 	$Edad = $edadDias / 365;
@@ -39,6 +40,8 @@ for ($i=0;$i<sizeof($reg);$i++)
 	$ValGestacion = $reg[$i]["Gestacion"];
 	$EdadRound = floor($Edad);
 	$EdadResiduo = $EdadRound % 5;
+	$PesoKilogramos = $reg[$i]["PesoKilogramos"];
+	$TallaEnCentimetros = intval($reg[$i]["TallaCentimetros"]);
 	fwrite($txt,"2");
 	fwrite($txt,"|");
 	fwrite($txt,$i+1);
@@ -113,7 +116,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($reg[$i]["Gestacion"]=='0')
+		else if ($reg[$i]["Gestacion"] == '0' || $reg[$i]["Gestacion"] == '2')
 		{
 			fwrite($txt,'0');
 		}
@@ -187,24 +190,34 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FluorosisDental"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["FechaPeso"]); // 29. 
+	fwrite($txt,$reg[$i]["FechaPeso"]); // 29. Fecha Peso
 	fwrite($txt,"|");
 		if ($reg[$i]["PesoKilogramos"] > 1000)
 		{
 			$peso = $reg[$i]["PesoKilogramos"] * 0.001;
 			fwrite($txt,$peso);
-		} else {
+		}
+		else if ($PesoKilogramos > 250 && $PesoKilogramos <= 1000)
+		{
+			$Peso = $PesoKilogramos / 10;
+			fwrite($txt,$Peso);
+		}
+		else
+		{
 			fwrite($txt,$reg[$i]["PesoKilogramos"]);
 		}
 	//fwrite($txt,$reg[$i]["PesoKilogramos"]); // 30. Peso en Kilogramos
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaTalla"]);
 	fwrite($txt,"|");
-		if ($reg[$i]["TallaCentimetros"] > 225 and $reg[$i]["TallaCentimetros"]!='999')
+		if ($TallaEnCentimetros > 225 && $reg[$i]["TallaCentimetros"]!='999')
 		{
-			$talla = $reg[$i]["TallaCentimetros"] * 0.1;
-			fwrite($txt,$talla);
-		} else {
+			$TallaEnCentimetros = intval($TallaEnCentimetros / 10);
+
+			fwrite($txt,$TallaEnCentimetros);
+		} 
+		else 
+		{
 			fwrite($txt,$reg[$i]["TallaCentimetros"]);
 		}
 	//fwrite($txt,$reg[$i]["TallaCentimetros"]); // 32. Talla en Centimetros
@@ -766,7 +779,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		if ($YearTSH > 1900 && $edadDias > 6 )
 		{
-			fwrite($txt,'22');
+			fwrite($txt,'0');
 		}
 		else
 		{
