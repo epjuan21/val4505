@@ -228,15 +228,23 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaPeso"]);
 	fwrite($txt,"|");
-		if ($reg[$i]["PesoKilogramos"] > 1000)
+	$PesoKilogramos = $reg[$i]["PesoKilogramos"];
+
+		if ($PesoKilogramos > 1000)
 		{
 			$Peso = substr($reg[$i]["PesoKilogramos"], 0, 2);
+			fwrite($txt,$Peso);
+		}
+		else if ($PesoKilogramos > 250 && $PesoKilogramos <= 1000)
+		{
+			$Peso = $PesoKilogramos / 10;
 			fwrite($txt,$Peso);
 		}
 		else
 		{
 			fwrite($txt,$reg[$i]["PesoKilogramos"]);
 		}
+		
 	//fwrite($txt,$reg[$i]["PesoKilogramos"]); // 30. Peso en Kilogramos
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaTalla"]);
