@@ -40,6 +40,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 {
 	$edad = calcularEdad($FechaFinal, $reg[$i]["FechaNacimiento"]);
 	$edadDias = calcularEdadenDias ($reg[$i]["FechaNacimiento"], $FechaFinal);
+	$TallaEnCentimetros = intval($reg[$i]["TallaCentimetros"]);
 	fwrite($txt,"2");
 	fwrite($txt,"|");
 	fwrite($txt,$i+1);
@@ -242,16 +243,16 @@ for ($i=0;$i<sizeof($reg);$i++)
 		$YearTalla = substr($DateTalla, 0, 4);
 	fwrite($txt,$reg[$i]["FechaTalla"]); // 31. Fecha Talla
 	fwrite($txt,"|");
-
-		if ($reg[$i]["TallaCentimetros"] > 225 && $reg[$i]["TallaCentimetros"]!='999')
+		if ($TallaEnCentimetros > 225 && $reg[$i]["TallaCentimetros"]!='999')
 		{
-			$talla = $reg[$i]["TallaCentimetros"] / 10;
-			fwrite($txt,$talla);
+			$TallaEnCentimetros = intval($TallaEnCentimetros / 10);
+
+			fwrite($txt,$TallaEnCentimetros);
 		} 
-		else
+		else 
 		{
 			fwrite($txt,$reg[$i]["TallaCentimetros"]);
-		}
+	}
 	//fwrite($txt,$reg[$i]["TallaCentimetros"]); // 32. Talla en Centimetros
 	fwrite($txt,"|");
 		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2')
