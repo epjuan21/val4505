@@ -725,7 +725,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ValoracionAgudezaVisualInput"]);
 	fwrite($txt,"|");
-		if (($edad == 55 || $edad == 60 || $edad == 70) && $reg[$i]["ConsultaOftalmologiaInput"] == '1845-01-01')
+		if (($edad == 55 || $edad == 60 || $edad == 70 || $edad == 75) && $reg[$i]["ConsultaOftalmologiaInput"] == '1845-01-01')
 		{
 			fwrite($txt,'1800-01-01');
 		}
@@ -814,7 +814,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,$reg[$i]["ConsultaAdultoPrimeraVezInput"]);
 		}
-		
 	//fwrite($txt,$reg[$i]["ConsultaAdultoPrimeraVezInput"]); // 73. Consulta de Adulto Primera Vez
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["PreservativosITSInput"]); // 74. Preservativos Entregados a Pacientes con ITS
