@@ -44,6 +44,8 @@ for ($i=0;$i<sizeof($reg);$i++)
 {
 	$edad = calcularEdad($FechaFinal, $reg[$i]["FechaNacimiento"]);
 	$edadDias = calcularEdadenDias ($reg[$i]["FechaNacimiento"], $FechaFinal);
+	$DateConsultaAdultoPrimeraVezInput = date($reg[$i]["ConsultaAdultoPrimeraVezInput"]); // Fecha Variable 87. Fecha Citologia Cervicouterina
+	$YearConsultaAdultoPrimeraVezInput = (int)substr($DateConsultaAdultoPrimeraVezInput, 0, 4);
 	fwrite($txt,"2");
 	fwrite($txt,"|");
 	fwrite($txt,$i+1);
@@ -331,29 +333,89 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["HepatitisB"]); // 36. Hepatitis B Menores de 1 año
 	fwrite($txt,"|");
+		// Validar que cuando la variable 37 registre un valor diferente a 0 el cálculo de la edad* sea < 6 años
+		// Validar que en >= 6 años de edad variable 37 sea 0 No aplica 
+		// Validar que en < 6 años de edad variable 37 sea diferente a 0 No aplica 
+		// Validar que si: 
+		// Edad en meses < 4 variable 37 diferente a 0, 2, 3 
+		// Edad en meses < 6 variable 37 diferente a 0, 3 
+
+		// La opción 0 se usa En mayor o igual de 6 años de edad.
 		if ($edad >= 6)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($edad < 6 && $reg[$i]["Pentavalente"]== '0') 
+		else if ( $edad < 6 && $reg[$i]["Pentavalente"] == '0' )
 		{
 			fwrite($txt,'22');
 		}
-		else
+		// 120 equivale a 4 Meses
+		else if ( $edadDias <= 120 )
 		{
+			if ( $reg[$i]["Pentavalente"] == '2' || $reg[$i]["Pentavalente"] == '3' )
+			{
+				fwrite($txt,'1');
+			}
+			else if ( $reg[$i]["Pentavalente"] == '0' )
+			{
+				fwrite($txt,'22');
+			}
+			else
+			{
+				fwrite($txt,$reg[$i]["Pentavalente"]);
+			}
+		}
+		// 180 equivale a 6 Meses
+		else if ( $edadDias >= 120 &&  $edadDias < 181)
+		{
+			if ( $reg[$i]["Pentavalente"] == '3' )
+			{
+				fwrite($txt,'2');
+			}
+			else if ( $reg[$i]["Pentavalente"] == '0' )
+			{
+				fwrite($txt,'22');
+			}
+			else
+			{
+				fwrite($txt,$reg[$i]["Pentavalente"]);
+			}
+
+		}
+		else {
 			fwrite($txt,$reg[$i]["Pentavalente"]);
 		}
 	//fwrite($txt,$reg[$i]["Pentavalente"]); // 37. Pentavalente
+	/*
+	Validar que cuando la variable 38 registre un valor diferente a 0 el cálculo de la edad* sea < 6 años.
+	Validar que en >= 6 años de edad variable 38 sea 0 No aplica 
+	Validar que en < 6 años de edad variable 38 sea diferente a 0 No aplica 
+	Validar que si
+	Edad en meses < 4 variable 38 diferente a 2, 3, 4 y 5
+	Edad en meses < 6 variable 38 diferente a   3, 4 y 5 
+	Edad en meses < 12 variable 38 diferente a  4 y 5 
+	Edad en meses < 18 variable 38 diferente a  5
+	*/
 	fwrite($txt,"|");
 		if ($edad >= 6)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($edad < 6 && $reg[$i]["Polio"]== '0') 
+		else if ($edad < 6 && $reg[$i]["Polio"] == '0') 
 		{
 			fwrite($txt,'22');
 		}
-		else
+		// 180 equivale a 6 Meses
+		else if ( $edadDias >= 120 &&  $edadDias < 181 && ( $reg[$i]["Polio"] == '3' || $reg[$i]["Polio"] == '4'|| $reg[$i]["Polio"] == '5' ) )
+		{
+			fwrite($txt,'2');
+		}
+		// 120 equivale a 4 Meses
+		else if ( $edadDias <= 120 && ( $reg[$i]["Polio"] == '2' || $reg[$i]["Polio"] == '3' || $reg[$i]["Polio"] == '4'|| $reg[$i]["Polio"] == '5' ) )
+		{
+			fwrite($txt,'1');
+		}
+		else 
 		{
 			fwrite($txt,$reg[$i]["Polio"]);
 		}
@@ -802,14 +864,18 @@ for ($i=0;$i<sizeof($reg);$i++)
 
 	//fwrite($txt,$reg[$i]["ConsultaJovenPrimeraVezInput"]); // 72. Consulta de Joven Primera Vez
 	fwrite($txt,"|");
-		if ($edad < 45)
+		if ( $edad < 45 )
 		{
-			fwrite($txt,'1845-01-01'); 
+			fwrite($txt,'1845-01-01');
 		} 
 		else if ($edad >= 45 && $reg[$i]["ConsultaAdultoPrimeraVezInput"] == '1845-01-01')
 		{
 			fwrite($txt,'1800-01-01');
 		} 
+		else if ( $edad >= 45 && $YearConsultaAdultoPrimeraVezInput > 1900 && $edad%5 != 0 )
+		{
+			fwrite($txt,'1800-01-01');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["ConsultaAdultoPrimeraVezInput"]);

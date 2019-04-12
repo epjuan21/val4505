@@ -41,6 +41,8 @@ for ($i=0;$i<sizeof($reg);$i++)
 	$edad = calcularEdad($FechaFinal, $reg[$i]["FechaNacimiento"]);
 	$edadDias = calcularEdadenDias ($reg[$i]["FechaNacimiento"], $FechaFinal);
 	$TallaEnCentimetros = intval($reg[$i]["TallaCentimetros"]);
+	$DateTalla = date($reg[$i]["FechaTalla"]);
+	$YearTalla = substr($DateTalla, 0, 4);
 	fwrite($txt,"2");
 	fwrite($txt,"|");
 	fwrite($txt,$i+1);
@@ -239,8 +241,6 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["PesoKilogramos"]); // 30. Peso en Kilogramos
 	fwrite($txt,"|");
-		$DateTalla = date($reg[$i]["FechaTalla"]);
-		$YearTalla = substr($DateTalla, 0, 4);
 	fwrite($txt,$reg[$i]["FechaTalla"]); // 31. Fecha Talla
 	fwrite($txt,"|");
 		if ($TallaEnCentimetros > 225 && $reg[$i]["TallaCentimetros"]!='999')
@@ -324,9 +324,22 @@ for ($i=0;$i<sizeof($reg);$i++)
 		else if ($edad < 6 && $reg[$i]["Pentavalente"]=='0') 
 		{
 			fwrite($txt,'22');
-		} 
+		}
+		// 180 equivale a 6 Meses
+		else if ($edadDias < 180 && $reg[$i]["Pentavalente"] == '3')
+		{
+			// 120 equivale a 4 meses
+			if ($edadDias < 120 && $reg[$i]["Pentavalente"] == '3')
+			{
+				fwrite($txt, '1');
+			}
+			else
+			{
+				fwrite($txt, '2');
+			}
+		}
 		else {
-			fwrite($txt,$reg[$i]["Pentavalente"]);
+			fwrite($txt,$edadDias);
 		}
 	// fwrite($txt,$reg[$i]["Pentavalente"]); // 37. Pentavalente
 	fwrite($txt,"|");
