@@ -50,6 +50,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	$YearConsultaAdultoPrimeraVezInput = (int)substr($DateConsultaAdultoPrimeraVezInput, 0, 4);
 	$DateUltimoControlPrenatal = date($reg[$i]["UltimoControlPrenatal"]);
 	$YearUltimoControlPrenatal = substr($DateUltimoControlPrenatal, 0, 4);	// Año Ultimo Control Prenatal
+	$YearFechaAntigenoSuperficie =  substr($reg[$i]["FechaAntigenoHepatitisBGestantesInput"], 0, 4);
 
 	fwrite($txt,"2");
 	fwrite($txt,"|");
@@ -954,21 +955,25 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaAntigenoHepatitisBGestantesInput"]); // 78. Fecha Antigeno de Superficie Hepatitis B en Gestantes
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == 'NE')
+		if ($reg[$i]["Sexo"] == 'M' && ($reg[$i]["Sexo"] == 'M' && $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == 'NE'))
 		{
 			fwrite($txt,'0');
 		}
-		else if ( ($reg[$i]["Sexo"] == 'F' && $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == '0' && $reg[$i]["Gestacion"] == '1') || $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == 'NE' ) 
+		else if ( $reg[$i]["Sexo"] == 'F' && $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == '0' && $reg[$i]["Gestacion"] == '1' ) 
 		{
 			fwrite($txt,'22');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == 'NE')
+		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["Gestacion"] == '2' && $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == 'NE'))
 		{
 			fwrite($txt,'0');
 		}
+		else if ($reg[$i]["Gestacion"] == '1' && $YearFechaAntigenoSuperficie > 1845)
+		{
+			fwrite($txt,'1');
+		}
 		else 
 		{
-			fwrite($txt,$reg[$i]["ResultadoAntigenoHepatitisBGestantes"]);
+			fwrite($txt,$YearFechaAntigenoSuperficie);
 		}
 	//fwrite($txt,$reg[$i]["ResultadoAntigenoHepatitisBGestantes"]); // 79. Resultado Antigeno de Superficie Hepatitis B en Gestantes
 	fwrite($txt,"|");
