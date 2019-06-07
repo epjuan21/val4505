@@ -165,13 +165,11 @@
 			} 
 			else if ($line && $CodigoEntidad == 'EPSS40')
 			{
-
 				// Almacenamos el Dato Actual Que Contiene El Error
 				
 				if (array_key_exists(3, $reg)){
 					$CadenaError = 	$reg[3];
 				}
-
 
 				if (array_key_exists(3, $reg)){
 					$TextoError = 	$reg[2];
@@ -266,6 +264,54 @@
 						}
 
 					}
+				}
+
+			}
+			// Si Hay Datos y Si es SAVIASALUD Contributivo
+			else if ($line && $CodigoEntidad == 'EPS040')
+			{
+				// Almacenamos el Dato Actual Que Contiene El Error
+				
+				if (array_key_exists(3, $reg)){
+					$CadenaError = 	$reg[3];
+				}
+
+				if (array_key_exists(3, $reg)){
+					$TextoError = 	$reg[2];
+				}
+
+				if (array_key_exists(0, $reg)){
+					$CadenaLinea = 	$reg[0];
+				}
+
+				$CadenaError = mb_convert_encoding($CadenaError,"UTF-8","UCS-2");
+				$TextoError = mb_convert_encoding($TextoError,"UTF-8","UCS-2");
+				$CadenaLinea = mb_convert_encoding($CadenaLinea,"UTF-8","UCS-2");
+
+				// Cadena Buscada Para Numero de Documento
+				$NumeroDoc = 'Numero Doc:';
+
+				// Buscar Cadena de Numero de Documento
+				$BuscarNumDoc = strpos($CadenaError, $NumeroDoc);
+
+				if ($BuscarNumDoc !== false) // Si Es Verdadero Se Encontro la Cadena Numero Doc
+				{
+
+					$TipoError = 1;
+
+					$CodigoUsuario = mb_substr($CadenaError, 12 ,mb_strlen($CadenaError),'UTF-8');
+
+					$ObjErrores->insertErrores(
+					null
+					,$CodigoUsuario
+					,$CodigoEntidad
+					,$TipoError
+					,$Periodo
+					,$CodigoMunicipio
+					,$IdUsuario
+					,$CadenaError
+					,$TextoError
+					);
 				}
 
 			}
