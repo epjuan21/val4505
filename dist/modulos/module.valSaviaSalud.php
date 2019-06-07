@@ -42,8 +42,10 @@ fwrite($txt,$numReg."\r\n");
 
 for ($i=0;$i<sizeof($reg);$i++)
 {
+	$YearFechaFinal = (int)substr($FechaFinal, 0, 4);
 	$edad = calcularEdad($FechaFinal, $reg[$i]["FechaNacimiento"]);
 	$edadDias = calcularEdadenDias ($reg[$i]["FechaNacimiento"], $FechaFinal);
+	$añoCyD = substr($reg[$i]["ConsultaCyDPrimeraVezInput"], 0, 4);
 	$DateConsultaAdultoPrimeraVezInput = date($reg[$i]["ConsultaAdultoPrimeraVezInput"]); // Fecha Variable 87. Fecha Citologia Cervicouterina
 	$YearConsultaAdultoPrimeraVezInput = (int)substr($DateConsultaAdultoPrimeraVezInput, 0, 4);
 	$DateUltimoControlPrenatal = date($reg[$i]["UltimoControlPrenatal"]);
@@ -257,7 +259,12 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaTalla"]);
 	fwrite($txt,"|");
-		if ($reg[$i]["TallaCentimetros"] > 200)
+		if ($reg[$i]["TallaCentimetros"] <= 10 )
+		{ 
+			$Talla = $reg[$i]["TallaCentimetros"] * 10;
+			fwrite($txt,$Talla);	
+		}
+		else if ($reg[$i]["TallaCentimetros"] > 200)
 		{
 			$Talla = substr($reg[$i]["TallaCentimetros"], 0,2);
 			fwrite($txt,$Talla);
@@ -742,6 +749,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 				fwrite($txt,$reg[$i]["UltimoControlPrenatal"]);
 			}
 		}
+		else if ($edad < 10 && $YearUltimoControlPrenatal  > 1845)
+		{
+			fwrite($txt,'1845-01-01');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["UltimoControlPrenatal"]);
@@ -820,13 +831,17 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,$reg[$i]["ConsultaPsicologiaInput"]);
 	fwrite($txt,"|");
 
-		$añoCyD = substr($reg[$i]["ConsultaCyDPrimeraVezInput"], 0, 4);
+		$diferencia = diferenciaFecha($reg[$i]["ConsultaCyDPrimeraVezInput"], $FechaFinal);
 
 		if ($edad >= 10 && $reg[$i]["ConsultaCyDPrimeraVezInput"] == '1800-01-01' || ($edad >= 10 && $añoCyD > 1845))
 		{
 			fwrite($txt,'1845-01-01');
 		}
 		else if ($edad < 10 && $reg[$i]["ConsultaCyDPrimeraVezInput"] == '1845-01-01')
+		{
+			fwrite($txt,'1800-01-01');
+		}
+		else if ($edad < 10 && ( $diferencia > 0  ) )
 		{
 			fwrite($txt,'1800-01-01');
 		}
@@ -939,19 +954,19 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaAntigenoHepatitisBGestantesInput"]); // 78. Fecha Antigeno de Superficie Hepatitis B en Gestantes
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == 'NE')
 		{
 			fwrite($txt,'0');
 		}
-		else if ($reg[$i]["Sexo"] == 'F' && $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == '0' && $reg[$i]["Gestacion"] == '1') 
+		else if ( ($reg[$i]["Sexo"] == 'F' && $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == '0' && $reg[$i]["Gestacion"] == '1') || $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == 'NE' ) 
 		{
 			fwrite($txt,'22');
 		}
-		else if ($reg[$i]["Gestacion"] == '2')
+		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == 'NE')
 		{
 			fwrite($txt,'0');
 		}
-		else
+		else 
 		{
 			fwrite($txt,$reg[$i]["ResultadoAntigenoHepatitisBGestantes"]);
 		}
