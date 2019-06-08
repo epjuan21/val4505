@@ -13,6 +13,7 @@ class rped extends ConnectionMySQL {
 			,CodigoMunicipio
 			,FechaInicialReg
 			,FechaFinalReg
+			,FechaRegistro
 			,substr(FechaFinalReg,6,2) AS CodPer
 			,substr(FechaFinalReg,1,4) AS Año
 			,case substr(FechaFinalReg,6,2)
@@ -31,8 +32,9 @@ class rped extends ConnectionMySQL {
 				END AS Periodo
 			FROM rped 
 			LEFT JOIN entidades ON rped.CodigoEntidad = entidades.ENTIDAD_COD
-			GROUP BY rped.CodigoEntidad, rped.FechaFinalReg
-			ORDER BY FechaRegistro DESC;");
+			GROUP BY entidades.ENTIDAD_NAME, IdUsuario, CodigoEntidad, CodigoMunicipio, FechaInicialReg, FechaFinalReg, rped.CodigoEntidad, rped.FechaFinalReg, rped.FechaRegistro
+			ORDER BY FechaRegistro DESC;"
+			);
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}

@@ -63,7 +63,7 @@ class Errores extends ConnectionMySQL {
 	public function getErrorByEPS($CodigoEntidad, $Periodo, $CodigoMunicipio, $IdUsuario) {
 		$this->query = $this->conn->prepare("
 			SELECT COUNT(TipoError) AS Cantidad
-			,MensajeError
+			,errores4505.MensajeError
 			,CodigoEntidad
 			,TipoError
 			FROM
@@ -72,15 +72,10 @@ class Errores extends ConnectionMySQL {
 			AND Periodo = '$Periodo'
 			AND CodigoMunicipio = '$CodigoMunicipio'
 			AND IdUsuario = '$IdUsuario'
-			GROUP BY TipoError, CodigoEntidad
+			GROUP BY errores4505.MensajeError, TipoError, CodigoEntidad
 			");
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
-
-
-
-
 }
-
 ?>

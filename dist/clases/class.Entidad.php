@@ -15,7 +15,16 @@ class Entidad extends ConnectionMySQL {
 	// Funcion para Listar Entidades Importadas Por Usuario
 	public function getListEnt($IdUsuario){
 		$this->query = $this->conn->prepare(
-			"SELECT entidades.ENTIDAD_NAME, entidades.ENTIDAD_COD, rped.CodigoMunicipio FROM rped LEFT JOIN entidades ON (rped.CodigoEntidad = entidades.ENTIDAD_COD) WHERE rped.IdUsuario = '$IdUsuario' GROUP BY entidades.ENTIDAD_NAME");		
+			"SELECT 
+				entidades.ENTIDAD_NAME, 
+				entidades.ENTIDAD_COD, 
+				rped.CodigoMunicipio 
+				FROM rped LEFT JOIN 
+				entidades 
+				ON (rped.CodigoEntidad = entidades.ENTIDAD_COD) 
+				WHERE rped.IdUsuario = '$IdUsuario' 
+				GROUP BY entidades.ENTIDAD_NAME, entidades.ENTIDAD_COD, rped.CodigoMunicipio"
+				);	
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
@@ -90,13 +99,13 @@ class Entidad extends ConnectionMySQL {
 	public function getPeriodoEntidad ($CodigoEntidad, $IdUsuario, $CodigoMunicipio, $Periodo) {
 		$this->query = $this->conn->prepare(
 			"SELECT COUNT(CodigoEntidad) AS Registros
-			,ENTIDAD_NAME AS Entidad
+			,entidades.ENTIDAD_NAME AS Entidad
 			,IdUsuario
 			,CodigoEntidad
 			,CodigoMunicipio
 			,municipios.MUN_NAME AS Municipio
 			,municipios.MUN_ENT_NIT AS Nit
-			,FechaInicialReg
+			,rped.FechaInicialReg
 			,FechaFinalReg
 			,substr(FechaFinalReg,6,2) AS CodPer
 			,substr(FechaFinalReg,1,4) AS Año
@@ -121,7 +130,7 @@ class Entidad extends ConnectionMySQL {
 			AND IdUsuario = '$IdUsuario'
 			AND CodigoMunicipio = '$CodigoMunicipio'
 			AND FechaFinalReg = '$Periodo'
-			GROUP BY CodigoEntidad, FechaFinalReg
+			GROUP BY entidades.ENTIDAD_NAME, rped.FechaInicialReg, CodigoEntidad, FechaFinalReg
 			ORDER BY Año DESC, CodPer DESC");
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
