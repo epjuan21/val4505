@@ -3,7 +3,6 @@
 	<div class="box box-middle">
 
 		<div class="head-container">
-			
 			<div class="head-icon">
 				<i class="fa fa fa-upload fa-2x" aria-hidden="true"></i>
 			</div>

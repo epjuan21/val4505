@@ -377,7 +377,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 			}
 		}
 		// 180 equivale a 6 Meses
-		else if ( $edadDias >= 120 &&  $edadDias < 181)
+		else if ( $edadDias >= 120 &&  $edadDias <= 181)
 		{
 			if ( $reg[$i]["Pentavalente"] == '3' )
 			{
@@ -417,7 +417,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 			fwrite($txt,'22');
 		}
 		// 180 equivale a 6 Meses
-		else if ( $edadDias >= 120 &&  $edadDias < 181 && ( $reg[$i]["Polio"] == '3' || $reg[$i]["Polio"] == '4'|| $reg[$i]["Polio"] == '5' ) )
+		else if ( $edadDias >= 120 &&  $edadDias <= 181 && ( $reg[$i]["Polio"] == '3' || $reg[$i]["Polio"] == '4'|| $reg[$i]["Polio"] == '5' ) )
 		{
 			fwrite($txt,'2');
 		}
@@ -963,7 +963,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'22');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["Gestacion"] == '2' && $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == 'NE'))
+		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["Gestacion"] == '2' || $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == 'NE'))
 		{
 			fwrite($txt,'0');
 		}

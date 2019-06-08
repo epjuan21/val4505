@@ -16,6 +16,10 @@ else if ($root == "C:/xampp/htdocs")
 {
     $path = "/val4505/dist/modulos/";
 }
+else if ($root == "C:/laragon/www/val4505/dist")
+{
+    $path = "/modulos/";
+}
 
 $dir = opendir($root.$path);
 
