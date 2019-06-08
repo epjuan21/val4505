@@ -973,7 +973,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 		else 
 		{
-			fwrite($txt,$YearFechaAntigenoSuperficie);
+			fwrite($txt,$reg[$i]["ResultadoAntigenoHepatitisBGestantes"]);
 		}
 	//fwrite($txt,$reg[$i]["ResultadoAntigenoHepatitisBGestantes"]); // 79. Resultado Antigeno de Superficie Hepatitis B en Gestantes
 	fwrite($txt,"|");
