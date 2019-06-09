@@ -339,7 +339,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 			}
 		}
 		else {
-			fwrite($txt,$edadDias);
+			fwrite($txt,$reg[$i]["Pentavalente"]);
 		}
 	// fwrite($txt,$reg[$i]["Pentavalente"]); // 37. Pentavalente
 	fwrite($txt,"|");
