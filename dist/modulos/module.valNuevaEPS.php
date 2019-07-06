@@ -165,7 +165,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["SintomaticoRespiratorio"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["Tuberculosis"]); // 19. Tuberculosis Multidrogoresistente
+		if ($reg[$i]["Tuberculosis"] == "")
+		{
+			fwrite($txt,'21');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["Tuberculosis"]);
+		}
+	//fwrite($txt,$reg[$i]["Tuberculosis"]); // 19. Tuberculosis Multidrogoresistente
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["Lepra"]);
 	fwrite($txt,"|");

@@ -104,7 +104,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// Cuando la variable 14 registra 0, 2 o  21 
 		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2' || $reg[$i]["Gestacion"] == '0' || $reg[$i]["Gestacion"]=='21')
 		{
-			if ($edadDias < 90)
+			if ($edadDias <= 90)
 			{
 				fwrite($txt,'21');
 			}
