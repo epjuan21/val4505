@@ -1819,7 +1819,8 @@ body {
   border-radius: .2em; }
 
 .file-upload {
-  display: block; }
+  display: block;
+  margin-bottom: 10px }
 
 .file-upload .file-select {
   display: block;

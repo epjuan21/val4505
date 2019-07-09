@@ -208,7 +208,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["Lepra"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ObesidadDesnutricion"]); // 21. Obsesidad o Desnutrición Proteico Calórica
+		if ($reg[$i]["ObesidadDesnutricion"] == '')
+		{
+			fwrite($txt,'21');
+		} 
+		else 
+		{
+			fwrite($txt,$reg[$i]["ObesidadDesnutricion"]);
+		}
+	//fwrite($txt,$reg[$i]["ObesidadDesnutricion"]); // 21. Obsesidad o Desnutrición Proteico Calórica
 	fwrite($txt,"|");
 		if ($edad < 19 && $reg[$i]["VictimaMaltrato"] == '0')
 		{

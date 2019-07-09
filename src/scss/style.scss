@@ -102,11 +102,7 @@ body {
       font-size: 0.9rem;
       color: $dark-grey;
     }
-
   }
-
-
-
 }
 
 .param-title {
@@ -125,8 +121,6 @@ body {
 .param-content {
   margin: 0px 20px 10px 20px;
 }
-
-
 
 // Estilos Caja Contenedoras de Links - Tamaño Pequeño
 
@@ -255,6 +249,7 @@ body {
 
 .file-upload {
   display:block;
+  margin-bottom: 10px;
 }
 
 .file-upload .file-select {
