@@ -673,9 +673,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,"1845-01-01");
 		} 
-		else if ($reg[$i]["Gestacion"] == '0' && $reg[$i]["UltimoControlPrenatal"] == '1800-01-01')
+		else if ($reg[$i]["Gestacion"] == '0')
 		{
-			fwrite($txt,"1800-01-01");
+			fwrite($txt,"1845-01-01");
 		}
 		else if ($reg[$i]["Gestacion"] == '' && $reg[$i]["UltimoControlPrenatal"] == '0' )
 		{
