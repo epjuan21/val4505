@@ -10,7 +10,6 @@
 	$CodigoMunicipio = $_POST['CodigoMunicipio'];
 	$Periodo = $_POST['Periodo'];
 
-
 	$RegistrosNumerados = $objRPED->gerRegNum($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $Periodo);
 
 	if (!$IdUsuario) {
@@ -25,7 +24,6 @@
 
     require_once ("../clases/class.Errores.php");
     $ObjErrores = new Errores();
-
 
 	date_default_timezone_set('America/Bogota');
 
@@ -48,7 +46,6 @@
 	    	header ("Location: ../inicio.php?menu=12&CodEPS=$CodigoEntidad&CodMun=$CodigoMunicipio&CodUs=$IdUsuario&Per=$Periodo&Estado=4");
 	    	die();
 		}
-
 	}
 
 	// Obtenemos el Tipo de Archivo Cargado
@@ -73,7 +70,6 @@
 	}
 	else 
 	{
-
 		// Movemos el Archivo Subido a la Carpeta Uploads del Servidor	
 		move_uploaded_file($_FILES['upload']['tmp_name'],$carpetaDestino.$_FILES['upload']['name']);
 
@@ -87,12 +83,16 @@
 		$FechaRegistro = $now->format('Y-m-d H:i:s-U');		// Fecha Registro
 
 		$i = 0;
+
+		/*
+
 		// Mientras no Sea el Final del Archivo
 		while (!feof($fp))
 		{
-
 			$line = stream_get_line($fp, 1000000, "\n");
 			$reg = explode("|", $line);
+
+			// ECOOPOSOS
 
 			// Si Hay Datos y Si es ECOOPSOS	
 			if ($line && $CodigoEntidad == 'ESS091')
@@ -158,11 +158,12 @@
 						,$MensajeError
 						);
 					}
-
-				}
-
-			// Si Hay Datos y Si es SAVIASALUD	
+				}	
 			} 
+
+			// SAVIASALUD SUBSIDIADIO
+
+			// Si Hay Datos y Si es SAVIASALUD SUBSIDIADO
 			else if ($line && $CodigoEntidad == 'EPSS40')
 			{
 				// Almacenamos el Dato Actual Que Contiene El Error
@@ -257,17 +258,15 @@
 								,$FechaNueva
 								,$TextoError
 								);
-
-
 							}
-
 						}
-
 					}
 				}
-
 			}
-			// Si Hay Datos y Si es SAVIASALUD Contributivo
+
+			// SAVIASALUD CONTRIBUTIVO
+
+			// Si Hay Datos y Si es SAVIASALUD CONTRIBUTIVO
 			else if ($line && $CodigoEntidad == 'EPS040')
 			{
 				// Almacenamos el Dato Actual Que Contiene El Error
@@ -313,9 +312,92 @@
 					,$TextoError
 					);
 				}
-
 			}
+		}
+
+		*/
+
+		while (!feof($fp)) {
+			// MEDIMAS
+			if ($CodigoEntidad == 'EPS044') {
+				
+				// Obtenemos la Linea
+				$line = stream_get_line($fp, 1000000, "\n");
+
+				// Obtenemos cada registro, para MEDIMAS, estan separados por Espacios
+				$reg = explode(" ", $line);
+
+				// Buscamos las linea que coincidan con los siguientes textos
+				
+					// Consecutivo: 59. Información reportada a tener en cuenta: CC-21552577
+					// Consecutivo: 5. Información reportada a tener en cuenta: CC-3379764 Fch Afiliación: 2017-08-01 - Fch Retiro: 2019-07-31
+					// Consecutivo: 240. Información reportada a tener en cuenta: Documento: 1033648531 - Sexo reportado: F - Sexo EPS: M
+
+				// Los errores anteriores seran tratado como Tipo de Error 1: Usuarios que seran borrados de la base de datos
+				
+				// Buscamos el String Consecutivo
+				/*
+				if (array_key_exists(2, $reg)){
+					$Consecutivo = 	$reg[2];
+				}
+				*/
+				// Buscamos el String Con el Posible Número de Documento
+				
+				if (array_key_exists(10, $reg)){
+					$NumeroDocumento = 	$reg[10];
+					
+					if (preg_match('/^(CC|TI|RC)/', $NumeroDocumento)) {
+						$NumeroDocumento = substr($NumeroDocumento,3,strlen($NumeroDocumento));
+
+						if ($NumeroDocumento !== false) // Si Es Verdadero Se Encontró el Número de Documento a Eliminar
+						{
 		
+							$TipoError = 1;
+							$CadenaError = "El usuario no se encontró en las bases de datos de Medimás";
+							$TextoError = "El usuario no se encontró en las bases de datos de Medimás";
+		
+							$CodigoUsuario = trim($NumeroDocumento);
+		
+							$ObjErrores->insertErrores(
+							null
+							,$CodigoUsuario
+							,$CodigoEntidad
+							,$TipoError
+							,$Periodo
+							,$CodigoMunicipio
+							,$IdUsuario
+							,$CadenaError
+							,$TextoError
+							);
+						}
+					}
+				}
+				
+				// Buscamos el String Nacimiento
+				if (array_key_exists(14, $reg)){
+					$FechaNacimiento = 	$reg[14];
+
+					if ($FechaNacimiento == "Nacimiento" ) {
+						
+						$FechaNueva = $reg[21];
+						$TipoError = 3;
+						$CodigoUsuario = $reg[11];
+						$TextoError = "La fecha de nacimiento no coincide para el usuario";
+						
+						$ObjErrores->insertErrores(
+							null
+							,$CodigoUsuario
+							,$CodigoEntidad
+							,$TipoError
+							,$Periodo
+							,$CodigoMunicipio
+							,$IdUsuario
+							,$FechaNueva
+							,$TextoError
+							);
+					}
+				}
+			}
 		}
 
 		fclose($fp);
