@@ -24,7 +24,7 @@ if ($TipoError == 1 && $IdUser != '') {
 
 		$NumeroIdUsuario = $Errores[$i]["NumeroIdUsuario"];
 
-		//var_dump($NumeroIdUsuario);
+		var_dump($NumeroIdUsuario);
 
 		$objRPED->deleteRegistroByCodUser($IdUser,$CodMun,$CodEPS,$Per,$NumeroIdUsuario);
 
