@@ -84,7 +84,6 @@
 
 		$i = 0;
 
-		/*
 
 		// Mientras no Sea el Final del Archivo
 		while (!feof($fp))
@@ -315,7 +314,7 @@
 			}
 		}
 
-		*/
+		
 
 		while (!feof($fp)) {
 			// MEDIMAS
