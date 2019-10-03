@@ -1262,11 +1262,14 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["CodigoHabilitacionBiopsiaSeno"]);
 	fwrite($txt,"|");
-		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaHemoglobinaInput"])
+	
+	$Hemoglobina = str_replace('%','',$reg[$i]["ResultadoHemoglobina"]);
+
+		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaHemoglobinaInput"] == '1845-01-01' && $Hemoglobina > 20)
 		{
 			fwrite($txt,'1800-01-01');
 		}
-		else if ($reg[$i]["Sexo"] == 'F' && ($edad >= 10 && $edad <= 13))
+		else if ($reg[$i]["Sexo"] == 'F' && ($edad >= 10 && $edad <= 13) && $Hemoglobina > 20 )
 		{
 			fwrite($txt,'1800-01-01');
 		}	
@@ -1276,7 +1279,16 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTomaHemoglobinaInput"]); // 103. Fecha Toma de Hemoglobina
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ResultadoHemoglobina"]); // 104. Hemoglobina
+
+		if ( $Hemoglobina > 20 || ($reg[$i]["Sexo"] == 'F' && ($edad >= 10 && $edad <= 13)))
+		{
+			fwrite($txt,'1800-01-01');
+		}
+
+		fwrite($txt,$Hemoglobina);
+
+	
+	//fwrite($txt,$reg[$i]["ResultadoHemoglobina"]); // 104. Hemoglobina
 	fwrite($txt,"|");
 		if ((($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100') || $reg[$i]["FechaTomaGlisemiaInput"] == '1845-01-01') || ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaGlisemiaInput"] == '1845-01-01'))
 		{
