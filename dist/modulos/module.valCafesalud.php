@@ -157,13 +157,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ObesidadDesnutricion"]); // 21. Obsesidad o Desnutrición Proteico Calórica
 	fwrite($txt,"|");
-		if ($edad >= 19 && $reg[$i]["Sexo"] == 'M')
+		if ($edadDias >= 6663 && $reg[$i]["Sexo"] == 'M')
 		{
 			fwrite($txt,'0');
 		} 
-		else if ($edad < 19 && $reg[$i]["VictimaMaltrato"] == '0')
+		else if ($edadDias < 6663 && ($reg[$i]["VictimaMaltrato"] == '0' || $reg[$i]["VictimaMaltrato"] == '21'))
 		{
-			fwrite($txt,'21');
+			fwrite($txt,'3');
 		} 
 		else 
 		{
@@ -634,7 +634,19 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaDiagnosticoDesnutricion"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ConsultaMujerMenorVictimaInput"]);
+		if ($edad >= 6663 && $reg[$i]["Sexo"] == 'M' || ($reg[$i]["VictimaMaltrato"] == '3' || $reg[$i]["VictimaMaltrato"] == '0' || $reg[$i]["VictimaMaltrato"] == '21' ))
+		{
+			fwrite($txt,'1845-01-01');
+		}
+		elseif ($edad < 6663 && $reg[$i]["ConsultaMujerMenorVictimaInput"] == '1845-01-01')
+		{
+			fwrite($txt,'1800-01-01');
+		}
+		else
+		{ 
+		fwrite($txt,$reg[$i]["ConsultaMujerMenorVictimaInput"]);
+		}
+	//fwrite($txt,$reg[$i]["ConsultaMujerMenorVictimaInput"]); 65. Consulta Mujer o Menor Víctima del Maltrato 
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ConsultaVictimaViolenciaSexualInput"]);
 	fwrite($txt,"|");

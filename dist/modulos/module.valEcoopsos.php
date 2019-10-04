@@ -1282,12 +1282,12 @@ for ($i=0;$i<sizeof($reg);$i++)
 
 		if ( $Hemoglobina > 20 || ($reg[$i]["Sexo"] == 'F' && ($edad >= 10 && $edad <= 13)))
 		{
-			fwrite($txt,'1800-01-01');
+			fwrite($txt,'0');
 		}
-
-		fwrite($txt,$Hemoglobina);
-
-	
+		else
+		{
+			fwrite($txt,$Hemoglobina);
+		}
 	//fwrite($txt,$reg[$i]["ResultadoHemoglobina"]); // 104. Hemoglobina
 	fwrite($txt,"|");
 		if ((($edad == '45' || $edad == '50' || $edad == '55' || $edad == '60' || $edad == '65' || $edad == '70' || $edad == '75' || $edad == '80' || $edad == '85' || $edad == '90' || $edad == '95' || $edad == '100') || $reg[$i]["FechaTomaGlisemiaInput"] == '1845-01-01') || ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaGlisemiaInput"] == '1845-01-01'))
