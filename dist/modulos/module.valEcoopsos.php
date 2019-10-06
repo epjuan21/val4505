@@ -241,14 +241,28 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["PesoKilogramos"]); // 30. Peso en Kilogramos
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["FechaTalla"]); // 31. Fecha Talla
+
+		if ($TallaEnCentimetros < 20)
+		{
+			fwrite($txt,"1800-01-01");
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["FechaTalla"]);
+		}
+
+	//fwrite($txt,$reg[$i]["FechaTalla"]); // 31. Fecha Talla
 	fwrite($txt,"|");
-		if ($TallaEnCentimetros > 225 && $reg[$i]["TallaCentimetros"]!='999')
+		if ($TallaEnCentimetros > 225 && $reg[$i]["TallaCentimetros"] != '999')
 		{
 			$TallaEnCentimetros = intval($TallaEnCentimetros / 10);
 
 			fwrite($txt,$TallaEnCentimetros);
 		} 
+		else if ($TallaEnCentimetros < 46)
+		{
+			fwrite($txt,"999");
+		}
 		else 
 		{
 			fwrite($txt,$reg[$i]["TallaCentimetros"]);
