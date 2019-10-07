@@ -24,10 +24,7 @@ if ($TipoError == 1 && $IdUser != '') {
 
 		$NumeroIdUsuario = $Errores[$i]["NumeroIdUsuario"];
 
-		var_dump($NumeroIdUsuario);
-
 		$objRPED->deleteRegistroByCodUser($IdUser,$CodMun,$CodEPS,$Per,$NumeroIdUsuario);
-
 	}
 	
 	// Borrar Errores luego de Ser Procesados

@@ -54,6 +54,22 @@ function diferenciaFecha($FechaVariable,$FechaCorte)
 	return $res;
 }
 
+function calcularDiferenciaMeses($FechaInicial,$FechaFinal)
+{
+	$datetime1=new DateTime($FechaInicial);
+	$datetime2=new DateTime($FechaFinal);
+	
+	# obtenemos la diferencia entre las dos fechas
+	$interval=$datetime2->diff($datetime1);
+	
+	# obtenemos la diferencia en meses
+	$intervalMeses=$interval->format("%m");
+	# obtenemos la diferencia en años y la multiplicamos por 12 para tener los meses
+	$intervalAnos = $interval->format("%y")*12;
+	
+	return $intervalMeses+$intervalAnos;
+}
+
 
 // Script PHP para calcular los días de diferencia que hay entre dos fechas
 

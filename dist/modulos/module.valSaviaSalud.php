@@ -445,13 +445,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// Si es menor a 18 meses debe registrar no aplica en la variable 39
 	
 		// Calcularemos la Diferencia Entre Fecha de Nacimiento y Fecha Actual
-		$ANac = substr($reg[$i]["FechaNacimiento"],0,4);
-		$MesNac = substr($reg[$i]["FechaNacimiento"],5,2);
+		// $ANac = substr($reg[$i]["FechaNacimiento"],0,4);
+		// $MesNac = substr($reg[$i]["FechaNacimiento"],5,2);
 
-		$AAc = substr($FechaFinal,0,4);
-		$MesAc = substr($FechaFinal,5,2);
+		// $AAc = substr($FechaFinal,0,4);
+		// $MesAc = substr($FechaFinal,5,2);
 
-		$Dif = (($AAc * 12)+$MesAc)   -(($ANac * 12)+$MesNac);
+		$Dif = calcularDiferenciaMeses($reg[$i]["FechaNacimiento"],$FechaFinal);
 		if ($Dif < 18 || $edad >= 6)
 		{
 			fwrite($txt,'0');
@@ -1299,7 +1299,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["CodigoHabilitacionBiopsiaSeno"]);
 	fwrite($txt,"|");
-		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaHemoglobinaInput"])
+		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaHemoglobinaInput"] == '1845-01-01')
 		{
 			fwrite($txt,'1800-01-01');
 		}
@@ -1313,7 +1313,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTomaHemoglobinaInput"]); // 103. Fecha Toma de Hemoglobina
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ResultadoHemoglobina"]);
+		
+		if ($reg[$i]["ResultadoHemoglobina"] > 0) {
+			$Hemoglobina = number_format($reg[$i]["ResultadoHemoglobina"],1);
+		}
+		fwrite($txt,$Hemoglobina);
+
+	//fwrite($txt,$reg[$i]["ResultadoHemoglobina"]); // 104. Hemoglobina
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["FechaTomaGlisemiaInput"]);
 	fwrite($txt,"|");
