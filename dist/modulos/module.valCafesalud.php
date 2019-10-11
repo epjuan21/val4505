@@ -80,9 +80,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0)
+		else if (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == '0')
 		{
 			fwrite($txt,'21');
+		}
+		else if (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == '21')
+		{
+			fwrite($txt,'2');
 		}
 		else
 		{
@@ -112,7 +116,19 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["SifilisGestacional"]); // 15. Sifilis Gestacional y Congenita
 	fwrite($txt,"|");
-		if ($edad <= 10  && $reg[$i]["HipertensionInducidaGestacion"]!='0')
+		if ($reg[$i]["Sexo"] == 'M')
+		{
+			fwrite($txt,'0');
+		}
+		else if ($edad < 10 || $edad >= 60)
+		{
+			fwrite($txt,'0');
+		}
+		else if ($reg[$i]["Sexo"] == 'F' && $reg[$i]["HipertensionInducidaGestacion"] == '21' && ($edad >= 10 && $edad < 60))
+		{
+			fwrite($txt,'0');
+		}
+		else if ($edad <= 10  && $reg[$i]["HipertensionInducidaGestacion"]!='0')
 		{
 			fwrite($txt,'0');
 		}
@@ -495,7 +511,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}
-		else 
+		else if ($edadDias > 30)
+		{
+			fwrite($txt,'1845-01-01');
+		}
+		else
 		{
 			fwrite($txt,$reg[$i]["ControlRecienNacidoInput"]);
 		}
@@ -779,7 +799,22 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaTomaElisaVIHInput"]); // 82. Fecha de Toma de Elisa para VIH
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ResultadoElisaVIH"]);
+
+		if ($reg[$i]["FechaTomaElisaVIHInput"] == '1845-01-01') 
+		{
+			fwrite($txt,'0');
+		}
+		// Si Variable 75 y 76 = 1845-01-01 y Variable 82 = 1800-01-01
+		else if ($reg[$i]["AsesoriaPreElisaInput"] == '1845-01-01' && $reg[$i]["AsesoriaPostElisaInput"] == '1845-01-01')
+		{
+			fwrite($txt,'0');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["ResultadoElisaVIH"]);
+		}
+
+	//fwrite($txt,$reg[$i]["ResultadoElisaVIH"]); // 83. Resultado ELISA par VIH
 	fwrite($txt,"|");
 	$DateTHS = date($reg[$i]["FechaTSHNeonatalInput"]);
 	$YearTSH = substr($DateTHS, 0, 4);
