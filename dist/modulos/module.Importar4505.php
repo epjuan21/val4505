@@ -201,7 +201,7 @@
 			$TratamientoSifilisGestacional = $reg[115];
 			$TratamientoSifilisCongenita = $reg[116];
 			$TratamientoLepra = $reg[117];
-			$FechaTerLeishmaniasisInput = $reg[118];
+			$FechaTerLeishmaniasisInput = substr($reg[118],0,10);
 
 			$ObjRPED->insertRped(
 				null
