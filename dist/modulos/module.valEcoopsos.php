@@ -1279,14 +1279,38 @@ for ($i=0;$i<sizeof($reg);$i++)
 	
 	$Hemoglobina = str_replace('%','',$reg[$i]["ResultadoHemoglobina"]);
 
-		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaHemoglobinaInput"] == '1845-01-01' && $Hemoglobina > 20)
+		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaHemoglobinaInput"] == '1845-01-01')
 		{
-			fwrite($txt,'1800-01-01');
+			if ($Hemoglobina > 20) 
+			{
+				fwrite($txt,'1800-01-01');
+
+			}
+			else
+			{
+				fwrite($txt,'1800-01-01');
+			}
 		}
-		else if ($reg[$i]["Sexo"] == 'F' && ($edad >= 10 && $edad <= 13) && $Hemoglobina > 20 )
+		else if ($reg[$i]["Sexo"] == 'F' && ($edad >= 10 && $edad <= 13))
 		{
-			fwrite($txt,'1800-01-01');
-		}	
+			if ($Hemoglobina > 20)
+			{
+				fwrite($txt,'1800-01-01');
+
+			}
+			else if ($reg[$i]["FechaTomaHemoglobinaInput"] == '1845-01-01')
+			{
+				fwrite($txt,'1800-01-01');
+			}
+			else
+			{
+				fwrite($txt,'1800-01-01');
+			}
+		}
+		else if ( $reg[$i]["Gestacion"] == '21' && ( $reg[$i]["FechaTomaHemoglobinaInput"] != '1800-01-01' ||  $reg[$i]["FechaTomaHemoglobinaInput"] != '1845-01-01' ))
+		{
+			fwrite($txt,'1845-01-01');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["FechaTomaHemoglobinaInput"]);
@@ -1295,6 +1319,14 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 
 		if ( $Hemoglobina > 20 || ($reg[$i]["Sexo"] == 'F' && ($edad >= 10 && $edad <= 13)))
+		{
+			fwrite($txt,'0');
+		}
+		else if ($reg[$i]["Sexo"] == 'F' && ($edad >= 10 && $edad <= 13) && $reg[$i]["FechaTomaHemoglobinaInput"] == '1845-01-01' )
+		{
+			fwrite($txt,'0');
+		}
+		else if ( $reg[$i]["Gestacion"] == '21' || $reg[$i]["Gestacion"] == '0' && ($edad >= 10 && $edad <= 13) && ( $reg[$i]["FechaTomaHemoglobinaInput"] != '1800-01-01' ||  $reg[$i]["FechaTomaHemoglobinaInput"] != '1845-01-01' ))
 		{
 			fwrite($txt,'0');
 		}
