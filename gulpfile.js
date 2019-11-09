@@ -2,13 +2,8 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var webserver = require('gulp-webserver');
 var sass = require('gulp-sass');
-var cleanCSS = require('gulp-clean-css');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var uglify = require('gulp-uglify');
 var imageop = require('gulp-image-optimization');
 var autoprefixer = require('gulp-autoprefixer');
-var GulpSSH = require('gulp-ssh');
 
 var config = {
 	styles: {
@@ -36,15 +31,13 @@ gulp.task('build:css', function(){
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
             cascade: false
-        }))
-		//.pipe(cleanCSS({compatibility: 'ie8'}))
+        }))		
 		.pipe(gulp.dest(config.styles.output));
 });
 
 gulp.task('build:js', function (){
 	gulp.src(config.scripts.main)
 		.pipe(concat('bundle.js'))
-		//.pipe(uglify())
 		.pipe(gulp.dest(config.scripts.output))
 });
 
