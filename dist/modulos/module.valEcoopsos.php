@@ -1318,7 +1318,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["FechaTomaHemoglobinaInput"]); // 103. Fecha Toma de Hemoglobina
 	fwrite($txt,"|");
 
-		if ( $Hemoglobina > 20 || ($reg[$i]["Sexo"] == 'F' && ($edad >= 10 && $edad <= 13)))
+		if ( $Hemoglobina > 20)
 		{
 			fwrite($txt,'0');
 		}
