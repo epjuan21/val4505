@@ -166,6 +166,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0'); 
 		}
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["SifilisGestacional"] == '3')
+		{
+			fwrite($txt,'0');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["SifilisGestacional"]); 
@@ -299,7 +303,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["FechaProbableParto"] == '1800-01-01')
+		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0')
 		{
 			fwrite($txt,'1845-01-01');
 		}
@@ -619,15 +623,19 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		if (($edad < 10 || $edad >= 60) || $reg[$i]["Gestacion"] == '2')
 		{
-			fwrite($txt,'1845-01-01'); 
+			fwrite($txt,'1845-01-01');
 		}
 		else if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaSalidaParto"] =='1800-01-01')
 		{
-			fwrite($txt,'1845-01-01'); 
+			fwrite($txt,'1845-01-01');
+		}
+		else if ($reg[$i]["Gestacion"] == '0' && $reg[$i]["FechaSalidaParto"] =='1800-01-01')
+		{
+			fwrite($txt,'1845-01-01');
 		}
 		else
 		{
-			fwrite($txt,$reg[$i]["FechaSalidaParto"]); 
+			fwrite($txt,$reg[$i]["FechaSalidaParto"]);
 		}
 	//fwrite($txt,$reg[$i]["FechaSalidaParto"]); // 50. Fecha Salida de la Atención del Parto o Cesárea
 	fwrite($txt,"|");
@@ -715,6 +723,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		}
+		else if ($reg[$i]["Gestacion"] == '0' && $YearControlPrenatalPrimeraVez > 1900)
+		{
+			fwrite($txt,'1845-01-01');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["ControlPrenatalPrimeraVezInput"]);
@@ -725,7 +737,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($reg[$i]["Gestacion"] == '2')
+		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0')
 		{
 			fwrite($txt,'0');
 		}
@@ -776,6 +788,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
+		else if (($reg[$i]["Gestacion"] == '0' || $reg[$i]["Gestacion"] == '2') && $reg[$i]["SuministroAcidoFolico"] == '1')
+		{
+			fwrite($txt,'0');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["SuministroAcidoFolico"]);
@@ -787,6 +803,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 			fwrite($txt,'21');
 		}
 		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["SuministroSulfatoFerroso"] == '21' || $reg[$i]["SuministroSulfatoFerroso"] == '1' ))
+		{
+			fwrite($txt,'0');
+		}
+		else if ($reg[$i]["Gestacion"] == '0' && $reg[$i]["SuministroSulfatoFerroso"] == '1')
 		{
 			fwrite($txt,'0');
 		}
@@ -953,7 +973,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		}
-		else if ($reg[$i]["Gestacion"] == '2')
+		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0')
 		{
 			fwrite($txt,'1845-01-01');
 		}
@@ -972,6 +992,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 			fwrite($txt,'22');
 		}
 		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["Gestacion"] == '2' || $reg[$i]["ResultadoAntigenoHepatitisBGestantes"] == 'NE'))
+		{
+			fwrite($txt,'0');
+		}
+		else if ($reg[$i]["Gestacion"] == '0' || $reg[$i]["Gestacion"] == '2' )
 		{
 			fwrite($txt,'0');
 		}
@@ -1005,11 +1029,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ResultadoSerologiaSifilis"]); // 81. Resultado Serología Para Sífilis
 	fwrite($txt,"|");
-		if ($reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
+		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaElisaVIHInput"] == '1845-01-01')
 		{
 			fwrite($txt,'1800-01-01');
 		}
-		else if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["FechaTomaElisaVIHInput"] == '1845-01-01')
+		else if ($reg[$i]["Gestacion"] == '2')
+		{
+			fwrite($txt,'1845-01-01');
+		}
+		else if (($edad >= 10 && $edad < 60)  && $reg[$i]["Gestacion"] != '2')
 		{
 			fwrite($txt,'1800-01-01');
 		}
@@ -1023,7 +1051,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'22');
 		}
-		else if ($reg[$i]["FechaTomaElisaVIHInput"] == '1800-01-01' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-00' || $reg[$i]["FechaTomaElisaVIHInput"] == '0000-00-80')
+		else if ($reg[$i]["Gestacion"] == '2')
+		{
+			fwrite($txt,'0');
+		}
+		else if (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] != '2')
 		{
 			fwrite($txt,'22');
 		}
@@ -1316,8 +1348,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		
 		if ($reg[$i]["ResultadoHemoglobina"] > 0) {
 			$Hemoglobina = number_format($reg[$i]["ResultadoHemoglobina"],1);
+			fwrite($txt,$Hemoglobina);
 		}
-		fwrite($txt,$Hemoglobina);
+		else {
+			fwrite($txt,$reg[$i]["ResultadoHemoglobina"]);
+		}
 
 	//fwrite($txt,$reg[$i]["ResultadoHemoglobina"]); // 104. Hemoglobina
 	fwrite($txt,"|");
