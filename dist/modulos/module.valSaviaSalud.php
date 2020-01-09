@@ -42,6 +42,9 @@ fwrite($txt,$numReg."\r\n");
 
 for ($i=0;$i<sizeof($reg);$i++)
 {
+
+	// Variables
+
 	$YearFechaFinal = (int)substr($FechaFinal, 0, 4);
 	$edad = calcularEdad($FechaFinal, $reg[$i]["FechaNacimiento"]);
 	$edadDias = calcularEdadenDias ($reg[$i]["FechaNacimiento"], $FechaFinal);
@@ -51,6 +54,8 @@ for ($i=0;$i<sizeof($reg);$i++)
 	$DateUltimoControlPrenatal = date($reg[$i]["UltimoControlPrenatal"]);
 	$YearUltimoControlPrenatal = substr($DateUltimoControlPrenatal, 0, 4);	// Año Ultimo Control Prenatal
 	$YearFechaAntigenoSuperficie =  substr($reg[$i]["FechaAntigenoHepatitisBGestantesInput"], 0, 4);
+
+	$Talla = $reg[$i]["TallaCentimetros"];
 
 	fwrite($txt,"2");
 	fwrite($txt,"|");
@@ -131,9 +136,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["PertenenciaEtnica"]);
 	fwrite($txt,"|");
-		if ($reg[$i]["CodigoOcupacion"] == '429' || $reg[$i]["CodigoOcupacion"] == '611' || $reg[$i]["CodigoOcupacion"] == '996' || $reg[$i]["CodigoOcupacion"] == '997') {
+		if ($reg[$i]["CodigoOcupacion"] != "9999" ) 
+		{
 			fwrite($txt,'9999');
-		} else 
+		} 
+		else 
 		{
 			fwrite($txt,$reg[$i]["CodigoOcupacion"]);
 		}
@@ -190,7 +197,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["HipertensionInducidaGestacion"] == '21')
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["HipertensionInducidaGestacion"] == '21' || $reg[$i]["HipertensionInducidaGestacion"] == '1')
 		{
 			fwrite($txt,'0');
 		}
@@ -280,16 +287,31 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["PesoKilogramos"]); // 30. Peso en Kilogramos
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["FechaTalla"]);
+	
+	if (!is_numeric($Talla)) 
+	{
+		fwrite($txt,"1800-01-01");
+	}
+	else
+	{
+		fwrite($txt,$reg[$i]["FechaTalla"]);
+	}
+	
+	//fwrite($txt,$reg[$i]["FechaTalla"]);
 	fwrite($txt,"|");
-		if ($reg[$i]["TallaCentimetros"] <= 10 )
+
+		if (!is_numeric($Talla)) 
+		{
+			fwrite($txt,"999");
+		}
+		else if ($Talla <= 10 )
 		{ 
-			$Talla = $reg[$i]["TallaCentimetros"] * 10;
+			$Talla = $Talla * 10;
 			fwrite($txt,$Talla);	
 		}
-		else if ($reg[$i]["TallaCentimetros"] > 200)
+		else if ($Talla > 200)
 		{
-			$Talla = substr($reg[$i]["TallaCentimetros"], 0,2);
+			$Talla = substr($Talla, 0,2);
 			fwrite($txt,$Talla);
 		}
 		else
@@ -565,7 +587,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 	//fwrite($txt,$reg[$i]["TripleViralN"]); // 45. Triple Viral Niños
 	fwrite($txt,"|");
 		//Si registra dato diferente a no aplica debe ser F, mayor e igual a 9 años
-		if ($edad < 9 && ($reg[$i]["Sexo"] == 'M' || $reg[$i]["Sexo"] == 'F' )) 
+		if ($reg[$i]["Sexo"] == 'M')
+		{
+			fwrite($txt,'0');
+		}
+		else if ($edad < 9 && ($reg[$i]["Sexo"] == 'M' || $reg[$i]["Sexo"] == 'F' )) 
 		{
 			fwrite($txt,'0');
 		} 
@@ -1045,10 +1071,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 		else if ($reg[$i]["Gestacion"] == '2')
 		{
+
 			fwrite($txt,'1845-01-01');
+
 		}
 		else if (($edad >= 10 && $edad < 60)  && $reg[$i]["Gestacion"] != '2')
 		{
+
 			fwrite($txt,'1800-01-01');
 		}
 		else
@@ -1117,7 +1146,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		$DateCitologia = date($reg[$i]["FechaCitologiaCUInput"]); // Fecha Variable 87. Fecha Citologia Cervicouterina
 		$YearCitologia = substr($DateCitologia, 0, 4);
-		if ($reg[$i]["Sexo"] == 'F' && $edad < 10) 
+		if ($reg[$i]["Sexo"] == 'M')
+		{
+			fwrite($txt,'0');
+		}
+		else if ($reg[$i]["Sexo"] == 'F' && $edad < 10) 
 		{
 			fwrite($txt,'0');
 		}
@@ -1136,7 +1169,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		
 	//fwrite($txt,$reg[$i]["TamizajeCancerCU"]); // 86. Tamizaje Cancer de Cuello Uterino
 	fwrite($txt,"|");
-		if ($edad > 10 && $reg[$i]["FechaCitologiaCUInput"] == '1845-01-01' && $reg[$i]["Sexo"] == 'F')
+		if ($reg[$i]["Sexo"] == 'M')
+		{
+			fwrite($txt,'1800-01-01');
+		}
+		else if ($edad > 10 && $reg[$i]["FechaCitologiaCUInput"] == '1845-01-01' && $reg[$i]["Sexo"] == 'F')
 		{
 			fwrite($txt,'1800-01-01');
 		}
@@ -1257,7 +1294,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["CodigoHabilitacionTomaColposcopia"]); // 92. Codigo de Habilitacion IPS donde se toma Colposcopia
 	fwrite($txt,"|");
-		if ($reg[$i]["FechaBiopsiaCervicalInput"] == '1835-01-01')
+		if ($reg[$i]["Sexo"] == 'M')
+		{
+			fwrite($txt,'1845-01-01');
+		}	
+		else if ($reg[$i]["FechaBiopsiaCervicalInput"] == '1835-01-01')
 		{
 			fwrite($txt,'1800-01-01');
 		}
@@ -1265,12 +1306,27 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,$reg[$i]["FechaBiopsiaCervicalInput"]);
 		}
-
 	//fwrite($txt,$reg[$i]["FechaBiopsiaCervicalInput"]); // 93. Fecha Biopsia Cervical
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ResultadoBiopsiaCervical"]); // 94. Resultado Biopsia Cervical
+		if ($reg[$i]["Sexo"] == 'M')
+		{
+			fwrite($txt,'0');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["ResultadoBiopsiaCervical"]);
+		}
+	//fwrite($txt,$reg[$i]["ResultadoBiopsiaCervical"]); // 94. Resultado Biopsia Cervical
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["CodigoHabilitacionTomaBiopsia"]); // 95. Codigo de Habilitacion IPS donde se toma la Biopsia Cervical
+		if ($reg[$i]["Sexo"] == 'M')
+		{
+			fwrite($txt,'999');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["CodigoHabilitacionTomaBiopsia"]);
+		}
+	//fwrite($txt,$reg[$i]["CodigoHabilitacionTomaBiopsia"]); // 95. Codigo de Habilitacion IPS donde se toma la Biopsia Cervical
 	fwrite($txt,"|");
 		if ($edadDias >= 12783 && $reg[$i]["Sexo"] == 'F' && $reg[$i]["FechaMamografiaInput"] == '1845-01-01') // 12783 Equivale a 35 Años
 		{

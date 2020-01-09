@@ -1,4 +1,5 @@
 <?php
+	error_reporting( E_ALL );
     require_once("../clases/class.Session.php");
     $sesion = new sesion();
     $idUsuario = $sesion->get("idUsuario");
@@ -18,22 +19,20 @@
 	}
 
 	// Verificamos Que No Haya Errores
-	if ($_FILES['upload']["error"] > 0)
+	if ($_FILES["upload"]["error"] > 0)
 	{
 		// Si el Codigo del Error es 4 Significa
 		// Error: 4 = UPLOAD_ERR_NO_FILE  = Valor: 4; No se subió ningún fichero.
-		if ($_FILES['upload']['error'] == 4)
+		if ($_FILES["upload"]["error"] == 4)
 		{
 	    	header ("Location: ../inicio.php?menu=6&Estado=4");
 	    	die();
 		}
-
 	}
 
 	// Obtenemos el Tipo de Archivo Cargado
-
 	$finfo = new finfo(FILEINFO_MIME_TYPE);
-	$fileContents = file_get_contents($_FILES['upload']['tmp_name']);
+	$fileContents = file_get_contents($_FILES["upload"]["tmp_name"]);
 	$mimeType = $finfo->buffer($fileContents);
 
 	// Si el Arcihvo Cargado es Diferente de text/plain o archivo de texto plano genera error y no continua con el codigo
@@ -45,7 +44,7 @@
 	}
 
 	// Si El Archivo Existe Redirigir y Mostrar Error
-	else if (file_exists($carpetaDestino . $_FILES['upload']['name']))
+	else if (file_exists($carpetaDestino . $_FILES["upload"]["name"]))
 	{
     	header ("Location: ../inicio.php?menu=6&Estado=Warning");
     	die();
@@ -54,7 +53,7 @@
 	{
 
 		// Movemos el Archivo Subido a la Carpeta Uploads del Servidor	
-		move_uploaded_file($_FILES['upload']['tmp_name'],$carpetaDestino.$_FILES['upload']['name']);
+		move_uploaded_file($_FILES["upload"]["tmp_name"],$carpetaDestino.$_FILES["upload"]["name"]);
 
 		// Asignamos la ruta completa del archivo a una Variable
 		$archivo = $carpetaDestino.$_FILES['upload']['name'];
