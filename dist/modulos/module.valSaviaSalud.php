@@ -131,7 +131,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["PertenenciaEtnica"]);
 	fwrite($txt,"|");
-	fwrite($txt,'9999'); // 12. Código de ocupación
+		if ($reg[$i]["CodigoOcupacion"] == '429' || $reg[$i]["CodigoOcupacion"] == '611' || $reg[$i]["CodigoOcupacion"] == '996' || $reg[$i]["CodigoOcupacion"] == '997') {
+			fwrite($txt,'9999');
+		} else 
+		{
+			fwrite($txt,$reg[$i]["CodigoOcupacion"]);
+		}
+	//fwrite($txt,'9999'); // 12. Código de ocupación // CodigoOcupacion
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["CodigoNivelEducativo"]);
 	fwrite($txt,"|");
@@ -139,6 +145,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if ($reg[$i]["Sexo"] == 'M')
 		{
 			fwrite($txt,'0');
+		}
+		else if ($reg[$i]["Gestacion"] == '3')
+		{
+			fwrite($txt,'2');
 		}
 		else if ($edad < 10 || $edad >= 60)
 		{
@@ -162,7 +172,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0'); 
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["SifilisGestacional"] == '21')
+		else if ($reg[$i]["Gestacion"] == '2')
 		{
 			fwrite($txt,'0'); 
 		}
