@@ -163,7 +163,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 		else if (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0)
 		{
-			fwrite($txt,'21');
+			fwrite($txt,'2');
 		}
 		else
 		{
@@ -197,9 +197,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["HipertensionInducidaGestacion"] == '21' || $reg[$i]["HipertensionInducidaGestacion"] == '1')
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["HipertensionInducidaGestacion"] == '21')
 		{
 			fwrite($txt,'0');
+		}
+		else if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["HipertensionInducidaGestacion"] == '0')
+		{
+			fwrite($txt,'21');
 		}
 		else
 		{
@@ -243,6 +247,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'21');
 		}
+		else if ($edad > 18 && $reg[$i]["Sexo"] == 'F' && $reg[$i]["VictimaMaltrato"] == '0')
+		{
+			fwrite($txt,'21');
+		}
 		else
 		{
 			fwrite($txt,$reg[$i]["VictimaMaltrato"]);
@@ -255,9 +263,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["EnfermedadMental"]); // 25. Enfermedad Mental
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' || ($reg[$i]["Sexo"] == 'F' && $edad < 10))
 		{
 			fwrite($txt,'0');
+		}
+		else if ($reg[$i]["Sexo"] == 'F' && $edad > 9 && $reg[$i]["CancerCervix"] == '0')
+		{
+			fwrite($txt,'21');
 		}
 		else
 		{
@@ -773,7 +785,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0')
+		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0' || (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] != '1'))
 		{
 			fwrite($txt,'0');
 		}
@@ -820,7 +832,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'21');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["SuministroAcidoFolico"] == '21')
+		else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["SuministroAcidoFolico"] == '0' || (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] != '1'))
 		{
 			fwrite($txt,'0');
 		}
@@ -838,7 +850,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'21');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["SuministroSulfatoFerroso"] == '21' || $reg[$i]["SuministroSulfatoFerroso"] == '1' ))
+		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0'  || (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] != '1'))
 		{
 			fwrite($txt,'0');
 		}
@@ -1069,7 +1081,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}
-		else if ($reg[$i]["Gestacion"] == '2')
+		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0')
 		{
 
 			fwrite($txt,'1845-01-01');
@@ -1090,7 +1102,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'22');
 		}
-		else if ($reg[$i]["Gestacion"] == '2')
+		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0')
 		{
 			fwrite($txt,'0');
 		}
@@ -1171,7 +1183,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		if ($reg[$i]["Sexo"] == 'M')
 		{
-			fwrite($txt,'1800-01-01');
+			fwrite($txt,'1845-01-01');
 		}
 		else if ($edad > 10 && $reg[$i]["FechaCitologiaCUInput"] == '1845-01-01' && $reg[$i]["Sexo"] == 'F')
 		{
@@ -1320,7 +1332,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		if ($reg[$i]["Sexo"] == 'M')
 		{
-			fwrite($txt,'999');
+			fwrite($txt,'0');
 		}
 		else
 		{
@@ -1342,7 +1354,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaMamografiaInput"]); // 96. Fecha Mamografia
 	fwrite($txt,"|");
-		if ($edadDias < 12783 && $reg[$i]["Sexo"] == 'F')
+		if($edadDias >= 12783 && $reg[$i]["Sexo"] == 'F' && $reg[$i]["ResultadoMamografia"] == '0') // 12783 Equivale a 35 Años)
+		{
+			fwrite($txt,'999');
+		}
+		else if ($edadDias < 12783 && $reg[$i]["Sexo"] == 'F')
 		{
 			fwrite($txt,'0');
 		}
