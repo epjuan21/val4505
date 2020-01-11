@@ -67,7 +67,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["PertenenciaEtnica"]);
 	fwrite($txt,"|");
-	fwrite($txt,'9999'); // 12. Código de ocupación
+		if ($reg[$i]["CodigoOcupacion"] != "9999" ) 
+		{
+			fwrite($txt,'9999');
+		} 
+		else 
+		{
+			fwrite($txt,$reg[$i]["CodigoOcupacion"]);
+		}
+	//fwrite($txt,'9999'); // 12. Código de ocupación // CodigoOcupacion	
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["CodigoNivelEducativo"]);
 	fwrite($txt,"|");
@@ -677,6 +685,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if ($reg[$i]["ConsultaCyDPrimeraVezInput"] == '1845-01-01' && $edad < 10)
 		{
 			fwrite($txt,'1800-01-01');
+		}
+		else if ($edad >= 10)
+		{
+			fwrite($txt,'1845-01-01');
 		}
 		else 
 		{
