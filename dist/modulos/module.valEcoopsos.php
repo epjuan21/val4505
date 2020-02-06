@@ -68,14 +68,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["PertenenciaEtnica"]);
 	fwrite($txt,"|");
-		if ($reg[$i]["CodigoOcupacion"] == '429' || $reg[$i]["CodigoOcupacion"] == '430' || $reg[$i]["CodigoOcupacion"] == '490' || $reg[$i]["CodigoOcupacion"] == '611' || $reg[$i]["CodigoOcupacion"] == '996' || $reg[$i]["CodigoOcupacion"] == '997')
-		{
 			fwrite($txt,'9999');
-		}
-		else
-		{
-			fwrite($txt,$reg[$i]["CodigoOcupacion"]);
-		}
 	//fwrite($txt,'9999'); // 12. Código de ocupación
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["CodigoNivelEducativo"]);
@@ -715,7 +708,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["SuministroAcidoFolico"]); // 59. Suministro de Acido Folico en el Ultimo Control Prenatal
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2')
+		if ($reg[$i]["Sexo"]=='M' || $reg[$i]["Gestacion"]=='2' || $reg[$i]["Gestacion"]=='0' || $reg[$i]["Gestacion"]=='21')
 		{
 			fwrite($txt,'0');
 		} 
@@ -908,7 +901,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["PacienteEnfermedadMental"]); // 77. Paciente con Diagnóstico de: Ansiedad, Depresión, Esquizofrenia, déficit de atención, consumo SPA y Bipolaridad recibió Atención en los últimos 6 meses por Equipo Interdisciplinario Completo
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["Gestacion"] == '2')
+		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0')
 		{
 			fwrite($txt,'1845-01-01');
 		} 
@@ -922,7 +915,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaAntigenoHepatitisBGestantesInput"]); // 78. Fecha Antigeno de Superficie Hepatitis B en Gestantes
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["Gestacion"] == '2')
+		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0')
 		{
 			fwrite($txt,'0');
 		}
