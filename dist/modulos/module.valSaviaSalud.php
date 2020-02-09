@@ -193,7 +193,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["SifilisGestacional"]); // 15. Sifilis Gestacional y Congenita
 	fwrite($txt,"|");
-		if ($reg[$i]["Gestacion"] == '0' || ($edad < 10 || $edad >= 60) || $reg[$i]["Gestacion"] == '21' || (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0))
+		if ($reg[$i]["Gestacion"] == '0' || ($edad < 10 || $edad >= 60) || $reg[$i]["Gestacion"] == '21' || $reg[$i]["Gestacion"] == '2' ||  (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0))
 		{
 			fwrite($txt,'0');
 		}
@@ -687,7 +687,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaSalidaParto"]); // 50. Fecha Salida de la Atención del Parto o Cesárea
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' ||  $edad >= 60)
 		{
 			fwrite($txt,'1845-01-01');
 		}
@@ -1081,11 +1081,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1800-01-01');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0')
+		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0' || $reg[$i]["Gestacion"] == '21')
 		{
-
 			fwrite($txt,'1845-01-01');
-
 		}
 		else if (($edad >= 10 && $edad < 60)  && $reg[$i]["Gestacion"] != '2')
 		{
@@ -1102,7 +1100,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'22');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0')
+		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '0' || $reg[$i]["Gestacion"] == '21')
 		{
 			fwrite($txt,'0');
 		}
