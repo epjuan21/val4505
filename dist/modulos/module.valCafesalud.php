@@ -724,7 +724,19 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["SuministroVitaminaAMenor"]); // 71. Suministro de Vitamina A en la Ultima Consulta de Menor de 10 Años
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ConsultaJovenPrimeraVezInput"]);
+		if ($edad >= 30 || $edad < 10)  
+		{
+			fwrite($txt,'1845-01-01');
+		}
+		else if ($edad >= 10 && $edad < 30 && $reg[$i]["ConsultaJovenPrimeraVezInput"] == '1845-01-01') 
+		{
+			fwrite($txt,'1800-01-01');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["ConsultaJovenPrimeraVezInput"]);		
+		}
+	//fwrite($txt,$reg[$i]["ConsultaJovenPrimeraVezInput"]);
 	fwrite($txt,"|");
 	// Pagina 49: La opción 1845-01-01 se usa: Para población mayor de 45 años
 	// 
