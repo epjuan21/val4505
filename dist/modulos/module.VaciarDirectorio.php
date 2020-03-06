@@ -21,6 +21,8 @@ else if ($root == "C:/laragon/www/val4505/dist")
     $path = "/modulos/";
 }
 
+print_r($root);
+
 $dir = opendir($root.$path);
 
 $finfo = new finfo(FILEINFO_MIME_TYPE);

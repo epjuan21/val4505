@@ -740,7 +740,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		}
-		else if (($edad == 4 || $edad == 11 || $edad == 16 || $edad == 45) && $reg[$i]["ValoracionAgudezaVisualInput"] == '1845-01-01')
+		else if (($edad == 4 || $edad == 11 || $edad == 15 || $edad == 45) && $reg[$i]["ValoracionAgudezaVisualInput"] == '1845-01-01')
 		{
 			fwrite($txt,'1800-01-01');
 		}
@@ -756,7 +756,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		if ($edad >= 55 && ($reg[$i]["ConsultaOftalmologiaInput"] == '1800-01-01' || $reg[$i]["ConsultaOftalmologiaInput"] == '1845-01-01'))
 		{
-			if ($edad == 55 || $edad == 60 || $edad == 65 || $edad == 70 || $edad == 75 || $edad == 80 || $edad == 85 || $edad == 90 || $edad == 95)
+			if ($edad == 55 || $edad == 60 || $edad == 65 || $edad == 70 || $edad == 75 || $edad == 80 || $edad == 85 || $edad == 90 || $edad == 95 || $edad == 100)
 			{
 				fwrite($txt,'1800-01-01');
 			}

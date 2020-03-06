@@ -1,1 +1,0 @@
-mysqldump -u root -p val4505 > val4505.sql
