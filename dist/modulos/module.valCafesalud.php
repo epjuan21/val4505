@@ -944,13 +944,17 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if ($reg[$i]["Sexo"]=='M')
 		{
 			fwrite($txt,'0');
-		} else if ($edad < 10 && $reg[$i]["CalidadMuestraCitologia"]!='0')
+		} 
+		else if ($edad < 10 && $reg[$i]["CalidadMuestraCitologia"]!='0')
 		{
 			fwrite($txt,'0');
-		} else if ($edad >= 10 && $reg[$i]["Sexo"]=='F' && $reg[$i]["CalidadMuestraCitologia"]=='0')
+		} 
+		else if ($edad >= 10 && $reg[$i]["Sexo"]=='F' && $reg[$i]["CalidadMuestraCitologia"]=='0')
 		{
 			fwrite($txt,'999');
-		} else {
+		} 
+		else 
+		{
 			fwrite($txt,$reg[$i]["CalidadMuestraCitologia"]);
 		}
 	//fwrite($txt,$reg[$i]["CalidadMuestraCitologia"]); // 89. Calidad en la Muestra de Citologia Cervicouterina
@@ -958,13 +962,17 @@ for ($i=0;$i<sizeof($reg);$i++)
 		if ($reg[$i]["Sexo"]=='M')
 		{
 			fwrite($txt,'0');
-		} else if ($edad < 10 && $reg[$i]["CodigoHabilitacionIPSTomaMuestra"]!='0')
+		} 
+		else if ($edad < 10 && $reg[$i]["CodigoHabilitacionIPSTomaMuestra"]!='0')
 		{
 			fwrite($txt,'0');
-		} else if ($edad >= 10 && $reg[$i]["Sexo"]=='F' && $reg[$i]["CodigoHabilitacionIPSTomaMuestra"]=='0')
+		} 
+		else if ($edad >= 10 && $reg[$i]["Sexo"]=='F' && $reg[$i]["CodigoHabilitacionIPSTomaMuestra"]=='0')
 		{
 			fwrite($txt,'999');
-		} else {
+		} 
+		else 
+		{
 			fwrite($txt,$reg[$i]["CodigoHabilitacionIPSTomaMuestra"]);
 		}
 	//fwrite($txt,$reg[$i]["CodigoHabilitacionIPSTomaMuestra"]); // 90. Codigo de Habilitacion IPS donde se toma Citologia Cervicouterina

@@ -740,7 +740,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		}
-		else if (($edad == 4 || $edad == 11 || $edad == 15 || $edad == 45) && $reg[$i]["ValoracionAgudezaVisualInput"] == '1845-01-01')
+		else if (($edad == 4 || $edad == 11 || $edad == 16 || $edad == 45) && $reg[$i]["ValoracionAgudezaVisualInput"] == '1845-01-01')
 		{
 			fwrite($txt,'1800-01-01');
 		}
