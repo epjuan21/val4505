@@ -257,9 +257,9 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["VictimaMaltrato"]); // 22. Victima Maltrato
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["VictimaViolenciaSexual"]);
+	fwrite($txt,$reg[$i]["VictimaViolenciaSexual"]); // 23. 
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["InfeccionTrasmisionSexual"]);
+	fwrite($txt,$reg[$i]["InfeccionTrasmisionSexual"]); // 24. 
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["EnfermedadMental"]); // 25. Enfermedad Mental
 	fwrite($txt,"|");
@@ -687,7 +687,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaSalidaParto"]); // 50. Fecha Salida de la Atención del Parto o Cesárea
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M' ||  $edad >= 60)
+		if ($reg[$i]["Sexo"] == 'M' ||  ($edad < 10 || $edad >= 60))
 		{
 			fwrite($txt,'1845-01-01');
 		}
@@ -993,7 +993,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ConsultaAdultoPrimeraVezInput"]); // 73. Consulta de Adulto Primera Vez
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["PreservativosITSInput"]); // 74. Preservativos Entregados a Pacientes con ITS
+		if ($reg[$i]["InfeccionTrasmisionSexual"] == '2')
+		{
+			fwrite($txt,'0'); 
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["PreservativosITSInput"]);
+		}
+	//fwrite($txt,$reg[$i]["PreservativosITSInput"]); // 74. Preservativos Entregados a Pacientes con ITS
 	fwrite($txt,"|");
 		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["AsesoriaPreElisaInput"]=='1845-01-01')
 		{
@@ -1015,7 +1023,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["AsesoriaPostElisaInput"]); // 76. 
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["PacienteEnfermedadMental"]); // 77. Paciente con Diagnóstico de: Ansiedad, Depresión, Esquizofrenia, déficit de atención, consumo SPA y Bipolaridad recibió Atención en los últimos 6 meses por Equipo Interdisciplinario Completo
+		if ($reg[$i]["EnfermedadMental"] == '7')
+		{
+			fwrite($txt,'0');
+		}
+		else
+		{
+			fwrite($txt,$reg[$i]["PacienteEnfermedadMental"]);
+		}
+	//fwrite($txt,$reg[$i]["PacienteEnfermedadMental"]); // 77. Paciente con Diagnóstico de: Ansiedad, Depresión, Esquizofrenia, déficit de atención, consumo SPA y Bipolaridad recibió Atención en los últimos 6 meses por Equipo Interdisciplinario Completo
 	fwrite($txt,"|");
 		if ($reg[$i]["Sexo"] == 'M' || $edad < 10 )
 		{
@@ -1191,7 +1207,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'1845-01-01');
 		}
-		else if ($edad > 10 && $reg[$i]["FechaCitologiaCUInput"] == '1845-01-01' && $reg[$i]["Sexo"] == 'F')
+		else if ($edad >= 10 && $reg[$i]["FechaCitologiaCUInput"] == '1845-01-01' && $reg[$i]["Sexo"] == 'F')
 		{
 			fwrite($txt,'1800-01-01');
 		}
@@ -1211,7 +1227,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 			{
 				fwrite($txt,'0');
 			}
-			else if ($reg[$i]["Sexo"] == 'F' && $edad > 10 && $reg[$i]["CitologiaCUResultados"] == '0')
+			else if ($reg[$i]["Sexo"] == 'F' && $edad >= 10 && $reg[$i]["CitologiaCUResultados"] == '0')
 			{
 				fwrite($txt,'999');
 			}
@@ -1224,7 +1240,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'999');
 		}
-		else if ($edad > 10 && $reg[$i]["Sexo"] == 'F' && $reg[$i]["CitologiaCUResultados"] == '0' )
+		else if ($edad >= 10 && $reg[$i]["Sexo"] == 'F' && $reg[$i]["CitologiaCUResultados"] == '0' )
 		{
 			fwrite($txt,'999');
 		}
@@ -1238,7 +1254,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($edad > 10 && $reg[$i]["Sexo"] == 'F' && $reg[$i]["CalidadMuestraCitologia"] == '0')
+		else if ($edad >= 10 && $reg[$i]["Sexo"] == 'F' && $reg[$i]["CalidadMuestraCitologia"] == '0')
 		{
 			fwrite($txt,'999');
 		}
@@ -1252,7 +1268,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if (($reg[$i]["Sexo"] == 'F' && $edad > 10 && $reg[$i]["CitologiaCUResultados"] == '0' ) || ($reg[$i]["CitologiaCUResultados"] != '999' || $reg[$i]["CitologiaCUResultados"] != '0' || $reg[$i]["CitologiaCUResultados"] < 19)) // Condicion Pregunta 88- Convierte el 0 en 999
+		else if (($reg[$i]["Sexo"] == 'F' && $edad >= 10 && $reg[$i]["CitologiaCUResultados"] == '0' ) || ($reg[$i]["CitologiaCUResultados"] != '999' || $reg[$i]["CitologiaCUResultados"] != '0' || $reg[$i]["CitologiaCUResultados"] < 19)) // Condicion Pregunta 88- Convierte el 0 en 999
 		{
 			if ($reg[$i]["CalidadMuestraCitologia"] == '0' && $reg[$i]["Sexo"] == 'F' &&  $edad < 10 )
 			{
@@ -1479,7 +1495,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 		// Si es diferente de no aplica, la variable 17 es igual a 1
 		// Si Tiene Tratamiento Contra Hipotiroidismo Congenito (Variable 114 Diferente de 0) Debe Tener Hipotiroidismo (Variable 17 = 1)
-		if ($edad >= 3 || $reg[$i]["HipotiroidismoCongenito"] == '0' || $reg[$i]["HipotiroidismoCongenito"] == '21')
+		if ($edad >= 3 || $reg[$i]["HipotiroidismoCongenito"] == '0' || $reg[$i]["HipotiroidismoCongenito"] == '21' || $reg[$i]["HipotiroidismoCongenito"] == '2')
 		{
 			fwrite($txt,'0');
 		}
