@@ -20,6 +20,11 @@ else if ($root == "C:/laragon/www/val4505/dist")
 {
     $path = "/modulos/";
 }
+else if ($root = "C:/laragon/www/val4505/")
+{
+    $path = "dist/modulos/";
+}
+
 
 $dir = opendir($root.$path);
 
