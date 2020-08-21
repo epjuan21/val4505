@@ -174,7 +174,7 @@ class rped extends ConnectionMySQL {
 			ON rped.CodigoEntidad = entidades.ENTIDAD_COD
 			WHERE CodigoEntidad = '$Entidad'
 			AND substr(FechaFinalReg,6,2) = '$Periodo' AND substr(FechaFinalReg,1,4) = '$Año'
-			GROUP BY CodigoEntidad;");
+			GROUP BY CodigoEntidad, ENTIDAD_NAME, FechaFinalReg;");
 		$this->query->execute();
 		return $this->query->fetchAll(PDO::FETCH_BOTH);
 	}
