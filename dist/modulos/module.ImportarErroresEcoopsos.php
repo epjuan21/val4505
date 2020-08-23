@@ -10,8 +10,6 @@
 	$CodigoMunicipio = $_POST['CodigoMunicipio'];
 	$Periodo = $_POST['Periodo'];
 
-	$RegistrosNumerados = $objRPED->gerRegNum($IdUsuario, $CodigoMunicipio, $CodigoEntidad, $Periodo);
-
 	if (!$IdUsuario) {
 		$sesion->termina_sesion();
 	}
@@ -166,49 +164,49 @@
 	
 				// Si Hay Datos y Si es SAVIASALUD SUBSIDIADO
 				else if ($line && $CodigoEntidad == 'EPSS40')
-				{
-					// Almacenamos el Dato Actual Que Contiene El Error
-					
-					if (array_key_exists(3, $reg)){
-						$CadenaError = 	$reg[3];
+				{	
+					// Almacenamos el Número de Documento del Usuario
+					$CodigoUsuario = $reg[2];
+
+					// Almacenamos el Texto que Contiene el Mensaje del Error
+
+					if (array_key_exists(12, $reg)){
+						$CadenaError = 	$reg[12];
 					}
 	
-					if (array_key_exists(3, $reg)){
-						$TextoError = 	$reg[2];
+					if (array_key_exists(12, $reg)){
+						$TextoError = 	$reg[12];
 					}
 	
-					if (array_key_exists(0, $reg)){
-						$CadenaLinea = 	$reg[0];
-					}
+					$CadenaError = mb_convert_encoding($CadenaError,"UTF-8","auto");
+					$TextoError = mb_convert_encoding($TextoError,"UTF-8","auto");
 	
-					$CadenaError = mb_convert_encoding($CadenaError,"UTF-8","UCS-2");
-					$TextoError = mb_convert_encoding($TextoError,"UTF-8","UCS-2");
-					$CadenaLinea = mb_convert_encoding($CadenaLinea,"UTF-8","UCS-2");
-	
-					// Cadena Buscada Para Numero de Documento
-					$NumeroDoc = 'Numero Doc:';
+					// Cadena Buscada Para Afiliado No Existe
+					$AfiliadoNoExiste = 'Afiliado reportado por la IPS no Existe en la Base de Datos de BDUA';
+
+					// Cadena Buscada Usuario con Regimen Contributivo
+					$UsuarioContributivo = 'Usuario con regimen Contributivo';
 	
 					// Cadena Buscada Para Fecha de Nacimiento
-					$DatoArchivo = 'Dato archivo';
+					$FechaDiferente = 'Fecha de Nacimiento reportado por la IPS Diferente al contenido en la Base de BDUA';
 	
-					// Buscar Cadena de Numero de Documento
-					$BuscarNumDoc = strpos($CadenaError, $NumeroDoc);
+					// Buscar Cadena Regimen Contributivo
+					$BuscarUsuarioContributivo = strpos($CadenaError, $UsuarioContributivo);
+
+					// Buscar Cadena Para Afiliado No Existe
+					$BuscarAfiliadoNoExiste = strpos($CadenaError, $AfiliadoNoExiste);
 	
 					// Buscar Cadena de Dato Archivo que Indica Fecha de Nacimiento Errada
-					$BucarDatoArchivo = strpos($CadenaError, $DatoArchivo);
+					$BucarFechaDiferente = strpos($CadenaError, $FechaDiferente);
 	
-	
-					if ($BuscarNumDoc !== false) // Si Es Verdadero Se Encontro la Cadena Numero Doc
+					if ($BuscarAfiliadoNoExiste !== false || $BuscarUsuarioContributivo !== false) // Si Es Verdadero Se Encontro la Cadena 'Afiliado reportado por la IPS no Existe en la Base de Datos de BDUA'
 					{
-	
 						$TipoError = 1;
-	
-						$CodigoUsuario = mb_substr($CadenaError, 12 ,mb_strlen($CadenaError),'UTF-8');
 	
 						$ObjErrores->insertErrores(
 						null
 						,$CodigoUsuario
-						,$CodigoEntidad
+						,$CodigoEntidad	
 						,$TipoError
 						,$Periodo
 						,$CodigoMunicipio
@@ -217,51 +215,24 @@
 						,$TextoError
 						);
 					}
-					else if ($BucarDatoArchivo !== false) // Si Es Verdadero Se Encontro la Cadena Dato Archivo
+					else if ($BucarFechaDiferente !== false) // Si Es Verdadero Se Encontro la Cadena 'Fecha de Nacimiento reportado por la IPS Diferente al contenido en la Base de BDUA'
 					{
-						
 						$TipoError = 3;
-	
-						//var_dump($CadenaError);
-						// Obtenemos El Primer Caracter de la Cadena Error
-						$var = substr($CadenaError, 14, 1);
-						
-						//var_dump($var);
-	
-						// Si el Primer Caracter es Numerico Se Asume que es Una Fecha
-						if (is_numeric($var)){
-	
-							$CadenaFecha = substr($CadenaError, 44, 10);
-	
-							//var_dump($CadenaFecha);
-							//var_dump($CadenaLinea);
-	
-							$Year = substr($CadenaFecha, 6, 4);
-							$Month = substr($CadenaFecha, 3, 2);
-							$Day = substr($CadenaFecha, 0, 2);
-	
-							$FechaNueva = $Year."-".$Month."-".$Day;
-	
-							for ($i=1;$i<=sizeof($RegistrosNumerados);$i++) 
-							{
-								if ($i == $CadenaLinea){
-									// Obtenemos el Numero de Documento del Usuairo Segun La Linea en el Archivo de Errores
-									$CodigoUsuario = $RegistrosNumerados[$i-1]["NumeroIdUsuario"];
-	
-									$ObjErrores->insertErrores(
-									null
-									,$CodigoUsuario
-									,$CodigoEntidad
-									,$TipoError
-									,$Periodo
-									,$CodigoMunicipio
-									,$IdUsuario
-									,$FechaNueva
-									,$TextoError
-									);
-								}
-							}
-						}
+
+						// Obtenemos La Fecha de Nacimiento de la BDUA - Del Archivo de Errores
+						$FechaNueva = $reg[10];
+
+						$ObjErrores->insertErrores(
+							null
+							,$CodigoUsuario
+							,$CodigoEntidad
+							,$TipoError
+							,$Periodo
+							,$CodigoMunicipio
+							,$IdUsuario
+							,$FechaNueva
+							,$TextoError
+							);
 					}
 				}
 	
@@ -273,49 +244,43 @@
 					// Almacenamos el Dato Actual Que Contiene El Error
 					
 					if (array_key_exists(3, $reg)){
-						$CadenaError = 	$reg[3];
+						$CadenaError = 	$reg[12];
 					}
 	
 					if (array_key_exists(3, $reg)){
-						$TextoError = 	$reg[2];
+						$TextoError = 	$reg[12];
 					}
 	
 					if (array_key_exists(0, $reg)){
 						$CadenaLinea = 	$reg[0];
+					}
+
+					// Obtenemos el Número de Documento del Usuario
+					if (array_key_exists(0, $reg)){
+						$NumeroDocumento = 	$reg[2];
 					}
 	
 					$CadenaError = mb_convert_encoding($CadenaError,"UTF-8","UCS-2");
 					$TextoError = mb_convert_encoding($TextoError,"UTF-8","UCS-2");
 					$CadenaLinea = mb_convert_encoding($CadenaLinea,"UTF-8","UCS-2");
 	
-					// Cadena Buscada Para Numero de Documento
-					$NumeroDoc = 'Numero Doc:';
-	
-					// Buscar Cadena de Numero de Documento
-					$BuscarNumDoc = strpos($CadenaError, $NumeroDoc);
-	
-					if ($BuscarNumDoc !== false) // Si Es Verdadero Se Encontro la Cadena Numero Doc
-					{
-	
-						$TipoError = 1;
-	
-						$CodigoUsuario = mb_substr($CadenaError, 12 ,mb_strlen($CadenaError),'UTF-8');
-	
-						$ObjErrores->insertErrores(
-						null
-						,$CodigoUsuario
-						,$CodigoEntidad
-						,$TipoError
-						,$Periodo
-						,$CodigoMunicipio
-						,$IdUsuario
-						,$CadenaError
-						,$TextoError
-						);
-					}
+					$TipoError = 1;
+
+					$CodigoUsuario = $NumeroDocumento;
+
+					$ObjErrores->insertErrores(
+					null
+					,$CodigoUsuario
+					,$CodigoEntidad
+					,$TipoError
+					,$Periodo
+					,$CodigoMunicipio
+					,$IdUsuario
+					,$CadenaError
+					,$TextoError
+					);
 				}
 			}
-
 		}
 
 		while (!feof($fp)) {
