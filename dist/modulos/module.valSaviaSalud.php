@@ -518,9 +518,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{
 			fwrite($txt,'0');
 		}
-		else if ($edad < 6 && $reg[$i]["Rotavirus"]== '0') 
+		else if ($edad < 6 && $reg[$i]["Rotavirus"] == '0') 
 		{
 			fwrite($txt,'22');
+		}
+		else if ($edadDias < 121 && $reg[$i]["Rotavirus"] == '2')
+		{
+			fwrite($txt,'1');
 		}
 		else
 		{
@@ -535,6 +539,10 @@ for ($i=0;$i<sizeof($reg);$i++)
 		else if ($edad < 6 && $reg[$i]["Neumococo"]== '0') 
 		{
 			fwrite($txt,'22');
+		}
+		else if ($edadDias < 121 && $reg[$i]["Neumococo"] == '2')
+		{
+			fwrite($txt,'1');
 		}
 		else
 		{
