@@ -52,7 +52,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	$DateConsultaAdultoPrimeraVezInput = date($reg[$i]["ConsultaAdultoPrimeraVezInput"]); // Fecha Variable 87. Fecha Citologia Cervicouterina
 	$YearConsultaAdultoPrimeraVezInput = (int)substr($DateConsultaAdultoPrimeraVezInput, 0, 4);
 	$DateUltimoControlPrenatal = date($reg[$i]["UltimoControlPrenatal"]);
-	$YearUltimoControlPrenatal = substr($DateUltimoControlPrenatal, 0, 4);	// Año Ultimo Control Prenatal
+	$YearUltimoControlPrenatal = intval(substr($DateUltimoControlPrenatal, 0, 4));	// Año Ultimo Control Prenatal
 	$YearFechaAntigenoSuperficie =  substr($reg[$i]["FechaAntigenoHepatitisBGestantesInput"], 0, 4);
 
 	$Talla = $reg[$i]["TallaCentimetros"];
@@ -811,7 +811,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		{	
 			fwrite($txt,'1800-01-01');
 		}
-		else if ($reg[$i]["Gestacion"] == '2' && ($reg[$i]["UltimoControlPrenatal"] == '1800-01-01' || $YearUltimoControlPrenatal  > 1845))
+		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '' && ($reg[$i]["UltimoControlPrenatal"] == '1800-01-01' || $YearUltimoControlPrenatal  > 1845))
 		{
 			fwrite($txt,'1845-01-01');	
 		}
