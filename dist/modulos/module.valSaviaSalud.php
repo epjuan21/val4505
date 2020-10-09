@@ -807,13 +807,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ControlPrenatal"]); // 57. Control Prenatal
 	fwrite($txt,"|");
-		if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["UltimoControlPrenatal"]=='1845-01-01')
+		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '' || ( $reg[$i]["Gestacion"] == '2' && $YearUltimoControlPrenatal > 1900))
+		{
+			fwrite($txt,"1845-01-01");
+		}
+		else if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["UltimoControlPrenatal"]=='1845-01-01')
 		{	
 			fwrite($txt,'1800-01-01');
-		}
-		else if ($reg[$i]["Gestacion"] == '2' || $reg[$i]["Gestacion"] == '' && ($reg[$i]["UltimoControlPrenatal"] == '1800-01-01' || $YearUltimoControlPrenatal  > 1845))
-		{
-			fwrite($txt,'1845-01-01');	
 		}
 		else if ( (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0)  || $reg[$i]["Gestacion"] == '21' )
 		{

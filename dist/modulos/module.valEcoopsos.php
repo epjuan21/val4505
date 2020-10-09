@@ -459,17 +459,34 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["HepatitisA"]); // 44. Hepatitis A
 	fwrite($txt,"|");
-		// Validar que cuando la variable 45 registre un valor diferente a  0 el cálculo de la edad* sea < 6 años
-		// Validar que en >= 6 años de edad variable 45 sea 0 No aplica 
-		// Validar que en < 6 años de edad variable 44 sea diferente a 0 No 
-		if ($edad >= 6 || $edad < 1)
+		// Si registra Triple viral, debe ser menor de 6 años
+		// Si es mayor ó igual a 6 años Triple Viral no aplica
+		// Si es menor ó igual a 6 años Triple viral debe tener dato de aplicación
+		// Validar que si:
+		// Edad en meses < 12 variable 44 diferente a 0, 1, 2
+		// Edad en meses < 60 variable 44 diferente a 0, 2.
+
+		if ($edad >= 6)
 		{
 			fwrite($txt,'0');
 		} 
-		else if ($edad < 6 && $reg[$i]["TripleViralN"]=='0')
+		else if ($edad < 6 && $reg[$i]["TripleViralN"] == '0')
 		{
 			fwrite($txt,'22');
-		} else {
+		}	
+		else if ($edadDias < 21900 && $reg[$i]["TripleViralN"] == '2')
+		{
+			if ($edadDias < 365)
+			{
+				fwrite($txt,'22');
+			}
+			else
+			{
+				fwrite($txt,'1');
+			}
+		} 
+		else 
+		{
 			fwrite($txt,$reg[$i]["TripleViralN"]);
 		}
 	//fwrite($txt,$reg[$i]["TripleViralN"]); // 45. Triple Viral Niños
