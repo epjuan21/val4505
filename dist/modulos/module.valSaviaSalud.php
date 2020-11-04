@@ -61,7 +61,15 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$i+1);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["CodigoHabilitacionIPS"]);
+		if ($reg[$i]["CodigoHabilitacionIPS"] == "50910457201" ) 
+		{
+			fwrite($txt,'050910457201');
+		} 
+		else 
+		{
+			fwrite($txt,$reg[$i]["CodigoOcupacion"]);
+		}
+	//fwrite($txt,$reg[$i]["CodigoHabilitacionIPS"]);
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["TipoIdUsuario"]);
 	fwrite($txt,"|");
@@ -1535,7 +1543,14 @@ for ($i=0;$i<sizeof($reg);$i++)
 
 fclose($txt);
 header("Content-disposition: attachment; filename=$nombreArchivo");
-header("Content-type: application/octet-stream");
+//header("Content-type: application/octet-stream");
+header('Content-type: application/txt');
+header('Content-Transfer-Encoding: binary');
+header('Content-Description: File Transfer');
+header('Content-Transfer-Encoding: binary');
+header('Cache-Control: must-revalidate');
+ob_clean();
+flush();
 
 readfile($nombreArchivo);
 include("module.VaciarDirectorio.php");
