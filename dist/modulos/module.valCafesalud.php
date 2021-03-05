@@ -763,7 +763,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 	// 
 		if ($edad >= 45 && $reg[$i]["ConsultaAdultoPrimeraVezInput"] == '1845-01-01')
 		{
-			if ($edad == 45 || $edad == 50 || $edad == 55 || $edad == 60 || $edad == 65 || $edad == 65 || $edad == 70 || $edad == 75 || $edad == 80 || $edad == 85)
+			if ($edad == 45 || $edad == 50 || $edad == 55 || $edad == 60 || $edad == 65 || $edad == 65 || $edad == 70 || $edad == 75 || $edad == 80 || $edad == 85 || $edad == 90)
 			{
 				fwrite($txt,'1800-01-01');
 			}

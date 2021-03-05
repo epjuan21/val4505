@@ -1219,7 +1219,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		
 	//fwrite($txt,$reg[$i]["TamizajeCancerCU"]); // 86. Tamizaje Cancer de Cuello Uterino
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' || $edad < 10)
 		{
 			fwrite($txt,'1845-01-01');
 		}
@@ -1237,7 +1237,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaCitologiaCUInput"]); // 87. Citologia Cervicouterina
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["FechaCitologiaCUInput"] == '1845-01-01')
+		if ($edad < 10)
+		{
+			fwrite($txt,'0');
+		}
+		else if ($reg[$i]["Sexo"] == 'M' || $reg[$i]["FechaCitologiaCUInput"] == '1845-01-01')
 		{
 			if ($reg[$i]["Sexo"] == 'F' &&  $edad < 10 )
 			{
@@ -1266,7 +1270,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["CitologiaCUResultados"]); // 88. Citologia Cervico Uterina Resultados Segun Bethesda
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' || $edad < 10)
 		{
 			fwrite($txt,'0');
 		}
@@ -1280,7 +1284,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["CalidadMuestraCitologia"]); // 89. Calidad en la Muestra de Citologia Cervicouterina
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' || $edad < 10)
 		{
 			fwrite($txt,'0');
 		}
@@ -1309,7 +1313,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["CodigoHabilitacionIPSTomaMuestra"]); // 90. Codigo de Habilitacion IPS donde se toma Citologia Cervicouterina
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' || $edad < 10)
 		{
 			fwrite($txt,'1845-01-01');
 		}
@@ -1344,7 +1348,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["CodigoHabilitacionTomaColposcopia"]); // 92. Codigo de Habilitacion IPS donde se toma Colposcopia
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' || $edad < 10)
 		{
 			fwrite($txt,'1845-01-01');
 		}	
@@ -1358,7 +1362,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["FechaBiopsiaCervicalInput"]); // 93. Fecha Biopsia Cervical
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' || $edad < 10)
 		{
 			fwrite($txt,'0');
 		}
@@ -1368,7 +1372,7 @@ for ($i=0;$i<sizeof($reg);$i++)
 		}
 	//fwrite($txt,$reg[$i]["ResultadoBiopsiaCervical"]); // 94. Resultado Biopsia Cervical
 	fwrite($txt,"|");
-		if ($reg[$i]["Sexo"] == 'M')
+		if ($reg[$i]["Sexo"] == 'M' || $edad < 10)
 		{
 			fwrite($txt,'0');
 		}
