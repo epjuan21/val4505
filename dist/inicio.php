@@ -75,7 +75,7 @@
 
 	<header>
 
-            <div class="logo"><a href="inicio.php">Val 4505</a></div>
+            <div class="logo"><a href="inicio.php">Val 4505 Versión 2.0</a></div>
 
             <nav role="navigation">
                 <ul class="menu">
