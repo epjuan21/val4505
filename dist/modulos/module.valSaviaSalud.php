@@ -171,27 +171,8 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// }
 	fwrite($txt,$reg[$i]["Gestacion"]); // 14. Gestacion
 	fwrite($txt,"|");
-		// if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["SifilisGestacional"] == '0')
-		// {
-		// 	fwrite($txt,'21');
-		// }
-		// else if ($reg[$i]["Gestacion"] == '0' || ($edad < 10 || $edad >= 60) || $reg[$i]["Gestacion"] == '21' || (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0))
-		// {
-		// 	fwrite($txt,'0'); 
-		// }
-		// else if ($reg[$i]["Gestacion"] == '2')
-		// {
-		// 	fwrite($txt,'0'); 
-		// }
-		// else if ($reg[$i]["Gestacion"] == '2' && $reg[$i]["SifilisGestacional"] == '3')
-		// {
-		// 	fwrite($txt,'0');
-		// }
-		// else
-		// {
-		// 	fwrite($txt,$reg[$i]["SifilisGestacional"]); 
-		// }
-	fwrite($txt,$reg[$i]["SifilisGestacional"]); // 15. Sifilis Gestacional y Congenita
+		fwrite($txt,"0");
+	//fwrite($txt,'$reg[$i]["SifilisGestacional"]'); // 15. Sifilis Gestacional y Congenita
 	fwrite($txt,"|");
 		// if ($reg[$i]["Gestacion"] == '0' || ($edad < 10 || $edad >= 60) || $reg[$i]["Gestacion"] == '21' || $reg[$i]["Gestacion"] == '2' ||  (($edad >= 10 && $edad < 60) && $reg[$i]["Gestacion"] == 0))
 		// {
@@ -211,37 +192,18 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// }
 	fwrite($txt,$reg[$i]["HipertensionInducidaGestacion"]); // 16. Hipertension Inducida por la Gestacion
 	fwrite($txt,"|");
-		// // La opcion 0 - No Aplica se Utiliza en Mayores de 3 Años
-		// // La opcion 21 - Riesgo no Evaluado Solo Aplica Para Menores de 36 Meses
-		// if ($edad >= 3)
-		// {
-		// 	fwrite($txt,'0');
-		// }
-		// else if ($edad < 3 || $reg[$i]["HipotiroidismoCongenito"] != '0') // Se puede tener en cuenta para la Pregunta 85. Resultado TSH Neonatal
-		// {
-		// 	fwrite($txt,'21');
-		// }
-		// else
-		// {
-		// 	fwrite($txt,$reg[$i]["HipotiroidismoCongenito"]);
-		// }
+		fwrite($txt,"0");
 	fwrite($txt,$reg[$i]["HipotiroidismoCongenito"]); // 17. Hipotiroidismo Congenito
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["SintomaticoRespiratorio"]);
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["Tuberculosis"]); // 19. Tuberculosis Multidrogoresistente
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["Lepra"]);
+		fwrite($txt,"21");
+	//fwrite($txt,$reg[$i]["Lepra"]); // 20. Lepra
 	fwrite($txt,"|");
-		// if ($reg[$i]["ObesidadDesnutricion"] == '')
-		// {
-		// 	fwrite($txt,'21');
-		// } 
-		// else 
-		// {
-		// 	fwrite($txt,$reg[$i]["ObesidadDesnutricion"]);
-		// }
-	fwrite($txt,$reg[$i]["ObesidadDesnutricion"]); // 21. Obsesidad o Desnutrición Proteico Calórica
+		fwrite($txt,"21");
+	//fwrite($txt,$reg[$i]["ObesidadDesnutricion"]); // 21. Obsesidad o Desnutrición Proteico Calórica
 	fwrite($txt,"|");
 		// if ($edad < 19 && $reg[$i]["VictimaMaltrato"] == '0')
 		// {
@@ -261,21 +223,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["InfeccionTrasmisionSexual"]); // 24. 
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["EnfermedadMental"]); // 25. Enfermedad Mental
+		fwrite($txt,"21");
+	//fwrite($txt,$reg[$i]["EnfermedadMental"]); // 25. Enfermedad Mental
 	fwrite($txt,"|");
-		// if ($reg[$i]["Sexo"] == 'M' || ($reg[$i]["Sexo"] == 'F' && $edad < 10))
-		// {
-		// 	fwrite($txt,'0');
-		// }
-		// else if ($reg[$i]["Sexo"] == 'F' && $edad > 9 && $reg[$i]["CancerCervix"] == '0')
-		// {
-		// 	fwrite($txt,'21');
-		// }
-		// else
-		// {
-		// 	fwrite($txt,$reg[$i]["CancerCervix"]);
-		// }	
-	fwrite($txt,$reg[$i]["CancerCervix"]); // 26. Cancer de Cervix
+		fwrite($txt,"0");
+	//fwrite($txt,$reg[$i]["CancerCervix"]); // 26. Cancer de Cervix
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["CancerSeno"]);
 	fwrite($txt,"|");
@@ -376,11 +328,13 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["Polio"]); // 38. Polio
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["DPT"]); // 39. DPT en Menores de 5 años
+		fwrite($txt,"0");
+	//fwrite($txt,$reg[$i]["DPT"]); // 39. DPT en Menores de 5 años
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["Rotavirus"]); // 40. Rotavirus
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["Neumococo"]); // 41. Neumococo
+		fwrite($txt,"0");
+	//fwrite($txt,$reg[$i]["Neumococo"]); // 41. Neumococo
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["InfluenzaN"]); // 42. Influenza Niños
 	fwrite($txt,"|");
@@ -649,7 +603,8 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ConsultaNutricionInput"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["ConsultaPsicologiaInput"]);
+		fwrite($txt,"1845-01-01");
+	//fwrite($txt,$reg[$i]["ConsultaPsicologiaInput"]); // 68. Consulta de psicología
 	fwrite($txt,"|");
 		// $diferencia = diferenciaFecha($reg[$i]["ConsultaCyDPrimeraVezInput"], $FechaFinal);
 
@@ -728,15 +683,8 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// }
 	fwrite($txt,$reg[$i]["ConsultaAdultoPrimeraVezInput"]); // 73. Consulta de Adulto Primera Vez
 	fwrite($txt,"|");
-		// if ($reg[$i]["InfeccionTrasmisionSexual"] == '2')
-		// {
-		// 	fwrite($txt,'0'); 
-		// }
-		// else
-		// {
-		// 	fwrite($txt,$reg[$i]["PreservativosITSInput"]);
-		// }
-	fwrite($txt,$reg[$i]["PreservativosITSInput"]); // 74. Preservativos Entregados a Pacientes con ITS
+		fwrite($txt,"0");
+	//fwrite($txt,$reg[$i]["PreservativosITSInput"]); // 74. Preservativos Entregados a Pacientes con ITS
 	fwrite($txt,"|");
 		// if ($reg[$i]["Gestacion"] == '1' && $reg[$i]["AsesoriaPreElisaInput"]=='1845-01-01')
 		// {
@@ -1178,7 +1126,8 @@ for ($i=0;$i<sizeof($reg);$i++)
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ResultadoCreatinina"]);
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["FechaHemoglobinaGlicosiladaInput"]);
+		fwrite($txt,"1845-01-01");
+	//fwrite($txt,$reg[$i]["FechaHemoglobinaGlicosiladaInput"]); // 108. Preservativos entregados a pacientes con ITS
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["ResultadoHemoglobinaGlicosilada"]);
 	fwrite($txt,"|");
@@ -1220,9 +1169,11 @@ for ($i=0;$i<sizeof($reg);$i++)
 		// }
 	fwrite($txt,$reg[$i]["TratamientoHipotiroidismoCongenito"]); // 114. Tratamiento para Hipotiroidismo Congénito
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["TratamientoSifilisGestacional"]);
+		fwrite($txt,"0");
+	//fwrite($txt,$reg[$i]["TratamientoSifilisGestacional"]); // 115. Tratamiento para sífilis gestacional
 	fwrite($txt,"|");
-	fwrite($txt,$reg[$i]["TratamientoSifilisCongenita"]);
+		fwrite($txt,"0");
+	//fwrite($txt,$reg[$i]["TratamientoSifilisCongenita"]); // 116. Tratamiento para sífilis congénita
 	fwrite($txt,"|");
 	fwrite($txt,$reg[$i]["TratamientoLepra"]);
 	fwrite($txt,"|");
